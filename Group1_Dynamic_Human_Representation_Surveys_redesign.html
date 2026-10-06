@@ -53,7 +53,6 @@ html[lang="fa"] .nojs{font-family:var(--fa);direction:rtl}
 .nav-links a[data-on]{background:var(--brand);color:var(--on);border-color:var(--brand)}
 .nd{width:8px;height:8px;border-radius:50%;display:inline-block}
 .nav-links a:nth-last-child(1),.nav-all{display:none}
-/* theme button */
 .theme-btn{flex:0 0 auto;display:grid;place-items:center;width:40px;height:40px;padding:0;border:1px solid var(--line);border-radius:99px;background:var(--paper);color:var(--ink);cursor:pointer}
 .theme-btn:hover{background:var(--soft)}
 .theme-btn svg{width:18px;height:18px;display:none}
@@ -191,7 +190,6 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
 </style>
 <script>
 (function(){
-  // Apply theme as early as possible to prevent flash
   var m = 'auto';
   try { m = localStorage.getItem('theme') || 'auto'; } catch(_) {}
   var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -251,7 +249,10 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
       <a class="nav-all" href="#glance"><span>All 10 &rarr; table</span></a>
       <a href="#top"><span>Back to top</span></a>
     </div>
-    <div class="lang" id="lang" role="group" aria-label="Language"><button type="button" data-l="en" aria-pressed="true">EN</button><button type="button" data-l="fa" lang="fa" aria-pressed="false">فا</button></div>
+    <div class="lang" id="lang" role="group" aria-label="Language">
+      <button type="button" data-l="en" aria-pressed="true">EN</button>
+      <button type="button" data-l="fa" lang="fa" aria-pressed="false">فا</button>
+    </div>
     <button class="theme-btn" id="themeBtn" type="button" aria-label="Theme: Auto" title="Theme: Auto">
       <svg class="ico-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg>
       <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
@@ -898,11 +899,9 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
     root.setAttribute('data-theme', effective);
     root.setAttribute('data-theme-mode', mode);
 
-    // Update meta theme-color for iOS Safari toolbar
     var meta = document.querySelector('meta[name="theme-color"]');
     if (meta) {
       var col = effective === 'dark' ? '#0C1220' : '#F6F3EC';
-      // Remove existing media-based themes so ours wins
       document.querySelectorAll('meta[name="theme-color"]').forEach(function (m, i) {
         if (i > 0) m.remove();
       });
@@ -917,13 +916,11 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
     btn.setAttribute('title', (lang === 'fa' ? 'تم: ' : 'Theme: ') + text);
   }
 
-  // Track auto changes when in auto mode
   try {
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
       if (root.getAttribute('data-theme-mode') === 'auto') applyTheme('auto');
     });
   } catch (_) {
-    // Older Safari
     try {
       window.matchMedia('(prefers-color-scheme: dark)').addListener(function () {
         if (root.getAttribute('data-theme-mode') === 'auto') applyTheme('auto');
@@ -938,7 +935,6 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
     try { localStorage.setItem('theme', next); } catch (_) {}
   });
 
-  // Re-apply after language change (to update the label)
   var langContainer = document.getElementById('lang');
   if (langContainer) {
     langContainer.addEventListener('click', function () {
@@ -953,124 +949,176 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
 <script>
 /* ---------- Language toggle (EN / FA) ---------- */
 (function () {
-  var FA = {
-    'Literature Review • Google Scholar': 'مرور ادبیات • Google Scholar',
-    'Group 1 | Dynamic Human Representation': 'گروه ۱ | بازنمایی پویای انسان',
-    'How do intelligent systems model humans and users? — ten papers, one per search term': 'سیستم‌های هوشمند چگونه انسان‌ها و کاربران را مدل می‌کنند؟ — ده مقاله، یکی برای هر عبارت جست‌وجو',
-    'Each entry includes the full bibliographic record, an English summary, and a Persian summary.': 'هر مورد شامل مشخصات کامل کتاب‌شناختی، خلاصهٔ انگلیسی و خلاصهٔ فارسی است.',
-    'At a glance': 'در یک نگاه',
-    'Papers': 'مقاله',
-    'Search terms': 'عبارت جست‌وجو',
-    'Time window': 'بازهٔ زمانی',
-    'Source': 'منبع',
-    'Terms with a paper': 'عبارت‌های دارای مقاله',
-    'Contents': 'فهرست',
-    '01 Preference drift': '۰۱ رانش ترجیحات',
-    '02 Intent': '۰۲ نیت',
-    '03 Goal': '۰۳ هدف',
-    '04 Constraint': '۰۴ محدودیت',
-    '05 Context': '۰۵ زمینه',
-    '06 User repr.': '۰۶ بازنمایی کاربر',
-    '07 User modeling': '۰۷ مدل‌سازی کاربر',
-    '08 Dynamic modeling': '۰۸ مدل‌سازی پویا',
-    '09 Dynamic repr.': '۰۹ بازنمایی پویا',
-    '10 User pref. LLM': '۱۰ ترجیح کاربر در LLM',
-    'All 10 → table': 'همهٔ ۱۰ مقاله ← جدول',
-    'Back to top': 'بازگشت به بالا',
-    'Download': 'دانلود',
-    'Selection Overview': 'نمای کلی انتخاب',
-    'Paper 6': 'مقاله ۶', 'Paper 7': 'مقاله ۷', 'Paper 8': 'مقاله ۸', 'Paper 9': 'مقاله ۹',
-    'Paper 1': 'مقاله ۱', 'Paper 2': 'مقاله ۲', 'Paper 3': 'مقاله ۳', 'Paper 4': 'مقاله ۴',
-    'Paper 5': 'مقاله ۵', 'Paper 10': 'مقاله ۱۰',
-    'Eleven search terms were used; each of the ten papers below corresponds to one of them.': 'یازده عبارت جست‌وجو استفاده شد؛ هر یک از ده مقالهٔ زیر متناظر با یکی از آن‌هاست.',
-    'Two of the term-specific searches — "goal-aware recommender systems" after 2020 and "constraint-aware recommendation" — did not return review articles directly. For those two terms, adjacent review literature was used: goal modelling in workplace learning (paper 3), and fairness treated as a ranking constraint (paper 4).': 'دو مورد از جست‌وجوهای مختص عبارت — <code>"goal-aware recommender systems"</code> پس از ۲۰۲۰ و <code>"constraint-aware recommendation"</code> — مستقیماً مقالهٔ مروری بازنگرداندند. برای این دو عبارت، از ادبیات مروری مجاور استفاده شد: مدل‌سازی هدف در یادگیری محیط کار (مقاله ۳) و انصاف به‌عنوان قید رتبه‌بندی (مقاله ۴).',
-    'How systems model a user whose tastes change over time': 'سیستم‌ها چگونه کاربری را مدل می‌کنند که سلیقه‌اش در گذر زمان تغییر می‌کند',
-    'Modelling why the user is here right now, not just what they liked': 'مدل‌سازی چرایی حضور کاربر در همین لحظه، نه فقط آنچه پسندیده است',
-    'Working out what the user is actually trying to reach, not just scoring past behaviour': 'فهمیدن اینکه کاربر واقعاً می‌خواهد به چه چیزی برسد، نه فقط امتیازدهی به رفتار گذشته',
-    'Recommendations that must respect rules, objectives and hard requirements': 'پیشنهادهایی که باید قواعد، هدف‌ها و الزامات سخت را رعایت کنند',
-    'When, where, with whom, and under what conditions the user acts': 'کاربر چه زمانی، کجا، با چه کسی و در چه شرایطی عمل می‌کند',
-    'Learning transferable, domain-independent representations of users from review text': 'یادگیری بازنمایی‌های قابل‌انتقال و مستقل از حوزه از متن نظرات کاربران',
-    'Modelling user behaviour from session-level interactions': 'مدل‌سازی رفتار کاربر بر پایهٔ تعاملات سطح نشست',
-    'Keeping user profiles up to date as interests and behaviour change over time': 'به‌روز نگه‌داشتن پروفایل کاربر همراه با تغییر علایق و رفتار در طول زمان',
-    'Learning user representations that stay accurate under distribution shift': 'یادگیری بازنمایی‌های کاربر که تحت جابه‌جایی توزیع دقیق باقی می‌مانند',
-    'Personalising large language models to individual user preferences': 'شخصی‌سازی مدل‌های زبانی بزرگ بر اساس ترجیحات فردی کاربران',
-    'Title': 'عنوان',
-    'Authors': 'نویسندگان',
-    'Year': 'سال',
-    'Type': 'نوع',
-    'Domain': 'حوزه',
-    'Journal / Conference': 'مجله / کنفرانس',
-    'DOI / Link': 'DOI / پیوند',
-    'Summary': 'خلاصه',
-    'All Ten Papers at a Glance': 'همهٔ ده مقاله در یک نگاه',
-    'Search term': 'عبارت جست‌وجو',
-    'Journal': 'مجله',
-    'Survey': 'مرور (Survey)',
-    'Narrative Review': 'مرور روایی',
-    'Research Article': 'مقالهٔ پژوهشی',
-    'Systematic Literature Review': 'مرور نظام‌مند ادبیات',
-    'Systematic Review': 'مرور نظام‌مند',
-    'Type Breakdown': 'تفکیک نوع',
-    'The ten papers divide by publication type as follows. Each paper is counted under the type declared in its own record.': 'ده مقاله بر اساس نوع انتشار به‌شکل زیر تقسیم می‌شوند. هر مقاله زیر نوعی شمرده می‌شود که در مشخصات خودش اعلام شده است.',
-    'Papers 1, 2, 4, 7, 10': 'مقالات <b>۱</b>، <b>۲</b>، <b>۴</b>، <b>۷</b>، <b>۱۰</b>',
-    'Paper 3': 'مقالهٔ <b>۳</b>', 'Paper 5': 'مقالهٔ <b>۵</b>', 'Paper 8': 'مقالهٔ <b>۸</b>',
-    'Papers 6, 9': 'مقالات <b>۶</b>، <b>۹</b>',
-    'Word document': 'سند Word',
-    'Editable .doc with all papers, summaries and table': 'فایل .doc قابل ویرایش با همهٔ مقالات، خلاصه‌ها و جدول',
-    'PDF file': 'فایل PDF',
-    'Opens print dialog — choose "Save as PDF"': 'پنجرهٔ چاپ باز می‌شود — «Save as PDF» را انتخاب کنید',
-    'Type breakdown: 5 surveys (IEEE Access, ACM TORS, UMUAI, ACM Computing Surveys, TMLR), 1 systematic review (TechTrends), 1 systematic literature review (Artificial Intelligence Review), 1 narrative review (European Journal on Artificial Intelligence), and 2 research articles (ACM TOIS, ACM SIGIR) — 10 papers in total.': 'تفکیک نوع: ۵ مقالهٔ مروری (IEEE Access، ACM TORS، UMUAI، ACM Computing Surveys، TMLR)، ۱ مرور نظام‌مند (TechTrends)، ۱ مرور نظام‌مند ادبیات (Artificial Intelligence Review)، ۱ مرور روایی (European Journal on Artificial Intelligence)، و ۲ مقالهٔ پژوهشی (ACM TOIS، ACM SIGIR) — در مجموع ۱۰ مقاله.',
-    'Domains covered: temporal and time-aware user modelling, intent modelling, goal modelling in workplace learning, fairness handled as a ranking constraint, context modelling, universal sequence representation learning, session-based user modelling, dynamic user profiling, continual user representation under distribution shift, and LLM personalisation — ten angles on how a system represents a changing user.': 'حوزه‌های پوشش‌داده‌شده: مدل‌سازی زمانی و آگاه به زمان کاربر، مدل‌سازی نیت، مدل‌سازی هدف در یادگیری محیط کار، انصاف به‌عنوان قید رتبه‌بندی، مدل‌سازی بافتار، یادگیری بازنمایی ترتیبی جهانی، مدل‌سازی کاربر مبتنی بر نشست، پروفایل‌سازی پویای کاربر، بازنمایی پیوستهٔ کاربر تحت جابه‌جایی توزیع، و شخصی‌سازی با LLM — ده زاویه برای بازنمایی کاربری که تغییر می‌کند.',
-    'Search coverage: eleven search terms were used in Google Scholar. Ten of them produced one paper each. Two of the ten term-matched papers came from adjacent review literature because their search terms — "goal-aware recommender systems" and "constraint-aware recommendation" — did not return reviews directly; goal modelling in workplace learning and fairness as a ranking constraint were used instead.': 'پوشش جست‌وجو: یازده عبارت جست‌وجو در Google Scholar استفاده شد. ده مورد از آن‌ها هرکدام یک مقاله به دست دادند. دو مورد از ده مقالهٔ متناظر با عبارت، از ادبیات مروری مجاور آمده‌اند چون عبارت‌های جست‌وجوی‌شان — <code>"goal-aware recommender systems"</code> و <code>"constraint-aware recommendation"</code> — مستقیماً مرور بازنگرداندند؛ به‌جای آن‌ها از مدل‌سازی هدف در یادگیری محیط کار و انصاف به‌عنوان قید رتبه‌بندی استفاده شد.',
-    'Prepared for Group 1, Dynamic Human Representation.': 'برای گروه ۱، بازنمایی پویای انسان تهیه شده است.'
-  };
+  'use strict';
+  try {
+    console.log('[Lang] Init');
 
-  function norm(s) { return String(s == null ? '' : s).replace(/\s+/g, ' ').trim(); }
-  var FA_NORM = {};
-  Object.keys(FA).forEach(function (k) { FA_NORM[norm(k)] = FA[k]; });
+    var FA = {
+      'Literature Review • Google Scholar': 'مرور ادبیات • Google Scholar',
+      'Group 1 | Dynamic Human Representation': 'گروه ۱ | بازنمایی پویای انسان',
+      'How do intelligent systems model humans and users? — ten papers, one per search term': 'سیستم‌های هوشمند چگونه انسان‌ها و کاربران را مدل می‌کنند؟ — ده مقاله، یکی برای هر عبارت جست‌وجو',
+      'Each entry includes the full bibliographic record, an English summary, and a Persian summary.': 'هر مورد شامل مشخصات کامل کتاب‌شناختی، خلاصهٔ انگلیسی و خلاصهٔ فارسی است.',
+      'At a glance': 'در یک نگاه',
+      'Papers': 'مقاله',
+      'Search terms': 'عبارت جست‌وجو',
+      'Time window': 'بازهٔ زمانی',
+      'Source': 'منبع',
+      'Terms with a paper': 'عبارت‌های دارای مقاله',
+      'Contents': 'فهرست',
+      '01 Preference drift': '۰۱ رانش ترجیحات',
+      '02 Intent': '۰۲ نیت',
+      '03 Goal': '۰۳ هدف',
+      '04 Constraint': '۰۴ محدودیت',
+      '05 Context': '۰۵ زمینه',
+      '06 User repr.': '۰۶ بازنمایی کاربر',
+      '07 User modeling': '۰۷ مدل‌سازی کاربر',
+      '08 Dynamic modeling': '۰۸ مدل‌سازی پویا',
+      '09 Dynamic repr.': '۰۹ بازنمایی پویا',
+      '10 User pref. LLM': '۱۰ ترجیح کاربر در LLM',
+      'All 10 → table': 'همهٔ ۱۰ مقاله ← جدول',
+      'Back to top': 'بازگشت به بالا',
+      'Download': 'دانلود',
+      'Selection Overview': 'نمای کلی انتخاب',
+      'Paper 1': 'مقاله ۱', 'Paper 2': 'مقاله ۲', 'Paper 3': 'مقاله ۳', 'Paper 4': 'مقاله ۴',
+      'Paper 5': 'مقاله ۵', 'Paper 6': 'مقاله ۶', 'Paper 7': 'مقاله ۷', 'Paper 8': 'مقاله ۸',
+      'Paper 9': 'مقاله ۹', 'Paper 10': 'مقاله ۱۰',
+      'Eleven search terms were used; each of the ten papers below corresponds to one of them.': 'یازده عبارت جست‌وجو استفاده شد؛ هر یک از ده مقالهٔ زیر متناظر با یکی از آن‌هاست.',
+      'Two of the term-specific searches — "goal-aware recommender systems" after 2020 and "constraint-aware recommendation" — did not return review articles directly. For those two terms, adjacent review literature was used: goal modelling in workplace learning (paper 3), and fairness treated as a ranking constraint (paper 4).': 'دو مورد از جست‌وجوهای مختص عبارت — <code>"goal-aware recommender systems"</code> پس از ۲۰۲۰ و <code>"constraint-aware recommendation"</code> — مستقیماً مقالهٔ مروری بازنگرداندند. برای این دو عبارت، از ادبیات مروری مجاور استفاده شد: مدل‌سازی هدف در یادگیری محیط کار (مقاله ۳) و انصاف به‌عنوان قید رتبه‌بندی (مقاله ۴).',
+      'How systems model a user whose tastes change over time': 'سیستم‌ها چگونه کاربری را مدل می‌کنند که سلیقه‌اش در گذر زمان تغییر می‌کند',
+      'Modelling why the user is here right now, not just what they liked': 'مدل‌سازی چرایی حضور کاربر در همین لحظه، نه فقط آنچه پسندیده است',
+      'Working out what the user is actually trying to reach, not just scoring past behaviour': 'فهمیدن اینکه کاربر واقعاً می‌خواهد به چه چیزی برسد، نه فقط امتیازدهی به رفتار گذشته',
+      'Recommendations that must respect rules, objectives and hard requirements': 'پیشنهادهایی که باید قواعد، هدف‌ها و الزامات سخت را رعایت کنند',
+      'When, where, with whom, and under what conditions the user acts': 'کاربر چه زمانی، کجا، با چه کسی و در چه شرایطی عمل می‌کند',
+      'Learning transferable, domain-independent representations of users from review text': 'یادگیری بازنمایی‌های قابل‌انتقال و مستقل از حوزه از متن نظرات کاربران',
+      'Modelling user behaviour from session-level interactions': 'مدل‌سازی رفتار کاربر بر پایهٔ تعاملات سطح نشست',
+      'Keeping user profiles up to date as interests and behaviour change over time': 'به‌روز نگه‌داشتن پروفایل کاربر همراه با تغییر علایق و رفتار در طول زمان',
+      'Learning user representations that stay accurate under distribution shift': 'یادگیری بازنمایی‌های کاربر که تحت جابه‌جایی توزیع دقیق باقی می‌مانند',
+      'Personalising large language models to individual user preferences': 'شخصی‌سازی مدل‌های زبانی بزرگ بر اساس ترجیحات فردی کاربران',
+      'Title': 'عنوان',
+      'Authors': 'نویسندگان',
+      'Year': 'سال',
+      'Type': 'نوع',
+      'Domain': 'حوزه',
+      'Journal / Conference': 'مجله / کنفرانس',
+      'DOI / Link': 'DOI / پیوند',
+      'Summary': 'خلاصه',
+      'All Ten Papers at a Glance': 'همهٔ ده مقاله در یک نگاه',
+      'Search term': 'عبارت جست‌وجو',
+      'Journal': 'مجله',
+      'Survey': 'مرور (Survey)',
+      'Narrative Review': 'مرور روایی',
+      'Research Article': 'مقالهٔ پژوهشی',
+      'Systematic Literature Review': 'مرور نظام‌مند ادبیات',
+      'Systematic Review': 'مرور نظام‌مند',
+      'Type Breakdown': 'تفکیک نوع',
+      'The ten papers divide by publication type as follows. Each paper is counted under the type declared in its own record.': 'ده مقاله بر اساس نوع انتشار به‌شکل زیر تقسیم می‌شوند. هر مقاله زیر نوعی شمرده می‌شود که در مشخصات خودش اعلام شده است.',
+      'Papers 1, 2, 4, 7, 10': 'مقالات <b>۱</b>، <b>۲</b>، <b>۴</b>، <b>۷</b>، <b>۱۰</b>',
+      'Paper 3': 'مقالهٔ <b>۳</b>', 'Paper 5': 'مقالهٔ <b>۵</b>', 'Paper 8': 'مقالهٔ <b>۸</b>',
+      'Papers 6, 9': 'مقالات <b>۶</b>، <b>۹</b>',
+      'Word document': 'سند Word',
+      'Editable .doc with all papers, summaries and table': 'فایل .doc قابل ویرایش با همهٔ مقالات، خلاصه‌ها و جدول',
+      'PDF file': 'فایل PDF',
+      'Opens print dialog — choose "Save as PDF"': 'پنجرهٔ چاپ باز می‌شود — «Save as PDF» را انتخاب کنید',
+      'Prepared for Group 1, Dynamic Human Representation.': 'برای گروه ۱، بازنمایی پویای انسان تهیه شده است.'
+    };
 
-  var SEL = '.kicker,.hero h1,.hero h2,.hero-note,.stats-h span,.s3l,.chip,.mlab,.nav-label,.nav-links a span,.legend h3,.legend p,.legend .tag,.topic-sub,.flabel,.stitle,.fatitle,.matrix h3,.matrix th,.typebreak h3,.typebreak .tintro,.tlabel,.tnote,footer p,.b-type,.top-dl span,.dl-menu b,.dl-menu small';
-  var els = [].slice.call(document.querySelectorAll(SEL));
-  var root = document.documentElement;
+    function norm(s) { return String(s == null ? '' : s).replace(/\s+/g, ' ').trim(); }
+    var FA_NORM = {};
+    Object.keys(FA).forEach(function (k) { FA_NORM[norm(k)] = FA[k]; });
 
-  els.forEach(function (el) {
-    el.setAttribute('data-en-html', el.innerHTML);
-    var fa = FA_NORM[norm(el.textContent)];
-    if (fa) el.setAttribute('data-fa-html', fa);
-  });
+    var SEL = '.kicker,.hero h1,.hero h2,.hero-note,.stats-h span,.s3l,.chip,.mlab,.nav-label,.nav-links a span,.legend h3,.legend p,.legend .tag,.topic-sub,.flabel,.stitle,.fatitle,.matrix h3,.matrix th,.typebreak h3,.typebreak .tintro,.tlabel,.tnote,footer p,.b-type,.top-dl span,.dl-menu b,.dl-menu small';
 
-  var T0 = document.title;
-  var TFA = 'گروه ۱ | بازنمایی پویای انسان — فهرست مطالعه';
+    var els = [].slice.call(document.querySelectorAll(SEL));
+    console.log('[Lang] Found', els.length, 'candidate elements');
 
-  function setLang(lang) {
-    root.lang = lang;
-    root.dir = (lang === 'fa') ? 'rtl' : 'ltr';
+    var matched = 0;
     els.forEach(function (el) {
-      var enH = el.getAttribute('data-en-html');
-      var faH = el.getAttribute('data-fa-html');
-      if (lang === 'fa' && faH) el.innerHTML = faH;
-      else if (enH) el.innerHTML = enH;
+      if (!el.hasAttribute('data-en-html')) {
+        el.setAttribute('data-en-html', el.innerHTML);
+      }
+      var fa = FA_NORM[norm(el.textContent)];
+      if (fa) {
+        el.setAttribute('data-fa-html', fa);
+        matched++;
+      }
     });
-    [].forEach.call(document.querySelectorAll('#lang button'), function (b) {
-      b.setAttribute('aria-pressed', b.getAttribute('data-l') === lang ? 'true' : 'false');
-    });
-    document.title = (lang === 'fa') ? TFA : T0;
-    var dlBtn = document.getElementById('dlBtn');
-    if (dlBtn) dlBtn.setAttribute('aria-label', lang === 'fa' ? 'دانلود' : 'Download');
-    try { localStorage.setItem('lang', lang); } catch (_) {}
-  }
+    console.log('[Lang] Matched', matched, 'of', els.length);
 
-  var container = document.getElementById('lang');
-  if (container) {
-    container.addEventListener('click', function (e) {
-      var b = e.target.closest('button');
-      if (b) setLang(b.getAttribute('data-l'));
-    });
+    var root = document.documentElement;
+    var T0 = document.title;
+    var TFA = 'گروه ۱ | بازنمایی پویای انسان — فهرست مطالعه';
+
+    function setLang(lang) {
+      console.log('[Lang] setLang →', lang);
+      root.setAttribute('lang', lang);
+      root.setAttribute('dir', (lang === 'fa') ? 'rtl' : 'ltr');
+      root.setAttribute('data-lang', lang);
+
+      els.forEach(function (el) {
+        var enH = el.getAttribute('data-en-html');
+        var faH = el.getAttribute('data-fa-html');
+        if (lang === 'fa' && faH) {
+          el.innerHTML = faH;
+        } else if (enH) {
+          el.innerHTML = enH;
+        }
+      });
+
+      var btns = document.querySelectorAll('#lang button');
+      Array.prototype.forEach.call(btns, function (b) {
+        b.setAttribute('aria-pressed', b.getAttribute('data-l') === lang ? 'true' : 'false');
+      });
+
+      document.title = (lang === 'fa') ? TFA : T0;
+
+      var dlBtn = document.getElementById('dlBtn');
+      if (dlBtn) dlBtn.setAttribute('aria-label', lang === 'fa' ? 'دانلود' : 'Download');
+
+      try { localStorage.setItem('lang', lang); } catch (_) {}
+    }
+
+    var btnEn = document.querySelector('#lang button[data-l="en"]');
+    var btnFa = document.querySelector('#lang button[data-l="fa"]');
+    console.log('[Lang] EN button:', !!btnEn, 'FA button:', !!btnFa);
+
+    if (btnEn) {
+      btnEn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        setLang('en');
+      });
+    }
+    if (btnFa) {
+      btnFa.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        setLang('fa');
+      });
+    }
+
+    var container = document.getElementById('lang');
+    if (container) {
+      container.addEventListener('click', function (e) {
+        var b = e.target && e.target.closest ? e.target.closest('button') : null;
+        if (b) {
+          var l = b.getAttribute('data-l');
+          if (l && l !== root.getAttribute('lang')) setLang(l);
+        }
+      });
+    }
+
+    var saved = null;
+    try { saved = localStorage.getItem('lang'); } catch (_) {}
+    if (!saved) {
+      var navLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+      saved = (navLang.indexOf('fa') === 0) ? 'fa' : 'en';
+    }
+    console.log('[Lang] Initial:', saved);
+    setLang(saved);
+
+  } catch (err) {
+    console.error('[Lang] Fatal error:', err);
   }
-  var saved = null;
-  try { saved = localStorage.getItem('lang'); } catch (_) {}
-  if (!saved) saved = (navigator.language || '').toLowerCase().indexOf('fa') === 0 ? 'fa' : 'en';
-  setLang(saved);
 })();
 </script>
 
@@ -1182,7 +1230,6 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
     a.rel = 'noopener';
     a.style.display = 'none';
     document.body.appendChild(a);
-    // iOS Safari sometimes needs a slight delay
     setTimeout(function () { a.click(); }, 20);
     setTimeout(function () {
       if (a.parentNode) a.parentNode.removeChild(a);
