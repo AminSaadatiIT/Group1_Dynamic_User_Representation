@@ -131,13 +131,16 @@ html[lang="fa"] .nojs{font-family:var(--fa);direction:rtl}
 .tlabel{font:700 14px/1.35 var(--sans);color:var(--ink)}
 .tnote{font-size:12.5px;color:var(--ink3);line-height:1.6}
 .tnote b{color:var(--ink2);font-weight:500}
-/* contributors */
 .contributors{margin-top:56px}
 .contributors h3{font:700 clamp(22px,4vw,30px) var(--serif);color:var(--ink);margin:0 0 14px}
 .contributors .cintro{font-size:14px;color:var(--ink3);margin:0 0 18px;max-width:70ch}
 .cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-.ccard{background:var(--paper);border:1px solid var(--line);border-top:4px solid var(--cc,#C2410C);border-radius:var(--r);padding:18px 20px;box-shadow:var(--sh)}
-.cname{font:700 15px/1.35 var(--sans);color:var(--ink);margin:0 0 4px}
+.ccard{background:var(--paper);border:1px solid var(--line);border-top:4px solid var(--cc,#C2410C);border-radius:var(--r);padding:18px 20px;box-shadow:var(--sh);position:relative}
+.ccard.is-leader{border-width:2px;border-top-width:5px;background:linear-gradient(180deg,color-mix(in srgb,var(--acc) 6%,var(--paper)),var(--paper) 40%)}
+.cname-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 4px}
+.cname{font:700 15px/1.35 var(--sans);color:var(--ink);margin:0}
+.cleader{display:inline-flex;align-items:center;gap:4px;font:700 10px var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--acc);color:#fff;border:1px solid var(--acc);white-space:nowrap}
+.cleader svg{width:11px;height:11px}
 .crole{font:700 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin:0 0 12px}
 .cterms{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
 .cterms li{display:flex;flex-direction:column;gap:4px;font-size:13px}
@@ -193,6 +196,8 @@ html[lang=fa] .ctitle{font:500 14px/1.4 var(--sans);color:var(--ink3);direction:
 html[lang=fa] .fval{unicode-bidi:plaintext}
 html[lang=fa] .tcard{text-align:right}
 html[lang=fa] .ccard{text-align:right}
+html[lang=fa] .cname-row{justify-content:flex-start}
+html[lang=fa] .cleader{font-family:var(--fa);letter-spacing:0;text-transform:none;font-size:11px}
 html[lang=fa] .crole{font-family:var(--fa);letter-spacing:0;text-transform:none;font-size:11px}
 html[lang=fa] .cterms code{align-self:flex-end}
 html[lang=fa] .cpaper{font-family:var(--fa);letter-spacing:0;text-transform:none;font-size:11px}
@@ -863,18 +868,29 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
 
   <div class="contributors" id="contributors">
     <h3>Contributors</h3>
-    <p class="cintro">The ten papers were collected across the group. Each contributor ran specific search terms and selected the papers shown below. Papers 3, 4, and 5 were selected through combined group searches.</p>
+    <p class="cintro">The ten papers were collected across the group. Each contributor ran specific search terms and selected the papers shown below.</p>
     <div class="cgrid">
-      <div class="ccard" style="--cc:#FB923C">
-        <div class="cname">امین سعادتی</div>
+      <div class="ccard is-leader" style="--cc:#FB923C">
+        <div class="cname-row">
+          <div class="cname">امین سعادتی</div>
+          <span class="cleader">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            Group Leader
+          </span>
+        </div>
         <div class="crole">Search terms</div>
         <ul class="cterms">
           <li><code>"preference drift" recommendation</code><span class="cpaper">Paper 1</span></li>
           <li><code>"intent-aware recommendation"</code><span class="cpaper">Paper 2</span></li>
+          <li><code>"goal-aware recommendation"</code><span class="cpaper">Paper 3</span></li>
+          <li><code>"constraint-aware recommendation"</code><span class="cpaper">Paper 4</span></li>
+          <li><code>"context-aware recommendation"</code><span class="cpaper">Paper 5</span></li>
         </ul>
       </div>
       <div class="ccard" style="--cc:#60A5FA">
-        <div class="cname">روشنا (فاطمه سخن لطیف)</div>
+        <div class="cname-row">
+          <div class="cname">روشنا (فاطمه سخن لطیف)</div>
+        </div>
         <div class="crole">Search terms</div>
         <ul class="cterms">
           <li><code>"user representation" recommender systems</code><span class="cpaper">Paper 6</span></li>
@@ -882,7 +898,9 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
         </ul>
       </div>
       <div class="ccard" style="--cc:#FBBF24">
-        <div class="cname">حانیه کربلائی</div>
+        <div class="cname-row">
+          <div class="cname">حانیه کربلائی</div>
+        </div>
         <div class="crole">Search terms</div>
         <ul class="cterms">
           <li><code>"dynamic user modeling"</code><span class="cpaper">Paper 8</span></li>
@@ -890,7 +908,9 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
         </ul>
       </div>
       <div class="ccard" style="--cc:#8B5CF6">
-        <div class="cname">محمدرضا حسینی</div>
+        <div class="cname-row">
+          <div class="cname">محمدرضا حسینی</div>
+        </div>
         <div class="crole">Search terms</div>
         <ul class="cterms">
           <li><code>"user preference" LLM</code><span class="cpaper">Paper 10</span></li>
@@ -940,7 +960,6 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
 </script>
 
 <script>
-/* ---------- Theme toggle ---------- */
 (function () {
   var root = document.documentElement;
   var btn = document.getElementById('themeBtn');
@@ -996,7 +1015,6 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
 </script>
 
 <script>
-/* ---------- Language toggle (EN / FA) ---------- */
 (function () {
   'use strict';
   try {
@@ -1030,9 +1048,9 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
       'Paper 1': 'مقاله ۱', 'Paper 2': 'مقاله ۲', 'Paper 3': 'مقاله ۳', 'Paper 4': 'مقاله ۴',
       'Paper 5': 'مقاله ۵', 'Paper 6': 'مقاله ۶', 'Paper 7': 'مقاله ۷', 'Paper 8': 'مقاله ۸',
       'Paper 9': 'مقاله ۹', 'Paper 10': 'مقاله ۱۰',
-      'Search terms': 'عبارت‌های جست‌وجو',
       'Search term': 'عبارت جست‌وجو',
-      'The ten papers were collected across the group. Each contributor ran specific search terms and selected the papers shown below. Papers 3, 4, and 5 were selected through combined group searches.': 'ده مقاله در سطح گروه گردآوری شده‌اند. هر گردآورنده عبارت‌های جست‌وجوی مشخصی را اجرا کرده و مقالات نشان‌داده‌شده در زیر را انتخاب کرده است. مقالات ۳، ۴ و ۵ از طریق جست‌وجوهای ترکیبی گروهی انتخاب شده‌اند.',
+      'Group Leader': 'سرگروه',
+      'The ten papers were collected across the group. Each contributor ran specific search terms and selected the papers shown below.': 'ده مقاله در سطح گروه گردآوری شده‌اند. هر گردآورنده عبارت‌های جست‌وجوی مشخصی را اجرا کرده و مقالات نشان‌داده‌شده در زیر را انتخاب کرده است.',
       'Eleven search terms were used; each of the ten papers below corresponds to one of them.': 'یازده عبارت جست‌وجو استفاده شد؛ هر یک از ده مقالهٔ زیر متناظر با یکی از آن‌هاست.',
       'Two of the term-specific searches — "goal-aware recommender systems" after 2020 and "constraint-aware recommendation" — did not return review articles directly. For those two terms, adjacent review literature was used: goal modelling in workplace learning (paper 3), and fairness treated as a ranking constraint (paper 4).': 'دو مورد از جست‌وجوهای مختص عبارت — <code>"goal-aware recommender systems"</code> پس از ۲۰۲۰ و <code>"constraint-aware recommendation"</code> — مستقیماً مقالهٔ مروری بازنگرداندند. برای این دو عبارت، از ادبیات مروری مجاور استفاده شد: مدل‌سازی هدف در یادگیری محیط کار (مقاله ۳) و انصاف به‌عنوان قید رتبه‌بندی (مقاله ۴).',
       'How systems model a user whose tastes change over time': 'سیستم‌ها چگونه کاربری را مدل می‌کنند که سلیقه‌اش در گذر زمان تغییر می‌کند',
@@ -1076,16 +1094,12 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
     Object.keys(FA).forEach(function (k) { FA_NORM[norm(k)] = FA[k]; });
     var SEL = '.kicker,.hero h1,.hero h2,.hero-note,.stats-h span,.s3l,.chip,.mlab,.nav-label,.nav-links a span,.legend h3,.legend p,.legend .tag,.topic-sub,.flabel,.stitle,.fatitle,.matrix h3,.matrix th,.typebreak h3,.typebreak .tintro,.tlabel,.tnote,.contributors h3,.contributors .cintro,.crole,footer p,.b-type,.top-dl span,.dl-menu b,.dl-menu small';
     var els = [].slice.call(document.querySelectorAll(SEL));
-    var matched = 0;
     els.forEach(function (el) {
       if (!el.hasAttribute('data-en-html')) {
         el.setAttribute('data-en-html', el.innerHTML);
       }
       var fa = FA_NORM[norm(el.textContent)];
-      if (fa) {
-        el.setAttribute('data-fa-html', fa);
-        matched++;
-      }
+      if (fa) el.setAttribute('data-fa-html', fa);
     });
     var root = document.documentElement;
     var T0 = document.title;
@@ -1144,7 +1158,6 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
 </script>
 
 <script>
-/* ---------- Download dropdown + Word export ---------- */
 (function () {
   function E(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
   function txt(el) { return el ? el.textContent.replace(/\s+/g, ' ').trim() : ''; }
@@ -1216,7 +1229,10 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
       if (cintro) h.push('<p>' + E(txt(cintro)) + '</p>');
       h.push('<table class="g"><thead><tr><th>Contributor</th><th>Search term</th><th>Paper</th></tr></thead><tbody>');
       list(cb, '.ccard').forEach(function (card) {
-        var nm = txt(card.querySelector('.cname'));
+        var nmEl = card.querySelector('.cname');
+        var nm = txt(nmEl);
+        var isLeader = card.classList.contains('is-leader');
+        if (isLeader) nm += ' (Group Leader)';
         list(card, '.cterms li').forEach(function (li, i) {
           var term = txt(li.querySelector('code'));
           var pEl = li.querySelector('.cpaper');
@@ -1298,7 +1314,6 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
 </script>
 
 <script>
-/* ---------- Staggered entrance + scroll spy ---------- */
 (function () {
   var d = document, reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var items = Array.prototype.slice.call(d.querySelectorAll('.legend,.topic,.matrix,.typebreak,.contributors,footer'));
