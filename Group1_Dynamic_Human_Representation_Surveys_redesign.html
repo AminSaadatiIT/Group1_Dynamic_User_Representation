@@ -11,19 +11,25 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;600;700&amp;family=Roboto:wght@300;400;500;700&amp;display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&amp;display=swap">
 <style>
-:root{color-scheme:light dark;
+:root,:root[data-theme="light"]{color-scheme:light;
 --bg:#F6F3EC;--paper:#FFFFFF;--ink:#14213D;--ink2:#3B4863;--ink3:#6B7690;--line:#E3DDCF;--soft:#EFEADD;--brand:#14213D;--acc:#C2410C;--on:#fff;
 --serif:"Newsreader",Georgia,serif;--sans:"Roboto",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;--fa:"Vazirmatn",Tahoma,sans-serif;--mono:ui-monospace,Consolas,monospace;
 --sh:0 1px 2px rgba(20,33,61,.06),0 8px 24px -12px rgba(20,33,61,.18);--r:16px;--safe-t:env(safe-area-inset-top,0px);--safe-b:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root{--bg:#0C1220;--paper:#131B2E;--ink:#F1F5F9;--ink2:#C3CEDE;--ink3:#8B9BB4;--line:#243049;--soft:#192238;--brand:#F1F5F9;--acc:#FB923C;--on:#0C1220;--sh:0 1px 2px rgba(0,0,0,.4),0 10px 28px -12px rgba(0,0,0,.7)}}
+:root[data-theme="dark"]{color-scheme:dark;
+--bg:#0C1220;--paper:#131B2E;--ink:#F1F5F9;--ink2:#C3CEDE;--ink3:#8B9BB4;--line:#243049;--soft:#192238;--brand:#F1F5F9;--acc:#FB923C;--on:#0C1220;
+--sh:0 1px 2px rgba(0,0,0,.4),0 10px 28px -12px rgba(0,0,0,.7)}
 *,*::before,*::after{box-sizing:border-box;print-color-adjust:exact;-webkit-print-color-adjust:exact}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:76px;height:100%}
-body{margin:0;background:var(--bg);color:var(--ink2);font:16px/1.7 var(--sans);padding-top:var(--safe-t);padding-bottom:var(--safe-b);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--ink2);font:16px/1.7 var(--sans);padding-top:var(--safe-t);padding-bottom:var(--safe-b);-webkit-font-smoothing:antialiased;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
 a{color:inherit}img,svg{max-width:100%}
 :focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:6px}
+button,a,.nav-links a,.top-dl,.dl-btn,.totop,.lang button,.theme-btn{touch-action:manipulation}
+.nojs{background:#FEF3C7;color:#92400E;border-bottom:1px solid #F59E0B;padding:12px 16px;font-size:14px;line-height:1.5;text-align:center}
+.nojs strong{color:#78350F;font-weight:700}
+@media(prefers-color-scheme:dark){.nojs{background:#3d2e05;color:#FCD34D;border-bottom-color:#78350F}.nojs strong{color:#FEF3C7}}
+html[lang="fa"] .nojs{font-family:var(--fa);direction:rtl}
 .progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:200}
 .progress span{display:block;height:100%;width:0;background:var(--acc)}
-/* hero */
 .hero{padding:clamp(28px,6vw,72px) clamp(16px,4vw,32px) clamp(20px,4vw,40px);border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--soft),var(--bg))}
 .hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:end}
 .kicker{font:700 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--acc);margin:0 0 16px}
@@ -34,15 +40,12 @@ a{color:inherit}img,svg{max-width:100%}
 .stats-h{font:700 11px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px}.stats-pip{display:none}
 .stat3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .s3{background:var(--soft);border-radius:12px;padding:12px 8px;text-align:center}
-.s3v{display:block;font:700 clamp(24px,5vw,32px)/1 var(--serif);color:var(--ink)}.s3v i{font-style:normal;font-size:.6em;color:var(--acc)}
+.s3v{display:block;font:700 clamp(20px,4vw,28px)/1 var(--serif);color:var(--ink);letter-spacing:-.01em}
 .s3l{display:block;font-size:11px;color:var(--ink3);margin-top:6px}
-.meta-row{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0}
+.meta-row{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
 .chip{font-size:12px;background:var(--soft);border-radius:99px;padding:4px 10px;color:var(--ink2)}.chip b{font-weight:500;color:var(--ink3)}.chip .cv{color:var(--ink);font-weight:500}
-.mrow{display:flex;align-items:center;gap:10px;font-size:12px}.mlab{color:var(--ink3);white-space:nowrap}.mval{font-weight:700;color:var(--ink)}
-.mtrack{flex:1;height:6px;background:var(--line);border-radius:99px;overflow:hidden}.mfill{display:block;height:100%;background:var(--acc);border-radius:99px}
-/* sticky nav */
 .wrap{max-width:1100px;margin:0 auto;padding:0 clamp(14px,4vw,32px) 80px}
-.topnav{position:sticky;top:var(--safe-t);z-index:100;display:flex;align-items:center;gap:10px;margin:0 calc(-1*clamp(14px,4vw,32px));padding:10px clamp(14px,4vw,32px);background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.topnav{position:sticky;top:var(--safe-t);z-index:100;display:flex;align-items:center;gap:8px;margin:0 calc(-1*clamp(14px,4vw,32px));padding:10px clamp(14px,4vw,32px);background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .nav-label{display:none}
 .nav-links{flex:1;min-width:0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;mask-image:linear-gradient(90deg,#000 92%,transparent)}
 .nav-links::-webkit-scrollbar{display:none}
@@ -50,29 +53,43 @@ a{color:inherit}img,svg{max-width:100%}
 .nav-links a[data-on]{background:var(--brand);color:var(--on);border-color:var(--brand)}
 .nd{width:8px;height:8px;border-radius:50%;display:inline-block}
 .nav-links a:nth-last-child(1),.nav-all{display:none}
-/* download dropdown */
-.dl{position:fixed;left:14px;bottom:calc(16px + var(--safe-b));z-index:120}
-.dl-btn{display:grid;place-items:center;width:48px;height:48px;padding:0;opacity:.94;transition:transform .25s,opacity .25s;border:0;border-radius:99px;background:var(--acc);color:#fff;font:500 14px var(--sans);cursor:pointer;box-shadow:var(--sh)}
-.dl-btn svg.cv{display:none}.dl-btn svg{width:20px;height:20px}.dl[data-hide] .dl-btn{transform:translateY(90px);opacity:0;pointer-events:none}
-.dl-menu{position:absolute;left:0;z-index:160;bottom:calc(100% + 10px);width:270px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 20px 50px -12px rgba(20,33,61,.35);padding:8px;opacity:0;visibility:hidden;transform:translateY(8px) scale(.98);transform-origin:bottom left;transition:.18s}
+/* theme button */
+.theme-btn{flex:0 0 auto;display:grid;place-items:center;width:40px;height:40px;padding:0;border:1px solid var(--line);border-radius:99px;background:var(--paper);color:var(--ink);cursor:pointer}
+.theme-btn:hover{background:var(--soft)}
+.theme-btn svg{width:18px;height:18px;display:none}
+:root[data-theme-mode="auto"] .theme-btn .ico-auto{display:block}
+:root[data-theme-mode="light"] .theme-btn .ico-sun{display:block}
+:root[data-theme-mode="dark"] .theme-btn .ico-moon{display:block}
+.top-dl{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;padding:0 12px;min-height:40px;border:0;border-radius:99px;background:var(--acc);color:#fff;font:500 13px var(--sans);cursor:pointer;box-shadow:var(--sh)}
+.top-dl svg{width:14px;height:14px;flex:0 0 auto}
+.top-dl span{display:none}
+@media(min-width:600px){.top-dl span{display:inline}}
+.dl{position:fixed;left:14px;bottom:16px;bottom:calc(16px + var(--safe-b));z-index:300}
+.dl-btn{display:grid;place-items:center;width:52px;height:52px;padding:0;border:0;border-radius:99px;background:var(--acc);color:#fff;font:500 14px var(--sans);cursor:pointer;box-shadow:0 6px 20px -4px rgba(194,65,12,.5),var(--sh);transition:transform .2s}
+.dl-btn:hover{transform:scale(1.06)}
+.dl-btn:active{transform:scale(.96)}
+.dl-btn svg{width:20px;height:20px}
+.dl-menu{position:fixed;z-index:300;width:280px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 20px 50px -12px rgba(20,33,61,.35);padding:8px;opacity:0;visibility:hidden;transform:translateY(8px) scale(.98);transition:opacity .18s,visibility .18s,transform .18s}
 .dl-menu[data-open]{opacity:1;visibility:visible;transform:none}
+.dl-menu[data-anchor=bottom]{left:14px;bottom:16px;bottom:calc(80px + var(--safe-b));right:auto;top:auto}
+.dl-menu[data-anchor=top]{right:14px;top:calc(64px + var(--safe-t));left:auto;bottom:auto}
 .dl-menu button{display:flex;width:100%;align-items:center;gap:12px;padding:12px;border:0;background:none;border-radius:12px;text-align:left;cursor:pointer;color:var(--ink);font:inherit;min-height:56px}
 .dl-menu button:hover,.dl-menu button:focus-visible{background:var(--soft)}
 .dl-ico{flex:0 0 40px;height:40px;border-radius:10px;display:grid;place-items:center;font:700 11px var(--mono);color:#fff}
 .dl-word .dl-ico{background:#2B579A}.dl-pdf .dl-ico{background:#D93025}
 .dl-menu b{display:block;font-weight:500;font-size:15px}.dl-menu small{display:block;color:var(--ink3);font-size:12px;line-height:1.3}
 .dl-scrim{display:none}
-/* legend */
 .legend{margin:32px 0;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,3vw,30px);box-shadow:var(--sh)}
 .legend h3{font:700 clamp(20px,3vw,26px) var(--serif);color:var(--ink);margin:0 0 14px}
 .legend ol{margin:0 0 14px;padding-left:22px}.legend li{margin:4px 0}
 .legend code{font:13px var(--mono);background:var(--soft);padding:2px 7px;border-radius:6px;color:var(--ink);overflow-wrap:anywhere}
 .legend p{font-size:15px;margin:10px 0;color:var(--ink2)}
-/* topics */
+.legend .tag{display:inline-block;font:600 10px var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:6px;margin-left:6px;border:1px solid;background:#DCFCE7;color:#166534;border-color:#86EFAC}
+:root[data-theme="dark"] .legend .tag{background:#052e16;color:#86EFAC;border-color:#166534}
 .topic{margin:48px 0 0;--tone:#C2410C}
 .topic-head{display:flex;gap:14px;align-items:center;margin-bottom:18px}
 .tnum{flex:0 0 auto;width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font:700 18px var(--mono);color:#14213D}
-.topic-title{font:700 clamp(22px,4vw,32px)/1.15 var(--serif);color:var(--ink);margin:0;overflow-wrap:anywhere}
+.topic-title{font:700 clamp(20px,3.4vw,28px)/1.2 var(--serif);color:var(--ink);margin:0;overflow-wrap:anywhere}
 .topic-sub{margin:4px 0 0;color:var(--ink3);font-size:14px}
 .card{background:var(--paper);border:1px solid var(--line);border-top:4px solid var(--tone);border-radius:var(--r);padding:clamp(16px,3vw,28px);margin-bottom:20px;box-shadow:var(--sh)}
 .card-top{display:flex;gap:14px;align-items:flex-start}
@@ -83,10 +100,6 @@ a{color:inherit}img,svg{max-width:100%}
 .badges{display:flex;flex-wrap:wrap;gap:6px}
 .badge{font-size:12px;padding:3px 10px;border-radius:99px;background:var(--soft);color:var(--ink2);border:1px solid var(--line)}
 .b-type{background:var(--brand);color:var(--on);border-color:var(--brand)}
-.b-match{display:inline-flex;align-items:center;gap:8px;color:var(--acc);font-weight:500}
-.b-new{background:#FEF3C7;color:#92400E;border-color:#F59E0B}
-.mtr{width:42px;height:5px;border-radius:9px;background:var(--line);position:relative;overflow:hidden;display:inline-block}
-.mtr::after{content:"";position:absolute;inset:0 auto 0 0;width:calc(var(--v)*1%);background:var(--acc)}
 .fields{margin:18px 0;border:1px solid var(--line);border-radius:12px;overflow:hidden}
 .frow{display:grid;grid-template-columns:130px minmax(0,1fr);gap:14px;padding:10px 14px;font-size:14px}
 .frow+.frow{border-top:1px solid var(--line)}.frow:nth-child(odd){background:var(--soft)}
@@ -101,47 +114,57 @@ a{color:inherit}img,svg{max-width:100%}
 .summary p,.fa p{margin:0;font-size:15.5px;line-height:1.85}
 .fa{background:var(--soft);border-radius:12px;padding:14px 16px;border-right:4px solid var(--acc)}
 .fa p{font-size:15px;line-height:2}
-/* matrix */
 .matrix{margin-top:56px}.matrix h3{font:700 clamp(22px,4vw,30px) var(--serif);color:var(--ink);margin:0 0 14px}
 .tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh)}
-.matrix table{width:100%;min-width:860px;border-collapse:collapse;font-size:13px}
+.matrix table{width:100%;min-width:880px;border-collapse:collapse;font-size:13px}
 .matrix th{position:sticky;top:0;text-align:left;font:700 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);background:var(--soft);padding:12px 10px;white-space:nowrap}
 .matrix td{padding:11px 10px;border-top:1px solid var(--line);vertical-align:top}
-.matrix td.t{color:var(--ink);font-weight:500;min-width:240px}.matrix td.m{font-weight:700;color:var(--acc)}
-.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}.star{color:#D97706;margin-right:4px}
+.matrix td.t{color:var(--ink);font-weight:500;min-width:220px}
+.matrix td.st{font:500 12px var(--mono);color:var(--ink2);white-space:nowrap}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
 .matrix td a{color:var(--ink);text-decoration-color:var(--acc);overflow-wrap:anywhere}
+.typebreak{margin-top:56px}
+.typebreak h3{font:700 clamp(22px,4vw,30px) var(--serif);color:var(--ink);margin:0 0 14px}
+.typebreak .tintro{font-size:14px;color:var(--ink3);margin:0 0 18px;max-width:70ch}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.tcard{background:var(--paper);border:1px solid var(--line);border-top:4px solid var(--tc,#C2410C);border-radius:var(--r);padding:18px 20px;box-shadow:var(--sh);display:flex;flex-direction:column;gap:4px}
+.tcount{font:700 clamp(34px,5vw,46px)/1 var(--serif);color:var(--ink);letter-spacing:-.02em}
+.tlabel{font:700 14px/1.35 var(--sans);color:var(--ink)}
+.tnote{font-size:12.5px;color:var(--ink3);line-height:1.6}
+.tnote b{color:var(--ink2);font-weight:500}
 footer{margin-top:48px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:var(--ink3)}footer strong{color:var(--ink)}
-.totop{position:fixed;right:16px;bottom:calc(16px + var(--safe-b));z-index:90;width:46px;height:46px;border-radius:50%;border:0;background:var(--brand);color:var(--on);display:grid;place-items:center;box-shadow:var(--sh);opacity:0;pointer-events:none;transition:.2s;cursor:pointer}
+.totop{position:fixed;right:16px;bottom:16px;bottom:calc(16px + var(--safe-b));z-index:200;width:46px;height:46px;border-radius:50%;border:0;background:var(--brand);color:var(--on);display:grid;place-items:center;box-shadow:var(--sh);opacity:0;pointer-events:none;transition:.2s;cursor:pointer}
 .totop[data-show]{opacity:1;pointer-events:auto}
-html[data-js] .legend,html[data-js] .topic,html[data-js] .matrix,html[data-js] footer{opacity:0;translate:0 16px;transition:opacity .5s,translate .5s}
+html[data-js] .legend,html[data-js] .topic,html[data-js] .matrix,html[data-js] .typebreak,html[data-js] footer{opacity:0;translate:0 16px;transition:opacity .5s,translate .5s}
 html[data-js] [data-in]{opacity:1;translate:none}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}html[data-js] .legend,html[data-js] .topic,html[data-js] .matrix,html[data-js] footer{opacity:1;translate:none}}
-/* tablet / mobile */
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}html[data-js] .legend,html[data-js] .topic,html[data-js] .matrix,html[data-js] .typebreak,html[data-js] footer{opacity:1;translate:none}}
 @media(max-width:820px){.hero-inner{grid-template-columns:1fr}}
 @media(max-width:640px){
  body{font-size:15.5px}
  .frow{grid-template-columns:1fr;gap:2px;padding:10px 12px}
  .tnum{width:42px;height:42px;font-size:16px}
  .card-top{flex-direction:column;gap:10px}
- .topnav{gap:8px}
- .dl-scrim{display:block;position:fixed;inset:0;z-index:150;background:rgba(10,15,30,.5);opacity:0;visibility:hidden;transition:.2s}
+ .topnav{gap:6px}
+ .top-dl{padding:0 10px;min-height:38px}
+ .theme-btn{width:38px;height:38px}
+ .dl-scrim{display:block;position:fixed;inset:0;z-index:290;background:rgba(10,15,30,.5);opacity:0;visibility:hidden;transition:.2s}
  .dl-scrim[data-open]{opacity:1;visibility:visible}
- .dl-menu{position:fixed;z-index:160;left:0;right:0;top:auto;bottom:0;width:auto;border-radius:22px 22px 0 0;padding:14px 14px calc(14px + var(--safe-b));transform:translateY(100%);transform-origin:bottom;opacity:1}
+ .dl-menu{position:fixed;z-index:300;left:0!important;right:0!important;top:auto!important;bottom:0!important;width:auto;border-radius:22px 22px 0 0;padding:14px 14px calc(14px + var(--safe-b));transform:translateY(100%);transform-origin:bottom;opacity:1;visibility:visible}
+ .dl-menu:not([data-open]){visibility:hidden}
  .dl-menu[data-open]{transform:none}
  .dl-menu::before{content:"";display:block;width:40px;height:4px;border-radius:9px;background:var(--line);margin:0 auto 10px}
  .dl-menu button{min-height:64px}
 }
 @media print{
- :root{color-scheme:light;--bg:#fff;--paper:#fff;--soft:#F4F4F4;--ink:#111;--ink2:#333;--ink3:#555;--line:#CCC}
- .topnav,.progress,.totop,.dl-scrim{display:none!important}
+ :root,:root[data-theme="light"],:root[data-theme="dark"]{color-scheme:light;--bg:#fff;--paper:#fff;--soft:#F4F4F4;--ink:#111;--ink2:#333;--ink3:#555;--line:#CCC}
+ .topnav,.progress,.totop,.dl-scrim,.top-dl,.dl,.nojs,.theme-btn{display:none!important}
  html[data-js] *{opacity:1!important;translate:none!important}
- .hero{background:#fff}.card,.legend,.hero-stats{box-shadow:none;break-inside:avoid}
+ .hero{background:#fff}.card,.legend,.hero-stats,.tcard{box-shadow:none;break-inside:avoid}
  .tscroll{overflow:visible}.matrix table{min-width:0;font-size:9px}
  .topic-head,.ctitle{break-after:avoid}
 }
-
 .lang{flex:0 0 auto;display:inline-flex;padding:3px;border:1px solid var(--line);border-radius:99px;background:var(--paper)}
-.lang button{min-width:44px;min-height:38px;padding:0 12px;border:0;border-radius:99px;background:none;color:var(--ink2);font:500 13px var(--sans);cursor:pointer}
+.lang button{min-width:44px;min-height:34px;padding:0 12px;border:0;border-radius:99px;background:none;color:var(--ink2);font:500 13px var(--sans);cursor:pointer}
 .lang button[aria-pressed=true]{background:var(--brand);color:var(--on)}
 .lang button[data-l=fa]{font-family:var(--fa)}
 .card-top>div:last-child{display:flex;flex-direction:column;min-width:0}
@@ -149,51 +172,63 @@ html[data-js] [data-in]{opacity:1;translate:none}
 html[lang=en] .ctitle-fa,html[lang=en] .fa{display:none}
 html[lang=fa] .summary{display:none}
 .tscroll{direction:ltr}.matrix table{direction:ltr}.matrix h3{direction:inherit}
-html[lang=fa] body,html[lang=fa] .hero h2,html[lang=fa] .dl-menu,html[lang=fa] .nav-links a,html[lang=fa] .chip,html[lang=fa] .badge{font-family:var(--fa),var(--sans)}
-html[lang=fa] :is(.hero h1,.topic-title,.legend h3,.matrix h3,.ctitle-fa,.s3v){font-family:var(--fa);letter-spacing:0}
+html[lang=fa] body,html[lang=fa] .hero h2,html[lang=fa] .dl-menu,html[lang=fa] .nav-links a,html[lang=fa] .chip,html[lang=fa] .badge,html[lang=fa] .top-dl,html[lang=fa] .nojs{font-family:var(--fa),var(--sans)}
+html[lang=fa] :is(.hero h1,.topic-title,.legend h3,.matrix h3,.typebreak h3,.tcount,.tlabel,.s3v){font-family:var(--fa);letter-spacing:0}
 html[lang=fa] .hero h1{line-height:1.35}
 html[lang=fa] :is(.flabel,.stitle,.fatitle,.kicker,.stats-h,.matrix th){font-family:var(--fa);letter-spacing:0;text-transform:none}
 html[lang=fa] .summary p,html[lang=fa] .fa p{line-height:2}
 html[lang=fa] .ctitle-fa{order:-1;direction:rtl;font:700 clamp(18px,3vw,22px)/1.7 var(--fa);color:var(--ink);margin-bottom:4px}
 html[lang=fa] .ctitle{font:500 14px/1.4 var(--sans);color:var(--ink3);direction:ltr;text-align:left;margin-bottom:10px}
 html[lang=fa] .fval{unicode-bidi:plaintext}
+html[lang=fa] .tcard{text-align:right}
 html[dir=rtl] .legend ol{padding-left:0;padding-right:22px}
 html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)}
+html[dir=rtl] .dl{left:auto;right:14px}
+html[dir=rtl] .dl-menu[data-anchor=bottom]{left:auto;right:14px}
+html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
 .dl-menu button{text-align:start}
-@media print{.lang{display:none!important}}
+@media print{.lang,.top-dl,.dl,.theme-btn{display:none!important}}
 </style>
-<script>document.documentElement.setAttribute("data-js","1");</script>
+<script>
+(function(){
+  // Apply theme as early as possible to prevent flash
+  var m = 'auto';
+  try { m = localStorage.getItem('theme') || 'auto'; } catch(_) {}
+  var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var e = (m === 'auto') ? (d ? 'dark' : 'light') : m;
+  var r = document.documentElement;
+  r.setAttribute('data-theme', e);
+  r.setAttribute('data-theme-mode', m);
+  r.setAttribute('data-js', '1');
+})();
+</script>
 </head>
 <body>
+<noscript>
+  <div class="nojs">
+    <strong>JavaScript is disabled.</strong>
+    The language switch and the download buttons require JavaScript. Please open this file in Safari (or another browser), not in Files or Mail preview.
+  </div>
+</noscript>
 <div class="progress" aria-hidden="true"><span id="progbar"></span></div>
 <header class="hero" id="top">
   <div class="hero-inner">
     <div class="hero-main">
       <div class="kicker">Literature Review &nbsp;•&nbsp; Google Scholar</div>
       <h1>Group 1 &nbsp;|&nbsp; Dynamic Human Representation</h1>
-      <h2>How do intelligent systems model the human / user? &nbsp;—&nbsp; five search terms, ten papers</h2>
-      <p class="hero-note">Each entry below carries the full bibliographic record, an English summary, a Persian summary, and two scores: match and topic fit.</p>
+      <h2>How do intelligent systems model humans and users? &nbsp;—&nbsp; ten papers, one per search term</h2>
+      <p class="hero-note">Each entry includes the full bibliographic record, an English summary, and a Persian summary.</p>
     </div>
     <aside class="hero-stats" aria-label="At a glance">
       <div class="stats-h"><span>At a glance</span><i class="stats-pip"></i></div>
       <div class="stat3">
         <div class="s3"><span class="s3v">10</span><span class="s3l">Papers</span></div>
-        <div class="s3"><span class="s3v">5</span><span class="s3l">Group added</span></div>
-        <div class="s3"><span class="s3v">81<i>%</i></span><span class="s3l">Topic fit</span></div>
+        <div class="s3"><span class="s3v">11</span><span class="s3l">Search terms</span></div>
+        <div class="s3"><span class="s3v" style="font-size:clamp(15px,3vw,20px)">2021–2026</span><span class="s3l">Time window</span></div>
       </div>
       <div class="meta-row">
-        <div class="chip"><b>Search source</b> <span class="cv">Google Scholar (only)</span></div>
-        <div class="chip"><b>Time window</b> <span class="cv">2021 – 2026</span></div>
-        <div class="chip"><b>Total</b> <span class="cv">10 papers</span></div>
-        <div class="chip"><b>Search terms</b> <span class="cv">5</span></div>
-        <div class="chip"><b>Added by group</b> <span class="cv">5</span></div>
-        <div class="chip"><b>Avg. term match</b> <span class="cv">88%</span></div>
-        <div class="chip"><b>Avg. topic fit</b> <span class="cv">81%</span></div>
-      </div>
-      <div class="mrow">
-        <span class="mlab">Mean topic fit</span>
-        <span class="mtrack"><span class="mfill" style="width:81%"></span></span>
-        <span class="mval">81%</span>
+        <div class="chip"><b>Source</b> <span class="cv">Google Scholar</span></div>
+        <div class="chip"><b>Terms with a paper</b> <span class="cv">10 of 11</span></div>
       </div>
     </aside>
   </div>
@@ -208,40 +243,46 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
       <a href="#s3"><i class="nd" style="background:#A78BFA"></i><span>03 Goal</span></a>
       <a href="#s4"><i class="nd" style="background:#34D399"></i><span>04 Constraint</span></a>
       <a href="#s5"><i class="nd" style="background:#FB7185"></i><span>05 Context</span></a>
-      <a href="#s6"><i class="nd" style="background:#FBBF24"></i><span>06 Group topic</span></a>
+      <a href="#s6"><i class="nd" style="background:#60A5FA"></i><span>06 User repr.</span></a>
+      <a href="#s7"><i class="nd" style="background:#F472B6"></i><span>07 User modeling</span></a>
+      <a href="#s8"><i class="nd" style="background:#FBBF24"></i><span>08 Dynamic modeling</span></a>
+      <a href="#s9"><i class="nd" style="background:#10B981"></i><span>09 Dynamic repr.</span></a>
+      <a href="#s10"><i class="nd" style="background:#8B5CF6"></i><span>10 User pref. LLM</span></a>
       <a class="nav-all" href="#glance"><span>All 10 &rarr; table</span></a>
       <a href="#top"><span>Back to top</span></a>
     </div>
     <div class="lang" id="lang" role="group" aria-label="Language"><button type="button" data-l="en" aria-pressed="true">EN</button><button type="button" data-l="fa" lang="fa" aria-pressed="false">فا</button></div>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Theme: Auto" title="Theme: Auto">
+      <svg class="ico-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg>
+      <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <button class="top-dl" id="topDlBtn" type="button" aria-label="Download" aria-haspopup="menu" aria-expanded="false" aria-controls="dlMenu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 21h16"/></svg>
+      <span>Download</span>
+    </button>
   </nav>
-<div class="legend">
-    <h3>The Five Search Terms Covered</h3>
+
+  <div class="legend">
+    <h3>Selection Overview</h3>
     <ol>
-      <li><code>"preference drift" recommendation</code></li>
-      <li><code>"intent-aware recommendation"</code></li>
-      <li><code>"goal-aware recommendation"</code></li>
-      <li><code>"constraint-aware recommendation"</code></li>
-      <li><code>"context-aware recommendation"</code></li>
+      <li><code>"user representation" recommender systems</code><span class="tag">Paper 6</span></li>
+      <li><code>"user modeling" recommendation</code><span class="tag">Paper 7</span></li>
+      <li><code>"dynamic user modeling"</code><span class="tag">Paper 8</span></li>
+      <li><code>"dynamic user representation"</code><span class="tag">Paper 9</span></li>
+      <li><code>"preference drift" recommendation</code><span class="tag">Paper 1</span></li>
+      <li><code>"intent-aware recommendation"</code><span class="tag">Paper 2</span></li>
+      <li><code>"goal-aware recommendation"</code><span class="tag">Paper 3</span></li>
+      <li><code>"constraint-aware recommendation"</code><span class="tag">Paper 4</span></li>
+      <li><code>"context-aware recommendation"</code><span class="tag">Paper 5</span></li>
+      <li><code>"user preference" LLM</code><span class="tag">Paper 10</span></li>
+      <li><code>"preference elicitation" AI agents</code></li>
     </ol>
-    <p>
-      One paper per term, the strongest match kept for each. The match score weighs how much of the search phrase
-      appears in the title (40%) against how directly the paper addresses that problem (60%). The topic-fit column
-      measures the separate question of how close each paper sits to the group topic as a whole.
-    </p>
-    <p>
-      Two terms have no exact review to point at. <code>"goal-aware recommender systems"</code> returns no results
-      in Scholar after 2020, and <code>"constraint-aware recommendation"</code> only surfaces original research.
-      Papers 3 and 4 therefore come from the adjacent literature that does publish reviews — goal modelling
-      in workplace learning, and fairness handled as a ranking constraint.
-    </p>
-    <p>
-      <b>★ marks the five papers that were added to this list</b> — papers 6 to 10, collected in section 06.
-      They are built exactly like the others, numbered in the same sequence and scored on the same two measures;
-      only the star sets them apart. As they were not retrieved by one of the five phrases, their match figure is
-      scored against the group topic itself instead of a search term.
-    </p>
+    <p>Eleven search terms were used; each of the ten papers below corresponds to one of them.</p>
+    <p>Two of the term-specific searches — <code>"goal-aware recommender systems"</code> after 2020 and <code>"constraint-aware recommendation"</code> — did not return review articles directly. For those two terms, adjacent review literature was used: goal modelling in workplace learning (paper 3), and fairness treated as a ranking constraint (paper 4).</p>
   </div>
 
+  <!-- 01 -->
   <section class="topic" id="s1" style="--tone:#FB923C">
     <div class="topic-head">
       <div class="tnum t1" style="background:#FB923C">01</div>
@@ -250,8 +291,6 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
         <p class="topic-sub">How systems model a user whose tastes change over time</p>
       </div>
     </div>
-
-    <!-- 1 -->
     <article class="card">
       <div class="card-top">
         <span class="idx i1" style="background:#FB923C;border-color:#FB923C;color:#08111F">1</span>
@@ -262,7 +301,6 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
             <span class="badge b-type">Survey</span>
             <span class="badge b-yr">2023</span>
             <span class="badge b-dom">Recommender Systems / Temporal Modeling</span>
-            <span class="badge b-match">72% <span class="bt">fit</span><i class="mtr" style="--v:72"></i></span>
           </div>
         </div>
       </div>
@@ -273,8 +311,6 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
         <div class="frow"><div class="flabel">Type</div><div class="fval">Survey &nbsp;+&nbsp; Quantitative Bibliometric Assessment</div></div>
         <div class="frow"><div class="flabel">Domain</div><div class="fval">Recommender Systems · Temporal / Time-Sensitive User Modeling</div></div>
         <div class="frow"><div class="flabel">Journal / Conference</div><div class="fval">IEEE Access</div></div>
-        <div class="frow"><div class="flabel">Match to search term</div><div class="fval">72%</div></div>
-        <div class="frow"><div class="flabel">Fit to group topic</div><div class="fval">90%</div></div>
         <div class="frow">
           <div class="flabel">DOI / Link</div>
           <div class="fval">
@@ -287,36 +323,34 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
       </div>
       <div class="summary">
         <div class="stitle">Summary</div>
-        <p>Treating time as an optional extra feature is the mistake this survey is organised around correcting. Alabduljabbar and colleagues review every known way of folding time into a recommender, then do something you rarely see in a survey paper and count the literature itself: where it gets published, by whom, how often it is cited. The part I keep coming back to is the split between short-term and long-term interest. You cannot claim a user has changed their mind until you have said which of the two you are measuring and over what window. Get that wrong and what looks like drift is just somebody browsing on a Tuesday afternoon. Which is exactly the kind of thing that quietly ruins an evaluation.</p>
+        <p>This survey addresses the treatment of time as an optional feature in recommender systems and argues that temporal modelling should be treated as a first-class concern. Alabduljabbar and colleagues review the known approaches for incorporating time into recommendation, and complement the review with a quantitative bibliometric assessment of the field, covering publication venues, contributing authors, and citation patterns. A central distinction is drawn between short-term and long-term user interest, and the survey emphasises that claims about preference change cannot be made unless the two are separated and the measurement window is specified. The authors argue that conflating the two can lead to mistaking ordinary transient browsing behaviour for a genuine shift in preference, which in turn undermines the validity of evaluations.</p>
       </div>
       <div class="fa" lang="fa">
         <span class="fatitle">ترجمه و خلاصهٔ فارسی</span>
-        <p>این مقاله دور یک اشتباه رایج ساخته شده: اینکه زمان را یک ویژگی اختیاریِ اضافه حساب کنیم. آلبادولجبار و همکارانش همهٔ روش‌های شناخته‌شدهٔ وارد کردن زمان به یک سیستم پیشنهاددهنده را مرور می‌کنند و بعد کاری می‌کنند که در مقالات Survey کمتر دیده می‌شود: خودِ ادبیات را می‌شمارند. کجا منتشر می‌شود، توسط چه کسانی، چقدر ارجاع گرفته. بخشی که من بارها به آن برگشتم تفکیک علاقهٔ کوتاه‌مدت از بلندمدت است. تا نگویی کدام را و در چه بازه‌ای اندازه می‌گیری، نمی‌توانی ادعا کنی کاربر نظرش را عوض کرده. اگر این را اشتباه بگیری، چیزی که دریفت به نظر می‌رسد فقط این است که سه‌شنبه عصر کسی دارد مرور می‌کند. دقیقاً همان چیزی که بی‌سروصدا یک ارزیابی را خراب می‌کند.</p>
+        <p>این مقاله به برخورد با زمان به‌عنوان یک ویژگی اختیاری در سیستم‌های پیشنهاددهنده می‌پردازد و استدلال می‌کند که مدل‌سازی زمانی باید به‌عنوان یک مسئلهٔ درجه‌اول در نظر گرفته شود. عبدالجبار و همکارانش رویکردهای شناخته‌شده برای وارد کردن زمان به پیشنهاددهندگی را مرور می‌کنند و این مرور را با یک ارزیابی کتاب‌سنجیِ کمّی از این حوزه تکمیل می‌کنند که شامل مجلات محل انتشار، نویسندگان فعال و الگوهای ارجاع است. تفکیک میان علاقهٔ کوتاه‌مدت و بلندمدت کاربر نقش محوری دارد، و مقاله تأکید می‌کند که بدون تفکیک این دو و تعیین بازهٔ اندازه‌گیری، نمی‌توان دربارهٔ تغییر ترجیح کاربر ادعایی مطرح کرد. نویسندگان استدلال می‌کنند که یکی‌گرفتن این دو، ممکن است به اشتباه گرفتن رفتار گذرای مرور با یک تغییر واقعی در ترجیح منجر شود و در نتیجه اعتبار ارزیابی‌ها را تضعیف کند.</p>
       </div>
     </article>
   </section>
 
+  <!-- 02 -->
   <section class="topic" id="s2" style="--tone:#22D3EE">
     <div class="topic-head">
       <div class="tnum t2" style="background:#22D3EE">02</div>
       <div>
         <h2 class="topic-title">"intent-aware recommendation"</h2>
-        <p class="topic-sub">Modelling <em>why</em> the user is here right now, not just what they liked</p>
+        <p class="topic-sub">Modelling why the user is here right now, not just what they liked</p>
       </div>
     </div>
-
-    <!-- 2 -->
     <article class="card">
       <div class="card-top">
         <span class="idx i2" style="background:#22D3EE;border-color:#22D3EE;color:#08111F">2</span>
         <div>
           <h3 class="ctitle">A Survey on Intent-Aware Recommender Systems</h3>
-          <div class="ctitle-fa" lang="fa">پیمایشی بر سیستم‌های پیشنهاددهندهٔ آگاه به نیت کاربر</div>
+          <div class="ctitle-fa" lang="fa">مروری بر سیستم‌های پیشنهاددهندهٔ آگاه به نیت کاربر</div>
           <div class="badges">
             <span class="badge b-type">Survey</span>
             <span class="badge b-yr">2024</span>
             <span class="badge b-dom">Recommender Systems / User Modeling</span>
-            <span class="badge b-match">97% <span class="bt">fit</span><i class="mtr" style="--v:97"></i></span>
           </div>
         </div>
       </div>
@@ -327,8 +361,6 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
         <div class="frow"><div class="flabel">Type</div><div class="fval">Survey</div></div>
         <div class="frow"><div class="flabel">Domain</div><div class="fval">Recommender Systems · User Modeling · Session-Based &amp; Interactive Recommendation</div></div>
         <div class="frow"><div class="flabel">Journal / Conference</div><div class="fval">ACM Transactions on Recommender Systems (ACM TORS)</div></div>
-        <div class="frow"><div class="flabel">Match to search term</div><div class="fval">97%</div></div>
-        <div class="frow"><div class="flabel">Fit to group topic</div><div class="fval">88%</div></div>
         <div class="frow">
           <div class="flabel">DOI / Link</div>
           <div class="fval">
@@ -341,15 +373,16 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
       </div>
       <div class="summary">
         <div class="stitle">Summary</div>
-        <p>Here is the observation the paper is built on. Someone opens a music app at night to unwind, then opens the same app two hours later to drown out a noisy office. Nothing about the person changed. The intent did. Jannach and Zanker argue this happens inside a single session, not only between sessions, which means a recommender that knows nothing but your history has no way to tell those two visits apart. They sort the existing work into three buckets (diversification, direct intent prediction, latent intent modeling) and then spend a good part of the paper on the fact that we do not really know how well any of it works. Testing in this area is weak. Their conclusion is that more signals and more context are needed, because no single click tells you much about why someone is there at all.</p>
+        <p>This survey examines how recommender systems can model user intent rather than relying exclusively on historical behaviour. Jannach and Zanker observe that the same user may approach a system with entirely different intentions across visits, and that this variation occurs not only between sessions but also within a single session. A recommender that relies solely on long-term user history therefore has no reliable way of distinguishing such cases. The authors organise existing work into three groups — diversification, direct intent prediction, and latent intent modelling — and note that evaluation practices in this area remain underdeveloped, making it difficult to assess how well current methods perform. They conclude that additional signals and contextual information are required, since a single interaction provides only limited evidence about why a user is present.</p>
       </div>
       <div class="fa" lang="fa">
         <span class="fatitle">ترجمه و خلاصهٔ فارسی</span>
-        <p>مشاهده‌ای که این مقاله رویش ساخته شده این است. کسی شب اپ موسیقی را برای آرامش باز می‌کند و دو ساعت بعد همان اپ را برای پوشاندن صدای شلوغ محل کار. چیزی در خودِ آدم عوض نشده؛ نیت عوض شده. جاناخ و زانکر استدلال می‌کنند این اتفاق درون یک نشست هم می‌افتد، نه فقط بین نشست‌ها، پس سیستمی که فقط تاریخچهٔ کاربر را می‌شناسد هیچ راهی برای تشخیص این دو بازدید ندارد. آن‌ها کار موجود را در سه دسته می‌چینند (تنوع‌بخشی، پیش‌بینی مستقیم نیت، مدل‌سازی نیت پنهان) و بعد بخش قابل‌توجهی از مقاله را صرف این می‌کنند که ما اصلاً نمی‌دانیم این روش‌ها چقدر خوب کار می‌کنند. آزمون در این حوزه ضعیف است. نتیجه‌گیری‌شان این است که به سیگنال و کانتکست بیشتری نیاز داریم، چون هیچ کلیکی به‌تنهایی زیاد دربارهٔ دلیل حضور کاربر نمی‌گوید.</p>
+        <p>این مقاله بررسی می‌کند که سیستم‌های پیشنهاددهنده چگونه می‌توانند نیت کاربر را مدل کنند، به‌جای اینکه تنها بر رفتار تاریخی او تکیه کنند. یانا و زانکر مشاهده می‌کنند که کاربر ممکن است در بازدیدهای مختلف با نیت‌های کاملاً متفاوتی به سیستم مراجعه کند و این تغییر نه‌تنها بین نشست‌ها، بلکه درون یک نشست واحد نیز رخ می‌دهد. بنابراین سیستمی که تنها بر تاریخچهٔ بلندمدت کاربر تکیه می‌کند، راهی مطمئن برای تفکیک چنین مواردی ندارد. نویسندگان کارهای موجود را در سه گروه سازمان می‌دهند — تنوع‌بخشی، پیش‌بینی مستقیم نیت، و مدل‌سازی نیت پنهان — و اشاره می‌کنند که رویه‌های ارزیابی در این حوزه هنوز توسعهٔ کافی نیافته‌اند و همین ارزیابی عملکرد روش‌های موجود را دشوار می‌کند. نتیجه‌گیری آن‌ها این است که به سیگنال‌های بیشتر و اطلاعات بافتاری نیاز است، چون یک تعامل واحد شواهد محدودی دربارهٔ دلیل حضور کاربر فراهم می‌کند.</p>
       </div>
     </article>
   </section>
 
+  <!-- 03 -->
   <section class="topic" id="s3" style="--tone:#A78BFA">
     <div class="topic-head">
       <div class="tnum t3" style="background:#A78BFA">03</div>
@@ -358,19 +391,16 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
         <p class="topic-sub">Working out what the user is actually trying to reach, not just scoring past behaviour</p>
       </div>
     </div>
-
-    <!-- 3 -->
     <article class="card">
       <div class="card-top">
         <span class="idx i3" style="background:#A78BFA;border-color:#A78BFA;color:#08111F">3</span>
         <div>
           <h3 class="ctitle">A Categorization of Workplace Learning Goals for Multi-Stakeholder Recommender Systems: A Systematic Review</h3>
-          <div class="ctitle-fa" lang="fa">دسته‌بندی اهداف یادگیری در محیط کار برای سیستم‌های پیشنهادهندهٔ چندطرفیتی: یک مرور نظام‌مند</div>
+          <div class="ctitle-fa" lang="fa">دسته‌بندی اهداف یادگیری در محیط کار برای سیستم‌های پیشنهاددهندهٔ چندذی‌نفع: یک مرور نظام‌مند</div>
           <div class="badges">
             <span class="badge b-type">Systematic Review</span>
             <span class="badge b-yr">2023</span>
             <span class="badge b-dom">Learning Recommender Systems / Goal Modelling</span>
-            <span class="badge b-match">87% <span class="bt">fit</span><i class="mtr" style="--v:87"></i></span>
           </div>
         </div>
       </div>
@@ -381,8 +411,6 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
         <div class="frow"><div class="flabel">Type</div><div class="fval">Systematic Review</div></div>
         <div class="frow"><div class="flabel">Domain</div><div class="fval">Learning Recommender Systems · Goal Modelling · Multi-Stakeholder Adaptation · Workplace Learning</div></div>
         <div class="frow"><div class="flabel">Journal / Conference</div><div class="fval">TechTrends (Springer)</div></div>
-        <div class="frow"><div class="flabel">Match to search term</div><div class="fval">87%</div></div>
-        <div class="frow"><div class="flabel">Fit to group topic</div><div class="fval">78%</div></div>
         <div class="frow">
           <div class="flabel">DOI / Link</div>
           <div class="fval">
@@ -395,15 +423,16 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
       </div>
       <div class="summary">
         <div class="stitle">Summary</div>
-        <p>A recommender that serves a worker and a manager at the same time has a problem, because the two want different things. The learner wants the course that unlocks the next role. The manager wants the cheapest course that closes a compliance gap. This review takes that clash seriously and builds a categorization of learning goals, so the two sides can be compared instead of argued about. What makes it useful is the split between what a person wants for themselves and what an organisation requires, plus a third layer for the limits sitting around both: time, budget, prior qualifications. Most of the field folds all of this into one blended score. The paper argues, fairly convincingly, that you cannot optimise a blended score, since the person and the organisation are not optimising the same thing. Worth reading if your system answers to more than one master.</p>
+        <p>This systematic review addresses the challenge of serving multiple stakeholders in a recommender system, where the interests of a learner and a manager may not align. The learner may favour the course that opens the path to a next role, while the manager may favour the least expensive option that closes a compliance gap. The review treats this conflict as a modelling problem and develops a categorization of workplace learning goals that allows the two perspectives to be compared rather than treated as a single blended score. The categorization separates individual goals from organisational requirements and introduces a third layer for constraints that affect both, such as time, budget, and prior qualifications. The authors argue that blending these different objectives into one score prevents meaningful optimisation, because the stakeholder perspectives are not aligned. The review is relevant to any system that must satisfy more than one stakeholder at once.</p>
       </div>
       <div class="fa" lang="fa">
         <span class="fatitle">ترجمه و خلاصهٔ فارسی</span>
-        <p>یک سیستم پیشنهادهنده که هم‌زمان برای کارمند و مدیر خادهدارد با مشکل است: این دو متفوّت نیستند. کارمند دنبال دورهٔی است که پلهٔ بعدی شغلاتش را باز کند. مدیر دنبال ارزان‌ترین دورهٔی است که ارزان‌ترین آرمانی را پر کند. این مرور این تضاد را جدی می‌گیرداست و دسته‌بندی‌0627ی از هداف یادگیری می‌سازد تا دو طرف‌ها بجا به‌جای شودند قابل مقایسه بشوند. چیزی که مفید است جاا داشتن بند بین خواستهٔ شخصی و الزام سازمان جا را جا می‌کند، بعلاوه یک لایهٔ سوم برای حدودد: زمان، بودجه، سواد قبلی. بیشتر این حوزه همه را در یک متغیر بسارس جمع می‌کند. مقاله با حقوق‌قی… استدلاد می‌کند که نمی‌توان مختلط قابل بهین‌سازی نیست، چون فرد و سازمان دارد اشیان مختلف‌انی نیست که می‌کند. اگر سیستم شما بیش از یک کارفرما داشته بخوانید.</p>
+        <p>این مرور نظام‌مند به چالش خدمت به چند ذی‌نفع در یک سیستم پیشنهاددهنده می‌پردازد، جایی که منافع یادگیرنده و مدیر ممکن است هم‌راستا نباشد. یادگیرنده ممکن است دوره‌ای را ترجیح دهد که مسیر ارتقا به نقش بعدی را باز می‌کند، در حالی که مدیر ممکن است کم‌هزینه‌ترین گزینه‌ای را ترجیح دهد که یک خلأ انطباقی را پر کند. این مرور این تضاد را به‌عنوان یک مسئلهٔ مدل‌سازی در نظر می‌گیرد و دسته‌بندی‌ای از اهداف یادگیری در محیط کار ارائه می‌دهد که اجازه می‌دهد دو دیدگاه به‌جای ادغام در یک امتیاز ترکیبی، با یکدیگر مقایسه شوند. این دسته‌بندی، اهداف فردی را از الزامات سازمانی جدا می‌کند و لایهٔ سومی برای محدودیت‌های مؤثر بر هر دو اضافه می‌کند، مانند زمان، بودجه و مهارت‌های پیشین. نویسندگان استدلال می‌کنند که ادغام این اهداف متفاوت در یک امتیاز واحد، بهینه‌سازی معنادار را ناممکن می‌کند، چون دیدگاه ذی‌نفعان هم‌راستا نیست. این مرور برای هر سیستمی که باید همزمان بیش از یک ذی‌نفع را راضی کند، مرتبط است.</p>
       </div>
     </article>
   </section>
 
+  <!-- 04 -->
   <section class="topic" id="s4" style="--tone:#34D399">
     <div class="topic-head">
       <div class="tnum t4" style="background:#34D399">04</div>
@@ -412,19 +441,16 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
         <p class="topic-sub">Recommendations that must respect rules, objectives and hard requirements</p>
       </div>
     </div>
-
-    <!-- 4 -->
     <article class="card">
       <div class="card-top">
         <span class="idx i4" style="background:#34D399;border-color:#34D399;color:#08111F">4</span>
         <div>
           <h3 class="ctitle">Fairness in Recommender Systems: Research Landscape and Future Directions</h3>
-          <div class="ctitle-fa" lang="fa">انصاف در سیستم‌های پیشنهادهنده: نقشهٔ پڑوهش و مسیرهای پیش‌رو</div>
+          <div class="ctitle-fa" lang="fa">انصاف در سیستم‌های پیشنهاددهنده: چشم‌انداز پژوهش و مسیرهای آینده</div>
           <div class="badges">
             <span class="badge b-type">Survey</span>
             <span class="badge b-yr">2024</span>
             <span class="badge b-dom">Fairness-Aware Ranking / Constraint-Based Approaches</span>
-            <span class="badge b-match">85% <span class="bt">fit</span><i class="mtr" style="--v:85"></i></span>
           </div>
         </div>
       </div>
@@ -435,8 +461,6 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
         <div class="frow"><div class="flabel">Type</div><div class="fval">Survey</div></div>
         <div class="frow"><div class="flabel">Domain</div><div class="fval">Fairness in Ranking · Constraint-Based Approaches · Multi-Stakeholder Utility · Provider Exposure</div></div>
         <div class="frow"><div class="flabel">Journal / Conference</div><div class="fval">User Modeling and User-Adapted Interaction (Springer)</div></div>
-        <div class="frow"><div class="flabel">Match to search term</div><div class="fval">85%</div></div>
-        <div class="frow"><div class="flabel">Fit to group topic</div><div class="fval">62%</div></div>
         <div class="frow">
           <div class="flabel">DOI / Link</div>
           <div class="fval">
@@ -449,15 +473,16 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
       </div>
       <div class="summary">
         <div class="stitle">Summary</div>
-        <p>Fairness in recommendation is a constraints problem wearing a social science coat. Something has to give: exposure across providers, parity between groups, or accuracy for the individual user. The authors organise the whole field around that trade-off, and the section worth your time is the one on constraint-based approaches, where fairness is written into the optimisation problem instead of patched onto the output afterwards. They also spend real effort separating what fairness means for the person reading the list from what it means for the providers who get buried by it, and they are not charitable about how often the second group got forgotten. Fairness-aware re-ranking is standard now. Deciding which constraint goes first is not.</p>
+        <p>This survey examines fairness in recommender systems as a problem fundamentally about constraints and trade-offs. Achieving fairness along one dimension — such as exposure across providers, parity between user groups, or accuracy for the individual user — typically requires sacrificing performance along another. The authors organise the field around this trade-off and give particular attention to constraint-based approaches, in which fairness is encoded directly into the optimisation objective rather than applied as a post-processing step. They also distinguish between fairness from the perspective of the user consuming recommendations and fairness from the perspective of the providers whose items are ranked, noting that the latter has often been overlooked in the literature. While fairness-aware re-ranking is now a standard technique, the question of how to prioritise competing constraints remains open.</p>
       </div>
       <div class="fa" lang="fa">
         <span class="fatitle">ترجمه و خلاصهٔ فارسی</span>
-        <p>انصاف در پیشنهادهندگیری در اصل یک مسئلهٔ قید است که یک رواب‌شانس علوم اجتماعی تنافس کرده انداند. یک چیزی باید قربانی شود: دیده‌شدن بین ارائه‌دهندان، برابری بین گروه‌ها، یا دقت برای کاربر بعنوده انسان. نویسندهان کل این حوزه را حول همین معاموضه سارم می‌دهند، و بخشی از مقالهٔی که ارزش دارد آناست، ان‌‌انی است نه در پایانی خودکار که بعد از به خروج می‌شوده می‌شود، بلکه اصلاحش۱ راز انصاف داخل فی انصاف‌آميزهانی شدهاد می‌دهدند. انها هم‌شنی باست جدا کنندن اینکه انصاف برای کسی که فهرست را می‌بیند یعنی برای ارائه‌دهندانی که زیر می‌رودند یعنی یعنی در ناسابت، یعنی بمجسهد نکند نکسب. reranking آگاه به انصاف الان استاندارد شده. انکه که قید مقدم باید، هنوز جای حل دارد.</p>
+        <p>این مرور به انصاف در سیستم‌های پیشنهاددهنده به‌عنوان مسئله‌ای می‌پردازد که اساساً دربارهٔ محدودیت‌ها و بده‌بستان‌هاست. دستیابی به انصاف در یک بُعد — مانند میزان دیده‌شدن میان ارائه‌دهندگان، برابری میان گروه‌های کاربران، یا دقت برای کاربر فردی — معمولاً قربانی‌کردن عملکرد در بُعدی دیگر را می‌طلبد. نویسندگان این حوزه را حول همین بده‌بستان سازمان می‌دهند و توجه ویژه‌ای به رویکردهای مبتنی بر محدودیت دارند، رویکردهایی که در آن‌ها انصاف مستقیماً در تابع هدف بهینه‌سازی گنجانده می‌شود، نه اینکه به‌عنوان یک مرحلهٔ پس‌پردازش اعمال شود. آن‌ها همچنین میان انصاف از دیدگاه کاربری که توصیه‌ها را مصرف می‌کند و انصاف از دیدگاه ارائه‌دهندگانی که آیتم‌هایشان رتبه‌بندی می‌شود تمایز قائل می‌شوند و اشاره می‌کنند که دیدگاه دوم اغلب در ادبیات نادیده گرفته شده است. بازچینش آگاه به انصاف حالا یک تکنیک استاندارد است؛ اما اینکه چگونه باید میان محدودیت‌های متعارض اولویت‌گذاری کرد، پرسشی باز باقی مانده است.</p>
       </div>
     </article>
   </section>
 
+  <!-- 05 -->
   <section class="topic" id="s5" style="--tone:#FB7185">
     <div class="topic-head">
       <div class="tnum t5" style="background:#FB7185">05</div>
@@ -466,19 +491,16 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
         <p class="topic-sub">When, where, with whom, and under what conditions the user acts</p>
       </div>
     </div>
-
-    <!-- 5 -->
     <article class="card">
       <div class="card-top">
         <span class="idx i5" style="background:#FB7185;border-color:#FB7185;color:#08111F">5</span>
         <div>
           <h3 class="ctitle">A Systematic Literature Review of Recent Advances on Context-Aware Recommender Systems</h3>
-          <div class="ctitle-fa" lang="fa">مرور نظام‌مند ادبیاتِ پیشرفت‌های اخیر در سیستم‌های پیشنهاددهندهٔ آگاه به کانتکست</div>
+          <div class="ctitle-fa" lang="fa">مرور نظام‌مند ادبیاتِ پیشرفت‌های اخیر در سیستم‌های پیشنهاددهندهٔ آگاه به بافتار</div>
           <div class="badges">
             <span class="badge b-type">Systematic Literature Review</span>
             <span class="badge b-yr">2024</span>
             <span class="badge b-dom">Recommender Systems / User Modeling</span>
-            <span class="badge b-match">99% <span class="bt">fit</span><i class="mtr" style="--v:99"></i></span>
           </div>
         </div>
       </div>
@@ -489,8 +511,6 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
         <div class="frow"><div class="flabel">Type</div><div class="fval">Systematic Literature Review</div></div>
         <div class="frow"><div class="flabel">Domain</div><div class="fval">Recommender Systems · Context Modeling · Temporal / Spatial / Social Context</div></div>
         <div class="frow"><div class="flabel">Journal / Conference</div><div class="fval">Artificial Intelligence Review (Springer)</div></div>
-        <div class="frow"><div class="flabel">Match to search term</div><div class="fval">99%</div></div>
-        <div class="frow"><div class="flabel">Fit to group topic</div><div class="fval">92%</div></div>
         <div class="frow">
           <div class="flabel">DOI / Link</div>
           <div class="fval">
@@ -503,37 +523,34 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
       </div>
       <div class="summary">
         <div class="stitle">Summary</div>
-        <p>Everyone agrees context matters. Nobody has defined it. That is the gap this review goes after, and it is an odd state of affairs for a field that has been studying context-aware recommendation for years. Mateos and Bellogín work through the literature and come back with three things: a framework that makes context representation explicit, a classification of the methods used to fold context in, and an assessment of how any of this is actually evaluated. Here context means time, location, and social situation. This is the paper to cite when you need to write down, formally and defensibly, how a system should represent the conditions a user is acting under.</p>
+        <p>While the importance of context in recommender systems is widely acknowledged, a precise and consistent definition of context remains absent. This review addresses that gap by analysing how context is represented, modelled, and evaluated across the literature. Mateos and Bellogín propose a framework that makes context representation explicit, classify the methods used to incorporate contextual information, and assess the evaluation practices applied in the field. Context is considered along dimensions such as time, location, and social situation. The review provides a formal and defensible basis for describing how a system should represent the conditions under which a user acts.</p>
       </div>
       <div class="fa" lang="fa">
         <span class="fatitle">ترجمه و خلاصهٔ فارسی</span>
-        <p>همه قبول دارند کانتکست مهم است. کسی تعریفش نکرده. این همان شکافی است که این مرور به سمتش می‌رود، و برای حوزه‌ای که سال‌ها پیشنهاددهندگی آگاه به کانتکست را مطالعه کرده وضع عجیبی است. ماتئوس و بلوخین ادبیات را یک‌به‌یک بررسی می‌کنند و با سه چیز برمی‌گردند: چارچوبی که نمایش کانتکست را صریح می‌کند، دسته‌بندی روش‌هایی که کانتکست را وارد کار می‌کنند، و ارزیابی اینکه اصلاً اینها چطور سنجیده می‌شوند. اینجا منظور از کانتکست زمان، مکان و موقعیت اجتماعی است. این همان مقاله‌ای است که وقتی لازم شد به‌صورت رسمی و قابل دفاع بنویسی یک سیستم باید شرایطی را که کاربر در آن عمل می‌کند چطور نمایش دهد، به آن ارجاع می‌دهی.</p>
+        <p>هرچند اهمیت بافتار در سیستم‌های پیشنهاددهنده به‌طور گسترده پذیرفته شده است، اما تعریفی دقیق و یکدست از آن وجود ندارد. این مرور به همین شکاف می‌پردازد و بررسی می‌کند که بافتار در ادبیات این حوزه چگونه بازنمایی، مدل‌سازی و ارزیابی می‌شود. ماتئوس و بلوگین چارچوبی ارائه می‌دهند که بازنمایی بافتار را صریح می‌کند، روش‌های وارد کردن اطلاعات بافتاری را دسته‌بندی می‌کنند، و رویه‌های ارزیابی این حوزه را می‌سنجند. بافتار در اینجا در ابعادی مانند زمان، مکان و موقعیت اجتماعی در نظر گرفته می‌شود. این مرور مبنایی رسمی و قابل دفاع برای توصیف این فراهم می‌کند که یک سیستم باید شرایطی را که کاربر در آن عمل می‌کند چگونه نمایش دهد.</p>
       </div>
     </article>
   </section>
 
-  <section class="topic" id="s6" style="--tone:#FBBF24">
+  <!-- 06 -->
+  <section class="topic" id="s6" style="--tone:#60A5FA">
     <div class="topic-head">
-      <div class="tnum t6" style="background:#FBBF24">06</div>
+      <div class="tnum t6" style="background:#60A5FA">06</div>
       <div>
-        <h2 class="topic-title">group topic</h2>
-        <p class="topic-sub">Papers chosen for Dynamic Human Representation itself rather than for a search term — marked ★</p>
+        <h2 class="topic-title">"user representation" recommender systems</h2>
+        <p class="topic-sub">Learning transferable, domain-independent representations of users from review text</p>
       </div>
     </div>
-
-    <!-- 6 -->
     <article class="card">
       <div class="card-top">
-        <span class="idx i6" style="background:#FBBF24;border-color:#FBBF24;color:#08111F">6</span>
+        <span class="idx i6" style="background:#60A5FA;border-color:#60A5FA;color:#08111F">6</span>
         <div>
           <h3 class="ctitle">Review-Enhanced Universal Sequence Representation Learning for Recommender Systems</h3>
-          <div class="ctitle-fa" lang="fa">نمایش‌سازی ترتیبی عمومی ارتقای‌یافته با بازبینی برای سیستم‌های پیشنهاددهنده</div>
+          <div class="ctitle-fa" lang="fa">یادگیری بازنمایی ترتیبیِ جهانیِ ارتقایافته با نظرات برای سیستم‌های پیشنهاددهنده</div>
           <div class="badges">
-            <span class="badge b-new">★ added</span>
             <span class="badge b-type">Research Article</span>
             <span class="badge b-yr">2025</span>
             <span class="badge b-dom">Recommender Systems / Representation Learning</span>
-            <span class="badge b-match">65% <span class="bt">fit</span><i class="mtr" style="--v:65"></i></span>
           </div>
         </div>
       </div>
@@ -544,8 +561,6 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
         <div class="frow"><div class="flabel">Type</div><div class="fval">Research Article (original)</div></div>
         <div class="frow"><div class="flabel">Domain</div><div class="fval">Sequential Recommendation · Transferable Representation · Review Text</div></div>
         <div class="frow"><div class="flabel">Journal / Conference</div><div class="fval">ACM Transactions on Information Systems (TOIS), Vol. 43, No. 3</div></div>
-        <div class="frow"><div class="flabel">Match to search term</div><div class="fval">58%</div></div>
-        <div class="frow"><div class="flabel">Fit to group topic</div><div class="fval">65%</div></div>
         <div class="frow">
           <div class="flabel">DOI / Link</div>
           <div class="fval">
@@ -562,69 +577,80 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
       </div>
       <div class="fa" lang="fa">
         <span class="fatitle">ترجمه و خلاصهٔ فارسی</span>
-        <p>این مقاله یک روش به نام RUNSRec برای Universal Sequence Representation Learning (یادگیری نمایش ترتیبی عمومی) در سیستم‌های توصیه‌گر ارائه می‌دهد. نویسندگان به دو مشکل اصلی روش‌های توصیه‌گری ترتیبی می‌پردازند: وابستگی به شناسه آیتم‌ها که انتقال مدل به حوزه‌های جدید و مدیریت آیتم‌های جدید با سابقه کم را دشوار می‌کند، و مشکل حفظ ترجیحات شخصی کاربران در کنار یادگیری الگوهای عمومی رفتاری. RUNSRec برای حل این مشکلات، اطلاعات متنی آیتم‌ها و کلمات مهم استخراج‌شده از نظرات کاربران را ترکیب می‌کند تا نمایش بهتری از آیتم‌ها ایجاد کند. سپس با استفاده از یک مدل ترتیبی مبتنی بر ترانسفورماتور و یادگیری کنتراستی، الگوهای رفتاری عمومی را در حوزه‌های مختلف یاد می‌گیرد. در مرحله آخر، یک ماژول شخصی‌سازی از اطلاعات نظرات کاربران برای ثبت ترجیحات فردی آن‌ها استفاده می‌کند. آزمایش‌ها روی چند مجموعه‌داده Amazon نشان می‌دهند که RUNSRec در بسیاری از موارد عملکردی بهتر یا قابل رقابت با روش‌های موجود دارد، به‌خصوص برای آیتم‌های کم‌طرفدار و کاربرانی که تعاملات کمی دارند. در مجموع، مقاله نشان می‌دهد که می‌توان از اطلاعات متنی و نظرات کاربران برای ساخت نمایش‌های قابل انتقال بین حوزه‌ها استفاده کرد و هم‌زمان ترجیحات شخصی کاربران را حفظ کرد.</p>
+        <p>این مقالهٔ پژوهشی روشی به نام RUNSRec را معرفی می‌کند: یک رویکرد یادگیری بازنمایی ترتیبیِ جهانیِ ارتقایافته با نظرات کاربران، برای سیستم‌های پیشنهاددهندهٔ قابل‌انتقال و شخصی‌سازی‌شده. نویسندگان به دو محدودیت اصلی روش‌های موجود پیشنهاددهندگی ترتیبی می‌پردازند: وابستگی به شناسه‌های صریح آیتم‌ها که انتقال مدل به حوزه‌های جدید و مدیریت آیتم‌های کم‌سابقه را دشوار می‌کند، و چالش حفظ ترجیحات فردی کاربران در کنار یادگیری الگوهای رفتاری عمومی. برای غلبه بر این محدودیت‌ها، RUNSRec متن هویت آیتم را با کلیدواژه‌های اطلاعاتی استخراج‌شده از نظرات کاربران ترکیب می‌کند تا بازنمایی معنادارتری از آیتم‌ها بسازد. سپس با یک مدل ترتیبی مبتنی بر ترانسفورماتور و یادگیری تقابلی، الگوهای رفتاری عمومی را در حوزه‌های مختلف یاد می‌گیرد. در پایان، یک آداپتور شخصی‌سازی سبک از اطلاعات نظرات کاربر برای ثبت ترجیحات فردی استفاده می‌کند، در حالی که بخش عمدهٔ مدل پیش‌آموزش‌دیده بدون تغییر می‌ماند. آزمایش‌ها روی چند مجموعه‌دادهٔ Amazon نشان می‌دهند که RUNSRec عملکردی رقابتی یا بهتر از روش‌های موجود دارد، به‌ویژه برای آیتم‌های کم‌طرفدار و کاربرانی که تعاملات کمی دارند. در مجموع، مقاله نشان می‌دهد چگونه می‌توان از اطلاعات متنی و نظرات کاربران برای یادگیری بازنمایی‌های قابل‌انتقال استفاده کرد و همزمان ترجیحات شخصی کاربران را حفظ کرد.</p>
       </div>
     </article>
+  </section>
 
-    <!-- 7 -->
+  <!-- 07 -->
+  <section class="topic" id="s7" style="--tone:#F472B6">
+    <div class="topic-head">
+      <div class="tnum t6" style="background:#F472B6">07</div>
+      <div>
+        <h2 class="topic-title">"user modeling" recommendation</h2>
+        <p class="topic-sub">Modelling user behaviour from session-level interactions</p>
+      </div>
+    </div>
     <article class="card">
       <div class="card-top">
-        <span class="idx i6" style="background:#FBBF24;border-color:#FBBF24;color:#08111F">7</span>
+        <span class="idx i6" style="background:#F472B6;border-color:#F472B6;color:#08111F">7</span>
         <div>
-          <h3 class="ctitle">Graph Neural Networks in Recommender Systems: A Survey</h3>
-          <div class="ctitle-fa" lang="fa">شبکه‌های عصبی گرافی در سیستم‌های پیشنهاددهنده: یک مرور</div>
+          <h3 class="ctitle">A Survey on Session-based Recommender Systems</h3>
+          <div class="ctitle-fa" lang="fa">مروری بر سیستم‌های پیشنهاددهندهٔ مبتنی بر نشست</div>
           <div class="badges">
-            <span class="badge b-new">★ added</span>
             <span class="badge b-type">Survey</span>
-            <span class="badge b-yr">2022</span>
-            <span class="badge b-dom">Recommender Systems / Graph Learning</span>
-            <span class="badge b-match">55% <span class="bt">fit</span><i class="mtr" style="--v:55"></i></span>
+            <span class="badge b-yr">2021</span>
+            <span class="badge b-dom">Recommender Systems / User Modeling</span>
           </div>
         </div>
       </div>
       <div class="fields">
-        <div class="frow"><div class="flabel">Title</div><div class="fval">Graph Neural Networks in Recommender Systems: A Survey</div></div>
-        <div class="frow"><div class="flabel">Authors</div><div class="fval">Shiwen Wu, Fei Sun, Wentao Zhang, Xu Xie, Bin Cui</div></div>
-        <div class="frow"><div class="flabel">Year</div><div class="fval">2022</div></div>
-        <div class="frow"><div class="flabel">Type</div><div class="fval">Survey</div></div>
-        <div class="frow"><div class="flabel">Domain</div><div class="fval">Graph Neural Networks · Collaborative Filtering · Knowledge Graphs</div></div>
-        <div class="frow"><div class="flabel">Journal / Conference</div><div class="fval">ACM Computing Surveys, Vol. 55, No. 5, pp. 1–37</div></div>
-        <div class="frow"><div class="flabel">Match to search term</div><div class="fval">45%</div></div>
-        <div class="frow"><div class="flabel">Fit to group topic</div><div class="fval">55%</div></div>
+        <div class="frow"><div class="flabel">Title</div><div class="fval">A Survey on Session-based Recommender Systems</div></div>
+        <div class="frow"><div class="flabel">Authors</div><div class="fval">Shoujin Wang, Longbing Cao, Yan Wang, Quan Z. Sheng, Mehmet A. Orgun, Defu Lian</div></div>
+        <div class="frow"><div class="flabel">Year</div><div class="fval">2021</div></div>
+        <div class="frow"><div class="flabel">Type</div><div class="fval">Survey / Review Article</div></div>
+        <div class="frow"><div class="flabel">Domain</div><div class="fval">Recommender Systems · User Modeling · Session-Based Recommendation</div></div>
+        <div class="frow"><div class="flabel">Journal / Conference</div><div class="fval">ACM Computing Surveys (ACM CSUR), Vol. 54, No. 7, Article 154</div></div>
         <div class="frow">
-          <div class="flabel">DOI / Link</div>
-          <div class="fval">
+          <div class="flabel">DOI / Link</div><div class="fval">
             <div class="links">
-              <a class="doi" href="https://doi.org/10.1145/3535101" target="_blank">doi.org/10.1145/3535101 ↗</a>
-              <a class="gs" href="https://scholar.google.com/scholar?q=%22Graph%20Neural%20Networks%20in%20Recommender%20Systems%3A%20A%20Survey%22" target="_blank">Google Scholar</a>
-              <a class="gs" href="https://arxiv.org/abs/2011.02260" target="_blank">arXiv preprint (free)</a>
+              <a class="doi" href="https://doi.org/10.1145/3465401" target="_blank">doi.org/10.1145/3465401 ↗</a>
+              <a class="gs" href="https://scholar.google.com/scholar?q=%22A+Survey+on+Session-based+Recommender+Systems%22" target="_blank">Google Scholar</a>
+              <a class="gs" href="https://arxiv.org/abs/2102.02073" target="_blank">arXiv preprint (free)</a>
             </div>
           </div>
         </div>
       </div>
       <div class="summary">
         <div class="stitle">Summary</div>
-        <p>This survey provides a comprehensive review of the use of Graph Neural Networks (GNNs) in recommender systems and analyzes more than 100 existing studies. The authors explain that recommendation data, such as user-item interactions, item sequences, social relationships, and knowledge graphs, naturally form graph structures. GNNs can use these structures to learn rich user and item representations by propagating information between connected nodes. The survey organizes existing approaches into several categories, including collaborative filtering, sequential recommendation, social recommendation, and knowledge-graph-based recommendation, and compares different methods for graph construction, neighbor aggregation, information propagation, and representation learning. It also discusses commonly used datasets, evaluation metrics, and real-world applications. Finally, the authors identify important challenges and future directions, including scalability, dynamic graphs, self-supervised learning, robustness, privacy, fairness, and explainability.</p>
+        <p>This survey provides a comprehensive review of Session-based Recommender Systems (SBRSs), which aim to capture users’ short-term and dynamic preferences from their recent interactions rather than relying only on long-term and static preferences. It examines how user behaviors and session contexts are modeled to reflect changes in interests over time and reviews major approaches including latent representation learning, RNNs, GNNs, attention mechanisms, and memory networks. The paper also classifies existing methods, discusses their challenges and limitations, and identifies future research directions for more accurate and personalized recommendations.</p>
       </div>
       <div class="fa" lang="fa">
         <span class="fatitle">ترجمه و خلاصهٔ فارسی</span>
-        <p>این مقاله یک Survey (مطالعه مروری) جامع درباره استفاده از Graph Neural Networks یا GNNs (شبکه‌های عصبی گرافی) در سیستم‌های توصیه‌گر است و بیش از ۱۰۰ پژوهش موجود در این حوزه را بررسی می‌کند. نویسندگان توضیح می‌دهند که داده‌هایی مانند تعاملات کاربر و آیتم، توالی آیتم‌ها، روابط اجتماعی و گراف‌های دانش، به‌طور طبیعی ساختار گرافی دارند و شبکه‌های عصبی گرافی می‌توانند با انتقال اطلاعات میان گره‌های مرتبط، نمایش کاربران و آیتم‌ها را یاد بگیرند. مقاله روش‌های موجود را در دسته‌هایی مانند فیلترینگ مشارکتی، توصیه‌گری ترتیبی، توصیه‌گری اجتماعی و توصیه‌گری مبتنی بر گراف دانش دسته‌بندی و مقایسه می‌کند. همچنین روش‌های مختلف ساخت گراف، تجمیع اطلاعات همسایه‌ها، انتشار اطلاعات و یادگیری نمایش را بررسی می‌کند. در نهایت، چالش‌هایی مانند گراف‌های پویا، یادگیری خودنظارتی، حریم خصوصی، عدالت و توضیح‌پذیری را به‌عنوان مسیرهای آینده مطرح می‌کند.</p>
+        <p>این مقاله یک مرور جامع از سیستم‌های پیشنهاددهندهٔ مبتنی بر نشست (SBRS) ارائه می‌دهد؛ سامانه‌هایی که هدفشان شناسایی ترجیحات کوتاه‌مدت و پویای کاربران از روی تعاملات اخیرشان است، به‌جای اینکه تنها به ترجیحات بلندمدت و ایستا تکیه کنند. مقاله بررسی می‌کند که رفتار کاربران و بافتار نشست چگونه مدل می‌شوند تا تغییر علایق در طول زمان را بازتاب دهند، و رویکردهای اصلی از جمله یادگیری بازنمایی نهفته، شبکه‌های عصبی بازگشتی (RNN)، شبکه‌های عصبی گرافی (GNN)، سازوکارهای توجه و شبکه‌های حافظه را مرور می‌کند. مقاله همچنین روش‌های موجود را دسته‌بندی می‌کند، چالش‌ها و محدودیت‌های آن‌ها را به بحث می‌گذارد، و مسیرهای پژوهشی آینده را برای پیشنهادهای دقیق‌تر و شخصی‌سازی‌شده‌تر شناسایی می‌کند.</p>
       </div>
     </article>
+  </section>
 
-    <!-- 8 -->
+  <!-- 08 -->
+  <section class="topic" id="s8" style="--tone:#FBBF24">
+    <div class="topic-head">
+      <div class="tnum t6" style="background:#FBBF24">08</div>
+      <div>
+        <h2 class="topic-title">"dynamic user modeling"</h2>
+        <p class="topic-sub">Keeping user profiles up to date as interests and behaviour change over time</p>
+      </div>
+    </div>
     <article class="card">
       <div class="card-top">
         <span class="idx i6" style="background:#FBBF24;border-color:#FBBF24;color:#08111F">8</span>
         <div>
           <h3 class="ctitle">User Profiling and Its Dynamics: A Narrative Review</h3>
-          <div class="ctitle-fa" lang="fa">پروفایل کاربر و پویایی آن: مروری روایی</div>
+          <div class="ctitle-fa" lang="fa">پروفایل کاربر و پویایی آن: یک مرور روایی</div>
           <div class="badges">
-            <span class="badge b-new">★ added</span>
             <span class="badge b-type">Narrative Review</span>
             <span class="badge b-yr">2026</span>
             <span class="badge b-dom">User Modeling / Personalization</span>
-            <span class="badge b-match">95% <span class="bt">fit</span><i class="mtr" style="--v:95"></i></span>
           </div>
         </div>
       </div>
@@ -635,11 +661,8 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
         <div class="frow"><div class="flabel">Type</div><div class="fval">Review article (narrative)</div></div>
         <div class="frow"><div class="flabel">Domain</div><div class="fval">User Modeling · Profile Dynamics · Personalization</div></div>
         <div class="frow"><div class="flabel">Journal / Conference</div><div class="fval">The European Journal on Artificial Intelligence</div></div>
-        <div class="frow"><div class="flabel">Match to search term</div><div class="fval">82%</div></div>
-        <div class="frow"><div class="flabel">Fit to group topic</div><div class="fval">95%</div></div>
         <div class="frow">
-          <div class="flabel">DOI / Link</div>
-          <div class="fval">
+          <div class="flabel">DOI / Link</div><div class="fval">
             <div class="links">
               <a class="doi" href="https://doi.org/10.1177/30504554251407092" target="_blank">doi.org/10.1177/30504554251407092 ↗</a>
               <a class="gs" href="https://scholar.google.com/scholar?q=%22User%20Profiling%20and%20Its%20Dynamics%3A%20A%20Narrative%20Review%22" target="_blank">Google Scholar</a>
@@ -653,23 +676,30 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
       </div>
       <div class="fa" lang="fa">
         <span class="fatitle">ترجمه و خلاصهٔ فارسی</span>
-        <p>این مقاله بررسی می‌کند که چگونه پروفایل‌های کاربران در سیستم‌های هوشمند و شخصی‌سازی‌شده مدل‌سازی و به‌صورت پویا به‌روزرسانی می‌شوند. مسئله اصلی مورد بررسی، محدودیت پروفایل‌های ایستا است که با تغییر علایق، ترجیحات، رفتارها و نیازهای زمینه‌ای کاربران در طول زمان، ممکن است منسوخ شوند. نویسندگان با انجام یک مرور روایی از مطالعات این حوزه، منابع موجود در پایگاه‌های Web of Science، ACM Digital Library و Google Scholar را بررسی کرده و در مجموع ۱۱۷ مقاله و اثر علمی را تحلیل کرده‌اند. مطالعات بررسی‌شده در زمینه‌هایی مانند مدل‌سازی پروفایل کاربر، پویایی پروفایل، سیستم‌های توصیه‌گر، سیستم‌های شخصی‌سازی‌شده و سیستم‌های تطبیقی دسته‌بندی شده‌اند. این مرور بررسی می‌کند که اطلاعات صریح و ضمنی کاربران چگونه جمع‌آوری و با استفاده از روش‌هایی مانند پروفایل‌های مبتنی بر کلیدواژه، نمایش‌های معنایی، embeddingها، فاکتورگیری ماتریسی و گراف‌های دانش نمایش داده می‌شوند. مقاله به‌طور ویژه بر اهمیت مدل‌سازی هم‌زمان علایق کوتاه‌مدت و بلندمدت و به‌روزرسانی مداوم پروفایل‌ها متناسب با تغییرات رفتاری و زمینه‌ای تأکید دارد. یافته‌ها نشان می‌دهند که ترکیب انواع مختلف اطلاعات کاربر و استفاده از آگاهی از زمینه و سازوکارهای به‌روزرسانی پروفایل‌ها می‌تواند شخصی‌سازی و سازگاری سیستم را بهبود دهد. بااین‌حال، چالش‌هایی مانند ادغام داده‌های ناهمگون و چندوجهی کاربران، به‌روزرسانی مقیاس‌پذیر و بلادرنگ پروفایل‌ها، حفظ حریم خصوصی، بهبود سازگاری با زمینه و توسعه نمایش‌های جامع‌تر از کاربران همچنان باقی مانده است. در نهایت، مقاله نتیجه می‌گیرد که پروفایل‌سازی پویا برای حفظ نمایش دقیق و مؤثر کاربران و ارائه شخصی‌سازی مناسب با تغییرات آن‌ها در طول زمان ضرورت دارد.</p>
+        <p>این مقاله بررسی می‌کند که پروفایل‌های کاربران در سیستم‌های هوشمند و شخصی‌سازی‌شده چگونه مدل‌سازی و به‌صورت پویا به‌روزرسانی می‌شوند. مسئلهٔ اصلی مورد بررسی، محدودیت پروفایل‌های ایستا است؛ پروفایل‌هایی که ممکن است با تغییر علایق، ترجیحات، رفتارها و نیازهای زمینه‌ای کاربران در طول زمان، منسوخ شوند. نویسندگان با انجام یک مرور روایی، ادبیات این حوزه را در پایگاه‌های Web of Science، ACM Digital Library و Google Scholar جست‌وجو کرده و در مجموع ۱۱۷ اثر علمی را تحلیل کرده‌اند. مطالعات بررسی‌شده حول محورهای مدل‌سازی پروفایل کاربر، پویایی پروفایل، سیستم‌های پیشنهاددهنده، سیستم‌های شخصی‌سازی‌شده و سیستم‌های تطبیقی سازمان یافته‌اند. این مرور بررسی می‌کند که اطلاعات صریح و ضمنی کاربران چگونه جمع‌آوری و با رویکردهایی مانند پروفایل‌های مبتنی بر کلیدواژه، نمایش‌های معنایی، بردارهای تعبیه (embedding)، تجزیهٔ ماتریسی و گراف‌های دانش بازنمایی می‌شوند. مقاله به‌طور ویژه بر اهمیت مدل‌سازی همزمان علایق کوتاه‌مدت و بلندمدت کاربر و به‌روزرسانی پیوستهٔ پروفایل‌ها متناسب با تغییرات رفتاری و زمینه‌ای تأکید دارد. یافته‌ها نشان می‌دهند که ترکیب انواع مختلف اطلاعات کاربر و به‌کارگیری آگاهی از بافتار و سازوکارهای به‌روزرسانی پروفایل، می‌تواند شخصی‌سازی و سازگاری سیستم را بهبود دهد. با این حال، چالش‌هایی مانند ادغام داده‌های ناهمگون و چندوجهی کاربران، به‌روزرسانی مقیاس‌پذیر و بلادرنگ پروفایل‌ها، حفظ حریم خصوصی، بهبود سازگاری با بافتار، و توسعهٔ بازنمایی‌های جامع‌تر از کاربر باقی می‌مانند. در پایان، مقاله نتیجه می‌گیرد که پروفایل‌سازی پویا برای حفظ بازنمایی دقیق و مؤثر از کاربران و ارائهٔ شخصی‌سازی مناسب همزمان با تحول آن‌ها در طول زمان، ضروری است.</p>
       </div>
     </article>
+  </section>
 
-    <!-- 9 -->
+  <!-- 09 -->
+  <section class="topic" id="s9" style="--tone:#10B981">
+    <div class="topic-head">
+      <div class="tnum t6" style="background:#10B981">09</div>
+      <div>
+        <h2 class="topic-title">"dynamic user representation"</h2>
+        <p class="topic-sub">Learning user representations that stay accurate under distribution shift</p>
+      </div>
+    </div>
     <article class="card">
       <div class="card-top">
-        <span class="idx i6" style="background:#FBBF24;border-color:#FBBF24;color:#08111F">9</span>
+        <span class="idx i6" style="background:#10B981;border-color:#10B981;color:#08111F">9</span>
         <div>
           <h3 class="ctitle">Dynamic Time-aware Continual User Representation Learning</h3>
-          <div class="ctitle-fa" lang="fa">یادگیری پویا و زمان‌محورِ نمایش کاربر در چارچوب یادگیری مداوم</div>
+          <div class="ctitle-fa" lang="fa">یادگیری پیوستهٔ پویا و زمان‌محورِ بازنمایی کاربر</div>
           <div class="badges">
-            <span class="badge b-new">★ added</span>
             <span class="badge b-type">Research Article</span>
             <span class="badge b-yr">2025</span>
             <span class="badge b-dom">Recommender Systems / Continual Learning</span>
-            <span class="badge b-match">95% <span class="bt">fit</span><i class="mtr" style="--v:95"></i></span>
           </div>
         </div>
       </div>
@@ -680,11 +710,8 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
         <div class="frow"><div class="flabel">Type</div><div class="fval">Research Article (original)</div></div>
         <div class="frow"><div class="flabel">Domain</div><div class="fval">Continual User Representation · Temporal Distribution Shift</div></div>
         <div class="frow"><div class="flabel">Journal / Conference</div><div class="fval">Proceedings of the 48th ACM SIGIR Conference (SIGIR 2025)</div></div>
-        <div class="frow"><div class="flabel">Match to search term</div><div class="fval">92%</div></div>
-        <div class="frow"><div class="flabel">Fit to group topic</div><div class="fval">95%</div></div>
         <div class="frow">
-          <div class="flabel">DOI / Link</div>
-          <div class="fval">
+          <div class="flabel">DOI / Link</div><div class="fval">
             <div class="links">
               <a class="doi" href="https://doi.org/10.1145/3726302.3729959" target="_blank">doi.org/10.1145/3726302.3729959 ↗</a>
               <a class="gs" href="https://scholar.google.com/scholar?q=%22Dynamic%20Time-aware%20Continual%20User%20Representation%20Learning%22" target="_blank">Google Scholar</a>
@@ -698,23 +725,30 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
       </div>
       <div class="fa" lang="fa">
         <span class="fatitle">ترجمه و خلاصهٔ فارسی</span>
-        <p>این مقاله به یکی از محدودیت‌های یادگیری مداوم نمایش کاربر می‌پردازد: روش‌های موجود معمولاً بدون در نظر گرفتن گذر زمان میان وظایف ارزیابی می‌شوند، درحالی‌که در سیستم‌های توصیه‌گر واقعی، آیتم‌های جدید به‌طور مداوم ایجاد می‌شوند و توزیع آیتم‌ها را تغییر می‌دهند. نویسندگان یک سناریوی ارزیابی عملی و مبتنی بر زمان معرفی کرده و چارچوب DITTO (Dynamic Time-aware Continual User Representation Learner) را پیشنهاد می‌کنند که هدف آن حفظ یک نمایش عمومی از کاربر و کاهش فراموشی فاجعه‌بار در شرایط تغییر مداوم توزیع داده‌هاست. DITTO از دو سازوکار مکمل برای انتقال دانش استفاده می‌کند: ماژول Forward Knowledge Transfer (FKT) که کاربرانی با توزیع رفتاری مناسب را برای تولید برچسب‌های شبه و انتقال دانش از وظایف قبلی انتخاب می‌کند، و ماژول Backward Knowledge Transfer (BKT) که با استفاده از کاربرانی که بیشترین تغییر در توزیع رفتارشان را داشته‌اند، دانش قبلی را با توزیع فعلی سازگار می‌کند. آزمایش‌ها نشان می‌دهند DITTO در سناریوی مبتنی بر زمان عملکرد بهتری از روش‌های مقایسه‌ای دارد و در برابر تغییر ترتیب وظایف و داده‌های نویزی مقاوم است. این مطالعه نشان می‌دهد که یادگیری پویای نمایش کاربر باید تغییرات زمانی و تحول توزیع آیتم‌ها را در نظر بگیرد و نمی‌تواند صرفاً به تنظیمات ایستای وظایف متکی باشد.</p>
+        <p>این مقاله به یکی از محدودیت‌های یادگیری پیوستهٔ بازنمایی کاربر می‌پردازد: روش‌های موجود معمولاً بدون در نظر گرفتن گذر زمان میان وظایف ارزیابی می‌شوند، در حالی که در سیستم‌های پیشنهاددهندهٔ واقعی، آیتم‌های جدید به‌طور مداوم پدیدار می‌شوند و توزیع آیتم‌ها را تغییر می‌دهند. نویسندگان یک سناریوی ارزیابی عملی و زمان‌محور معرفی می‌کنند و چارچوب DITTO (یادگیرندهٔ پیوستهٔ بازنمایی کاربر به‌صورت پویا و زمان‌محور) را پیشنهاد می‌دهند؛ چارچوبی برای یادگیری پیوسته که هدفش حفظ یک بازنمایی جهانی از کاربر و کاهش فراموشی فاجعه‌بار در شرایط تغییرات پیوستهٔ توزیع است. DITTO از دو سازوکار مکمل انتقال دانش استفاده می‌کند: ماژول انتقال دانش رو‌به‌جلوِ آگاه به توزیع (FKT) که کاربرانی با توزیع رفتاری مناسب را برای تولید برچسب‌های شبه و انتقال دانش از وظایف پیشین انتخاب می‌کند، و ماژول انتقال دانش رو‌به‌عقبِ آگاه به توزیع (BKT) که از کاربران متأثر از جابه‌جایی توزیع استفاده می‌کند تا دانش پیشین را با توزیع کنونی سازگار کند. نویسندگان DITTO را روی مجموعه‌داده‌های واقعی در قالب وظایف ترتیبی با مهرهای زمانی مختلف ارزیابی می‌کنند و آن را با روش‌های پیشرفتهٔ یادگیری پیوسته و انتقالی مقایسه می‌کنند. آزمایش‌ها نشان می‌دهند که DITTO در سناریوی عملی زمان‌محور به‌طور پیوسته از مبناها بهتر عمل می‌کند، در برابر تغییر ترتیب وظایف و وظایف نویزی مقاوم است، و با شبکه‌های ستون فقرات مختلف کار می‌کند. این پژوهش نشان می‌دهد که یادگیری پویای بازنمایی کاربر باید تغییرات زمانی و تحول توزیع آیتم‌ها را در نظر بگیرد، نه اینکه به تنظیمات ایستای وظایف تکیه کند.</p>
       </div>
     </article>
+  </section>
 
-    <!-- 10 -->
+  <!-- 10 -->
+  <section class="topic" id="s10" style="--tone:#8B5CF6">
+    <div class="topic-head">
+      <div class="tnum t6" style="background:#8B5CF6">10</div>
+      <div>
+        <h2 class="topic-title">"user preference" LLM</h2>
+        <p class="topic-sub">Personalising large language models to individual user preferences</p>
+      </div>
+    </div>
     <article class="card">
       <div class="card-top">
-        <span class="idx i6" style="background:#FBBF24;border-color:#FBBF24;color:#08111F">10</span>
+        <span class="idx i6" style="background:#8B5CF6;border-color:#8B5CF6;color:#08111F">10</span>
         <div>
           <h3 class="ctitle">Personalization of Large Language Models: A Survey</h3>
           <div class="ctitle-fa" lang="fa">شخصی‌سازی مدل‌های زبانی بزرگ: یک مرور</div>
           <div class="badges">
-            <span class="badge b-new">★ added</span>
             <span class="badge b-type">Survey</span>
             <span class="badge b-yr">2024</span>
             <span class="badge b-dom">LLMs / User Preference Modeling</span>
-            <span class="badge b-match">85% <span class="bt">fit</span><i class="mtr" style="--v:85"></i></span>
           </div>
         </div>
       </div>
@@ -725,11 +759,8 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
         <div class="frow"><div class="flabel">Type</div><div class="fval">Survey</div></div>
         <div class="frow"><div class="flabel">Domain</div><div class="fval">Large Language Models · Personalization · User Modeling</div></div>
         <div class="frow"><div class="flabel">Journal / Conference</div><div class="fval">Transactions on Machine Learning Research (TMLR); arXiv preprint</div></div>
-        <div class="frow"><div class="flabel">Match to search term</div><div class="fval">70%</div></div>
-        <div class="frow"><div class="flabel">Fit to group topic</div><div class="fval">85%</div></div>
         <div class="frow">
-          <div class="flabel">DOI / Link</div>
-          <div class="fval">
+          <div class="flabel">DOI / Link</div><div class="fval">
             <div class="links">
               <a class="doi" href="https://doi.org/10.48550/arXiv.2411.00027" target="_blank">doi.org/10.48550/arXiv.2411.00027 ↗</a>
               <a class="gs" href="https://scholar.google.com/scholar?q=%22Personalization%20of%20Large%20Language%20Models%3A%20A%20Survey%22" target="_blank">Google Scholar</a>
@@ -744,7 +775,7 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
       </div>
       <div class="fa" lang="fa">
         <span class="fatitle">ترجمه و خلاصهٔ فارسی</span>
-        <p>این مقاله روش‌های شخصی‌سازی مدل‌های زبانی بزرگ را بررسی می‌کند و توضیح می‌دهد که LLMها چگونه می‌توانند کاربران را از طریق یادگیری ترجیحات، رفتارها، پروفایل‌ها و تاریخچه تعاملات مدل کنند. مقاله روش‌های مختلف مدل‌سازی کاربر، داده‌های مورد استفاده، معیارهای ارزیابی و چالش‌هایی مانند حفظ حریم خصوصی و ساخت سیستم‌های هوشمند سازگار با نیازهای کاربران را بررسی می‌کند.</p>
+        <p>این مقاله یک نمای کلی و جامع از تکنیک‌های شخصی‌سازی مدل‌های زبانی بزرگ (LLM) ارائه می‌دهد. بررسی می‌کند که LLMها چگونه می‌توانند کاربران را از طریق یادگیری ترجیحات، رفتارها، پروفایل‌ها و تاریخچهٔ تعاملاتشان مدل کنند. مقاله روش‌های شخصی‌سازی، مجموعه‌داده‌ها، راهبردهای ارزیابی و کاربردها را دسته‌بندی می‌کند. همچنین به چالش‌هایی مانند حریم خصوصی، مدل‌سازی کاربر، بهره‌وری داده و ساختن سیستم‌های هوش مصنوعی سازگارتر و کاربرمحورتر می‌پردازد.</p>
       </div>
     </article>
   </section>
@@ -756,52 +787,83 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
       <thead>
         <tr>
           <th style="width:34px">#</th>
-          <th style="width:118px">Search term</th>
+          <th style="width:220px">Search term</th>
           <th>Title</th>
-          <th style="width:124px">Type</th>
+          <th style="width:150px">Type</th>
           <th style="width:48px">Year</th>
-          <th style="width:150px">Journal</th>
-          <th style="width:62px">Match</th>
-          <th style="width:66px">Topic fit</th>
-          <th style="width:180px">DOI / Link</th>
+          <th style="width:200px">Journal</th>
+          <th style="width:200px">DOI / Link</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>1</td><td><span class="dot" style="background:#FB923C"></span>preference drift</td><td class="t">Time-Aware Recommender Systems: A Comprehensive Survey and Quantitative Assessment of Literature</td><td>Survey &nbsp;+&nbsp; Quantitative Bibliometric Assessment</td><td>2023</td><td>IEEE Access</td><td class="m">72%</td><td class="m">90%</td><td><a href="https://doi.org/10.1109/ACCESS.2023.3274117" target="_blank">10.1109/ACCESS.2023.3274117</a></td></tr>
-        <tr><td>2</td><td><span class="dot" style="background:#22D3EE"></span>intent-aware</td><td class="t">A Survey on Intent-Aware Recommender Systems</td><td>Survey</td><td>2024</td><td>ACM Transactions on Recommender Systems (ACM TORS)</td><td class="m">97%</td><td class="m">88%</td><td><a href="https://doi.org/10.1145/3700890" target="_blank">10.1145/3700890</a></td></tr>
-        <tr><td>3</td><td><span class="dot" style="background:#A78BFA"></span>goal-aware</td><td class="t">A Categorization of Workplace Learning Goals for Multi-Stakeholder Recommender Systems: A Systematic Review</td><td>Systematic Review</td><td>2023</td><td>TechTrends (Springer)</td><td class="m">87%</td><td class="m">78%</td><td><a href="https://doi.org/10.1007/s11528-022-00777-y" target="_blank">10.1007/s11528-022-00777-y</a></td></tr>
-        <tr><td>4</td><td><span class="dot" style="background:#34D399"></span>constraint-aware</td><td class="t">Fairness in Recommender Systems: Research Landscape and Future Directions</td><td>Survey</td><td>2024</td><td>User Modeling and User-Adapted Interaction (Springer)</td><td class="m">85%</td><td class="m">62%</td><td><a href="https://doi.org/10.1007/s11257-023-09364-z" target="_blank">10.1007/s11257-023-09364-z</a></td></tr>
-        <tr><td>5</td><td><span class="dot" style="background:#FB7185"></span>context-aware</td><td class="t">A Systematic Literature Review of Recent Advances on Context-Aware Recommender Systems</td><td>Systematic Literature Review</td><td>2024</td><td>Artificial Intelligence Review (Springer)</td><td class="m">99%</td><td class="m">92%</td><td><a href="https://doi.org/10.1007/s10462-024-10939-4" target="_blank">10.1007/s10462-024-10939-4</a></td></tr>
-        <tr><td>6</td><td><span class="dot" style="background:#FBBF24"></span>group topic</td><td class="t"><span class="star">★</span>Review-Enhanced Universal Sequence Representation Learning for Recommender Systems</td><td>Research Article (original)</td><td>2025</td><td>ACM Transactions on Information Systems (TOIS), Vol. 43, No. 3</td><td class="m">58%</td><td class="m">65%</td><td><a href="https://doi.org/10.1145/3717832" target="_blank">10.1145/3717832</a></td></tr>
-        <tr><td>7</td><td><span class="dot" style="background:#FBBF24"></span>group topic</td><td class="t"><span class="star">★</span>Graph Neural Networks in Recommender Systems: A Survey</td><td>Survey</td><td>2022</td><td>ACM Computing Surveys, Vol. 55, No. 5, pp. 1–37</td><td class="m">45%</td><td class="m">55%</td><td><a href="https://doi.org/10.1145/3535101" target="_blank">10.1145/3535101</a></td></tr>
-        <tr><td>8</td><td><span class="dot" style="background:#FBBF24"></span>group topic</td><td class="t"><span class="star">★</span>User Profiling and Its Dynamics: A Narrative Review</td><td>Review article (narrative)</td><td>2026</td><td>The European Journal on Artificial Intelligence</td><td class="m">82%</td><td class="m">95%</td><td><a href="https://doi.org/10.1177/30504554251407092" target="_blank">10.1177/30504554251407092</a></td></tr>
-        <tr><td>9</td><td><span class="dot" style="background:#FBBF24"></span>group topic</td><td class="t"><span class="star">★</span>Dynamic Time-aware Continual User Representation Learning</td><td>Research Article (original)</td><td>2025</td><td>Proceedings of the 48th ACM SIGIR Conference (SIGIR 2025)</td><td class="m">92%</td><td class="m">95%</td><td><a href="https://doi.org/10.1145/3726302.3729959" target="_blank">10.1145/3726302.3729959</a></td></tr>
-        <tr><td>10</td><td><span class="dot" style="background:#FBBF24"></span>group topic</td><td class="t"><span class="star">★</span>Personalization of Large Language Models: A Survey</td><td>Survey</td><td>2024</td><td>Transactions on Machine Learning Research (TMLR); arXiv preprint</td><td class="m">70%</td><td class="m">85%</td><td><a href="https://doi.org/10.48550/arXiv.2411.00027" target="_blank">10.48550/arXiv.2411.00027</a></td></tr>
+        <tr><td>1</td><td class="st"><span class="dot" style="background:#FB923C"></span>"preference drift" recommendation</td><td class="t">Time-Aware Recommender Systems: A Comprehensive Survey and Quantitative Assessment of Literature</td><td>Survey</td><td>2023</td><td>IEEE Access</td><td><a href="https://doi.org/10.1109/ACCESS.2023.3274117" target="_blank">10.1109/ACCESS.2023.3274117</a></td></tr>
+        <tr><td>2</td><td class="st"><span class="dot" style="background:#22D3EE"></span>"intent-aware recommendation"</td><td class="t">A Survey on Intent-Aware Recommender Systems</td><td>Survey</td><td>2024</td><td>ACM Transactions on Recommender Systems (ACM TORS)</td><td><a href="https://doi.org/10.1145/3700890" target="_blank">10.1145/3700890</a></td></tr>
+        <tr><td>3</td><td class="st"><span class="dot" style="background:#A78BFA"></span>"goal-aware recommendation"</td><td class="t">A Categorization of Workplace Learning Goals for Multi-Stakeholder Recommender Systems: A Systematic Review</td><td>Systematic Review</td><td>2023</td><td>TechTrends (Springer)</td><td><a href="https://doi.org/10.1007/s11528-022-00777-y" target="_blank">10.1007/s11528-022-00777-y</a></td></tr>
+        <tr><td>4</td><td class="st"><span class="dot" style="background:#34D399"></span>"constraint-aware recommendation"</td><td class="t">Fairness in Recommender Systems: Research Landscape and Future Directions</td><td>Survey</td><td>2024</td><td>User Modeling and User-Adapted Interaction (Springer)</td><td><a href="https://doi.org/10.1007/s11257-023-09364-z" target="_blank">10.1007/s11257-023-09364-z</a></td></tr>
+        <tr><td>5</td><td class="st"><span class="dot" style="background:#FB7185"></span>"context-aware recommendation"</td><td class="t">A Systematic Literature Review of Recent Advances on Context-Aware Recommender Systems</td><td>Systematic Literature Review</td><td>2024</td><td>Artificial Intelligence Review (Springer)</td><td><a href="https://doi.org/10.1007/s10462-024-10939-4" target="_blank">10.1007/s10462-024-10939-4</a></td></tr>
+        <tr><td>6</td><td class="st"><span class="dot" style="background:#60A5FA"></span>"user representation" recommender systems</td><td class="t">Review-Enhanced Universal Sequence Representation Learning for Recommender Systems</td><td>Research Article</td><td>2025</td><td>ACM Transactions on Information Systems (TOIS), Vol. 43, No. 3</td><td><a href="https://doi.org/10.1145/3717832" target="_blank">10.1145/3717832</a></td></tr>
+        <tr><td>7</td><td class="st"><span class="dot" style="background:#F472B6"></span>"user modeling" recommendation</td><td class="t">A Survey on Session-based Recommender Systems</td><td>Survey</td><td>2021</td><td>ACM Computing Surveys (ACM CSUR), Vol. 54, No. 7, Article 154</td><td><a href="https://doi.org/10.1145/3465401" target="_blank">10.1145/3465401</a></td></tr>
+        <tr><td>8</td><td class="st"><span class="dot" style="background:#FBBF24"></span>"dynamic user modeling"</td><td class="t">User Profiling and Its Dynamics: A Narrative Review</td><td>Narrative Review</td><td>2026</td><td>The European Journal on Artificial Intelligence</td><td><a href="https://doi.org/10.1177/30504554251407092" target="_blank">10.1177/30504554251407092</a></td></tr>
+        <tr><td>9</td><td class="st"><span class="dot" style="background:#10B981"></span>"dynamic user representation"</td><td class="t">Dynamic Time-aware Continual User Representation Learning</td><td>Research Article</td><td>2025</td><td>Proceedings of the 48th ACM SIGIR Conference (SIGIR 2025)</td><td><a href="https://doi.org/10.1145/3726302.3729959" target="_blank">10.1145/3726302.3729959</a></td></tr>
+        <tr><td>10</td><td class="st"><span class="dot" style="background:#8B5CF6"></span>"user preference" LLM</td><td class="t">Personalization of Large Language Models: A Survey</td><td>Survey</td><td>2024</td><td>Transactions on Machine Learning Research (TMLR); arXiv preprint</td><td><a href="https://doi.org/10.48550/arXiv.2411.00027" target="_blank">10.48550/arXiv.2411.00027</a></td></tr>
       </tbody>
     </table>
     </div>
   </div>
 
-  
-<footer>
-    <p><strong>Type breakdown:</strong> 5 Surveys (IEEE Access, ACM TORS, UMUAI, ACM Computing Surveys, TMLR), 1 Systematic Review (TechTrends), 1 Systematic Literature Review (Artificial Intelligence Review), 1 Narrative Review (European Journal on Artificial Intelligence) and 2 Research Articles (ACM TOIS, ACM SIGIR) — 10 papers in all.</p>
-    <p><strong>Domains covered:</strong> temporal and time-aware user modelling, intent modelling, goal modelling in workplace learning, fairness handled as a ranking constraint, context modelling, universal and continual user representation, graph-based representation learning, the dynamics of user profiling, and LLM personalisation — nine angles on how a system represents a changing user.</p>
-    <p><strong>Scores:</strong> the five searched papers match their own search terms at 72%, 97%, 87%, 85% and 99%, averaging 88%. Fit to the group topic across all ten papers runs 90%, 88%, 78%, 62%, 92%, 65%, 55%, 95%, 95% and 85%, averaging 81%. The two weakest fits are paper 4, where fairness is about how results are distributed rather than how a person is modelled, and paper 7, which is a methods survey rather than a user-modelling survey. The two strongest, papers 8 and 9, take dynamic user representation as their central subject.</p>
-    <p style="margin-top:16px;">Titles, authors, years, venues and DOIs were checked against Crossref and Google Scholar. Prepared for Group 1, Dynamic Human Representation.</p>
+  <div class="typebreak" id="types">
+    <h3>Type Breakdown</h3>
+    <p class="tintro">The ten papers divide by publication type as follows. Each paper is counted under the type declared in its own record.</p>
+    <div class="tgrid">
+      <div class="tcard" style="--tc:#14213D">
+        <span class="tcount">5</span>
+        <span class="tlabel">Survey</span>
+        <span class="tnote">Papers <b>1</b>, <b>2</b>, <b>4</b>, <b>7</b>, <b>10</b></span>
+      </div>
+      <div class="tcard" style="--tc:#A78BFA">
+        <span class="tcount">1</span>
+        <span class="tlabel">Systematic Review</span>
+        <span class="tnote">Paper <b>3</b></span>
+      </div>
+      <div class="tcard" style="--tc:#FB7185">
+        <span class="tcount">1</span>
+        <span class="tlabel">Systematic Literature Review</span>
+        <span class="tnote">Paper <b>5</b></span>
+      </div>
+      <div class="tcard" style="--tc:#FBBF24">
+        <span class="tcount">1</span>
+        <span class="tlabel">Narrative Review</span>
+        <span class="tnote">Paper <b>8</b></span>
+      </div>
+      <div class="tcard" style="--tc:#34D399">
+        <span class="tcount">2</span>
+        <span class="tlabel">Research Article</span>
+        <span class="tnote">Papers <b>6</b>, <b>9</b></span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p><strong>Type breakdown:</strong> 5 surveys (IEEE Access, ACM TORS, UMUAI, ACM Computing Surveys, TMLR), 1 systematic review (TechTrends), 1 systematic literature review (Artificial Intelligence Review), 1 narrative review (European Journal on Artificial Intelligence), and 2 research articles (ACM TOIS, ACM SIGIR) — 10 papers in total.</p>
+    <p><strong>Domains covered:</strong> temporal and time-aware user modelling, intent modelling, goal modelling in workplace learning, fairness handled as a ranking constraint, context modelling, universal sequence representation learning, session-based user modelling, dynamic user profiling, continual user representation under distribution shift, and LLM personalisation — ten angles on how a system represents a changing user.</p>
+    <p><strong>Search coverage:</strong> eleven search terms were used in Google Scholar. Ten of them produced one paper each. Two of the ten term-matched papers came from adjacent review literature because their search terms — <code>"goal-aware recommender systems"</code> and <code>"constraint-aware recommendation"</code> — did not return reviews directly; goal modelling in workplace learning and fairness as a ranking constraint were used instead.</p>
+    <p style="margin-top:16px;">Prepared for Group 1, Dynamic Human Representation.</p>
   </footer>
-
-
 </div>
 
 <div class="dl" id="dl">
-      <button class="dl-btn" id="dlBtn" type="button" aria-label="Download" aria-haspopup="menu" aria-expanded="false" aria-controls="dlMenu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 21h16"/></svg><svg class="cv" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 15 6-6 6 6"/></svg></button>
-      <div class="dl-scrim" id="dlScrim"></div>
-      <div class="dl-menu" id="dlMenu" role="menu" aria-label="Choose a download format">
-        <button class="dl-word" id="btnDoc" type="button" role="menuitem"><span class="dl-ico">DOC</span><span><b>Word document</b><small>Editable .doc with all papers, summaries and table</small></span></button>
-        <button class="dl-pdf" id="btnPdf" type="button" role="menuitem"><span class="dl-ico">PDF</span><span><b>PDF file</b><small>Opens print dialog — choose “Save as PDF”</small></span></button>
-      </div>
-    </div>
+  <button class="dl-btn" id="dlBtn" type="button" aria-label="Download" aria-haspopup="menu" aria-expanded="false" aria-controls="dlMenu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 21h16"/></svg>
+  </button>
+</div>
+<div class="dl-scrim" id="dlScrim"></div>
+<div class="dl-menu" id="dlMenu" role="menu" aria-label="Choose a download format" data-anchor="bottom">
+  <button class="dl-word" id="btnDoc" type="button" role="menuitem"><span class="dl-ico">DOC</span><span><b>Word document</b><small>Editable .doc with all papers, summaries and table</small></span></button>
+  <button class="dl-pdf" id="btnPdf" type="button" role="menuitem"><span class="dl-ico">PDF</span><span><b>PDF file</b><small>Opens print dialog — choose "Save as PDF"</small></span></button>
+</div>
+
 <button class="totop" id="totop" type="button" aria-label="Back to top"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg></button>
+
 <script>
 (function () {
   var bar = document.getElementById('progbar');
@@ -819,7 +881,201 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
   tick();
 })();
 </script>
+
 <script>
+/* ---------- Theme toggle ---------- */
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('themeBtn');
+  if (!btn) return;
+
+  var ORDER = ['auto', 'light', 'dark'];
+  var LABEL = { auto: 'Auto', light: 'Light', dark: 'Dark' };
+
+  function applyTheme(mode) {
+    var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var effective = (mode === 'auto') ? (d ? 'dark' : 'light') : mode;
+    root.setAttribute('data-theme', effective);
+    root.setAttribute('data-theme-mode', mode);
+
+    // Update meta theme-color for iOS Safari toolbar
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) {
+      var col = effective === 'dark' ? '#0C1220' : '#F6F3EC';
+      // Remove existing media-based themes so ours wins
+      document.querySelectorAll('meta[name="theme-color"]').forEach(function (m, i) {
+        if (i > 0) m.remove();
+      });
+      meta.removeAttribute('media');
+      meta.setAttribute('content', col);
+    }
+
+    var lang = root.lang === 'fa' ? 'fa' : 'en';
+    var fa = { auto: 'خودکار', light: 'روشن', dark: 'تیره' };
+    var text = lang === 'fa' ? fa[mode] : LABEL[mode];
+    btn.setAttribute('aria-label', (lang === 'fa' ? 'تم: ' : 'Theme: ') + text);
+    btn.setAttribute('title', (lang === 'fa' ? 'تم: ' : 'Theme: ') + text);
+  }
+
+  // Track auto changes when in auto mode
+  try {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
+      if (root.getAttribute('data-theme-mode') === 'auto') applyTheme('auto');
+    });
+  } catch (_) {
+    // Older Safari
+    try {
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function () {
+        if (root.getAttribute('data-theme-mode') === 'auto') applyTheme('auto');
+      });
+    } catch (_) {}
+  }
+
+  btn.addEventListener('click', function () {
+    var cur = root.getAttribute('data-theme-mode') || 'auto';
+    var next = ORDER[(ORDER.indexOf(cur) + 1) % ORDER.length];
+    applyTheme(next);
+    try { localStorage.setItem('theme', next); } catch (_) {}
+  });
+
+  // Re-apply after language change (to update the label)
+  var langContainer = document.getElementById('lang');
+  if (langContainer) {
+    langContainer.addEventListener('click', function () {
+      setTimeout(function () {
+        applyTheme(root.getAttribute('data-theme-mode') || 'auto');
+      }, 0);
+    });
+  }
+})();
+</script>
+
+<script>
+/* ---------- Language toggle (EN / FA) ---------- */
+(function () {
+  var FA = {
+    'Literature Review • Google Scholar': 'مرور ادبیات • Google Scholar',
+    'Group 1 | Dynamic Human Representation': 'گروه ۱ | بازنمایی پویای انسان',
+    'How do intelligent systems model humans and users? — ten papers, one per search term': 'سیستم‌های هوشمند چگونه انسان‌ها و کاربران را مدل می‌کنند؟ — ده مقاله، یکی برای هر عبارت جست‌وجو',
+    'Each entry includes the full bibliographic record, an English summary, and a Persian summary.': 'هر مورد شامل مشخصات کامل کتاب‌شناختی، خلاصهٔ انگلیسی و خلاصهٔ فارسی است.',
+    'At a glance': 'در یک نگاه',
+    'Papers': 'مقاله',
+    'Search terms': 'عبارت جست‌وجو',
+    'Time window': 'بازهٔ زمانی',
+    'Source': 'منبع',
+    'Terms with a paper': 'عبارت‌های دارای مقاله',
+    'Contents': 'فهرست',
+    '01 Preference drift': '۰۱ رانش ترجیحات',
+    '02 Intent': '۰۲ نیت',
+    '03 Goal': '۰۳ هدف',
+    '04 Constraint': '۰۴ محدودیت',
+    '05 Context': '۰۵ زمینه',
+    '06 User repr.': '۰۶ بازنمایی کاربر',
+    '07 User modeling': '۰۷ مدل‌سازی کاربر',
+    '08 Dynamic modeling': '۰۸ مدل‌سازی پویا',
+    '09 Dynamic repr.': '۰۹ بازنمایی پویا',
+    '10 User pref. LLM': '۱۰ ترجیح کاربر در LLM',
+    'All 10 → table': 'همهٔ ۱۰ مقاله ← جدول',
+    'Back to top': 'بازگشت به بالا',
+    'Download': 'دانلود',
+    'Selection Overview': 'نمای کلی انتخاب',
+    'Paper 6': 'مقاله ۶', 'Paper 7': 'مقاله ۷', 'Paper 8': 'مقاله ۸', 'Paper 9': 'مقاله ۹',
+    'Paper 1': 'مقاله ۱', 'Paper 2': 'مقاله ۲', 'Paper 3': 'مقاله ۳', 'Paper 4': 'مقاله ۴',
+    'Paper 5': 'مقاله ۵', 'Paper 10': 'مقاله ۱۰',
+    'Eleven search terms were used; each of the ten papers below corresponds to one of them.': 'یازده عبارت جست‌وجو استفاده شد؛ هر یک از ده مقالهٔ زیر متناظر با یکی از آن‌هاست.',
+    'Two of the term-specific searches — "goal-aware recommender systems" after 2020 and "constraint-aware recommendation" — did not return review articles directly. For those two terms, adjacent review literature was used: goal modelling in workplace learning (paper 3), and fairness treated as a ranking constraint (paper 4).': 'دو مورد از جست‌وجوهای مختص عبارت — <code>"goal-aware recommender systems"</code> پس از ۲۰۲۰ و <code>"constraint-aware recommendation"</code> — مستقیماً مقالهٔ مروری بازنگرداندند. برای این دو عبارت، از ادبیات مروری مجاور استفاده شد: مدل‌سازی هدف در یادگیری محیط کار (مقاله ۳) و انصاف به‌عنوان قید رتبه‌بندی (مقاله ۴).',
+    'How systems model a user whose tastes change over time': 'سیستم‌ها چگونه کاربری را مدل می‌کنند که سلیقه‌اش در گذر زمان تغییر می‌کند',
+    'Modelling why the user is here right now, not just what they liked': 'مدل‌سازی چرایی حضور کاربر در همین لحظه، نه فقط آنچه پسندیده است',
+    'Working out what the user is actually trying to reach, not just scoring past behaviour': 'فهمیدن اینکه کاربر واقعاً می‌خواهد به چه چیزی برسد، نه فقط امتیازدهی به رفتار گذشته',
+    'Recommendations that must respect rules, objectives and hard requirements': 'پیشنهادهایی که باید قواعد، هدف‌ها و الزامات سخت را رعایت کنند',
+    'When, where, with whom, and under what conditions the user acts': 'کاربر چه زمانی، کجا، با چه کسی و در چه شرایطی عمل می‌کند',
+    'Learning transferable, domain-independent representations of users from review text': 'یادگیری بازنمایی‌های قابل‌انتقال و مستقل از حوزه از متن نظرات کاربران',
+    'Modelling user behaviour from session-level interactions': 'مدل‌سازی رفتار کاربر بر پایهٔ تعاملات سطح نشست',
+    'Keeping user profiles up to date as interests and behaviour change over time': 'به‌روز نگه‌داشتن پروفایل کاربر همراه با تغییر علایق و رفتار در طول زمان',
+    'Learning user representations that stay accurate under distribution shift': 'یادگیری بازنمایی‌های کاربر که تحت جابه‌جایی توزیع دقیق باقی می‌مانند',
+    'Personalising large language models to individual user preferences': 'شخصی‌سازی مدل‌های زبانی بزرگ بر اساس ترجیحات فردی کاربران',
+    'Title': 'عنوان',
+    'Authors': 'نویسندگان',
+    'Year': 'سال',
+    'Type': 'نوع',
+    'Domain': 'حوزه',
+    'Journal / Conference': 'مجله / کنفرانس',
+    'DOI / Link': 'DOI / پیوند',
+    'Summary': 'خلاصه',
+    'All Ten Papers at a Glance': 'همهٔ ده مقاله در یک نگاه',
+    'Search term': 'عبارت جست‌وجو',
+    'Journal': 'مجله',
+    'Survey': 'مرور (Survey)',
+    'Narrative Review': 'مرور روایی',
+    'Research Article': 'مقالهٔ پژوهشی',
+    'Systematic Literature Review': 'مرور نظام‌مند ادبیات',
+    'Systematic Review': 'مرور نظام‌مند',
+    'Type Breakdown': 'تفکیک نوع',
+    'The ten papers divide by publication type as follows. Each paper is counted under the type declared in its own record.': 'ده مقاله بر اساس نوع انتشار به‌شکل زیر تقسیم می‌شوند. هر مقاله زیر نوعی شمرده می‌شود که در مشخصات خودش اعلام شده است.',
+    'Papers 1, 2, 4, 7, 10': 'مقالات <b>۱</b>، <b>۲</b>، <b>۴</b>، <b>۷</b>، <b>۱۰</b>',
+    'Paper 3': 'مقالهٔ <b>۳</b>', 'Paper 5': 'مقالهٔ <b>۵</b>', 'Paper 8': 'مقالهٔ <b>۸</b>',
+    'Papers 6, 9': 'مقالات <b>۶</b>، <b>۹</b>',
+    'Word document': 'سند Word',
+    'Editable .doc with all papers, summaries and table': 'فایل .doc قابل ویرایش با همهٔ مقالات، خلاصه‌ها و جدول',
+    'PDF file': 'فایل PDF',
+    'Opens print dialog — choose "Save as PDF"': 'پنجرهٔ چاپ باز می‌شود — «Save as PDF» را انتخاب کنید',
+    'Type breakdown: 5 surveys (IEEE Access, ACM TORS, UMUAI, ACM Computing Surveys, TMLR), 1 systematic review (TechTrends), 1 systematic literature review (Artificial Intelligence Review), 1 narrative review (European Journal on Artificial Intelligence), and 2 research articles (ACM TOIS, ACM SIGIR) — 10 papers in total.': 'تفکیک نوع: ۵ مقالهٔ مروری (IEEE Access، ACM TORS، UMUAI، ACM Computing Surveys، TMLR)، ۱ مرور نظام‌مند (TechTrends)، ۱ مرور نظام‌مند ادبیات (Artificial Intelligence Review)، ۱ مرور روایی (European Journal on Artificial Intelligence)، و ۲ مقالهٔ پژوهشی (ACM TOIS، ACM SIGIR) — در مجموع ۱۰ مقاله.',
+    'Domains covered: temporal and time-aware user modelling, intent modelling, goal modelling in workplace learning, fairness handled as a ranking constraint, context modelling, universal sequence representation learning, session-based user modelling, dynamic user profiling, continual user representation under distribution shift, and LLM personalisation — ten angles on how a system represents a changing user.': 'حوزه‌های پوشش‌داده‌شده: مدل‌سازی زمانی و آگاه به زمان کاربر، مدل‌سازی نیت، مدل‌سازی هدف در یادگیری محیط کار، انصاف به‌عنوان قید رتبه‌بندی، مدل‌سازی بافتار، یادگیری بازنمایی ترتیبی جهانی، مدل‌سازی کاربر مبتنی بر نشست، پروفایل‌سازی پویای کاربر، بازنمایی پیوستهٔ کاربر تحت جابه‌جایی توزیع، و شخصی‌سازی با LLM — ده زاویه برای بازنمایی کاربری که تغییر می‌کند.',
+    'Search coverage: eleven search terms were used in Google Scholar. Ten of them produced one paper each. Two of the ten term-matched papers came from adjacent review literature because their search terms — "goal-aware recommender systems" and "constraint-aware recommendation" — did not return reviews directly; goal modelling in workplace learning and fairness as a ranking constraint were used instead.': 'پوشش جست‌وجو: یازده عبارت جست‌وجو در Google Scholar استفاده شد. ده مورد از آن‌ها هرکدام یک مقاله به دست دادند. دو مورد از ده مقالهٔ متناظر با عبارت، از ادبیات مروری مجاور آمده‌اند چون عبارت‌های جست‌وجوی‌شان — <code>"goal-aware recommender systems"</code> و <code>"constraint-aware recommendation"</code> — مستقیماً مرور بازنگرداندند؛ به‌جای آن‌ها از مدل‌سازی هدف در یادگیری محیط کار و انصاف به‌عنوان قید رتبه‌بندی استفاده شد.',
+    'Prepared for Group 1, Dynamic Human Representation.': 'برای گروه ۱، بازنمایی پویای انسان تهیه شده است.'
+  };
+
+  function norm(s) { return String(s == null ? '' : s).replace(/\s+/g, ' ').trim(); }
+  var FA_NORM = {};
+  Object.keys(FA).forEach(function (k) { FA_NORM[norm(k)] = FA[k]; });
+
+  var SEL = '.kicker,.hero h1,.hero h2,.hero-note,.stats-h span,.s3l,.chip,.mlab,.nav-label,.nav-links a span,.legend h3,.legend p,.legend .tag,.topic-sub,.flabel,.stitle,.fatitle,.matrix h3,.matrix th,.typebreak h3,.typebreak .tintro,.tlabel,.tnote,footer p,.b-type,.top-dl span,.dl-menu b,.dl-menu small';
+  var els = [].slice.call(document.querySelectorAll(SEL));
+  var root = document.documentElement;
+
+  els.forEach(function (el) {
+    el.setAttribute('data-en-html', el.innerHTML);
+    var fa = FA_NORM[norm(el.textContent)];
+    if (fa) el.setAttribute('data-fa-html', fa);
+  });
+
+  var T0 = document.title;
+  var TFA = 'گروه ۱ | بازنمایی پویای انسان — فهرست مطالعه';
+
+  function setLang(lang) {
+    root.lang = lang;
+    root.dir = (lang === 'fa') ? 'rtl' : 'ltr';
+    els.forEach(function (el) {
+      var enH = el.getAttribute('data-en-html');
+      var faH = el.getAttribute('data-fa-html');
+      if (lang === 'fa' && faH) el.innerHTML = faH;
+      else if (enH) el.innerHTML = enH;
+    });
+    [].forEach.call(document.querySelectorAll('#lang button'), function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-l') === lang ? 'true' : 'false');
+    });
+    document.title = (lang === 'fa') ? TFA : T0;
+    var dlBtn = document.getElementById('dlBtn');
+    if (dlBtn) dlBtn.setAttribute('aria-label', lang === 'fa' ? 'دانلود' : 'Download');
+    try { localStorage.setItem('lang', lang); } catch (_) {}
+  }
+
+  var container = document.getElementById('lang');
+  if (container) {
+    container.addEventListener('click', function (e) {
+      var b = e.target.closest('button');
+      if (b) setLang(b.getAttribute('data-l'));
+    });
+  }
+  var saved = null;
+  try { saved = localStorage.getItem('lang'); } catch (_) {}
+  if (!saved) saved = (navigator.language || '').toLowerCase().indexOf('fa') === 0 ? 'fa' : 'en';
+  setLang(saved);
+})();
+</script>
+
+<script>
+/* ---------- Download dropdown + Word export ---------- */
 (function () {
   function E(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
   function txt(el) { return el ? el.textContent.replace(/\s+/g, ' ').trim() : ''; }
@@ -881,54 +1137,40 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
       h.push('<h2>' + E(txt(sec.querySelector('.topic-title'))) + '</h2>');
       h.push('<div class="meta">' + E(txt(sec.querySelector('.topic-sub'))) + '</div>');
       list(sec, '.card').forEach(function (card) {
-      n++;
-      var added = !!card.querySelector('.b-new');
-      h.push('<div class="ct">' + (added ? '\u2605 ' : '') + n + '. ' + E(txt(card.querySelector('.ctitle'))) + '</div>');
-      var ctf = card.querySelector('.ctitle-fa');
-      if (ctf) h.push('<div class="ctfa">' + E(txt(ctf)) + '</div>');
-      var rows = list(card, '.frow').map(function (r) {
-        return '<tr><td class="k">' + E(txt(r.querySelector('.flabel'))) + '</td><td>' + linksHTML(r.querySelector('.fval')) + '</td></tr>';
-      });
-      h.push('<table class="kv">' + rows.join('') + '</table>');
-      var sm = card.querySelector('.summary');
-      if (sm) h.push('<div class="sum"><b>' + E(txt(sm.querySelector('.stitle'))) + '</b><br>' + E(txt(sm.querySelector('p'))) + '</div>');
-      var fa = card.querySelector('.fa');
-      if (fa) h.push('<div class="fa">' + E(txt(fa.querySelector('p'))) + '</div>');
+        n++;
+        h.push('<div class="ct">' + n + '. ' + E(txt(card.querySelector('.ctitle'))) + '</div>');
+        var ctf = card.querySelector('.ctitle-fa');
+        if (ctf) h.push('<div class="ctfa">' + E(txt(ctf)) + '</div>');
+        var rows = list(card, '.frow').map(function (r) {
+          return '<tr><td class="k">' + E(txt(r.querySelector('.flabel'))) + '</td><td>' + linksHTML(r.querySelector('.fval')) + '</td></tr>';
+        });
+        h.push('<table class="kv">' + rows.join('') + '</table>');
+        var sm = card.querySelector('.summary');
+        if (sm) h.push('<div class="sum"><b>' + E(txt(sm.querySelector('.stitle'))) + '</b><br>' + E(txt(sm.querySelector('p'))) + '</div>');
+        var fa = card.querySelector('.fa');
+        if (fa) h.push('<div class="fa">' + E(txt(fa.querySelector('p'))) + '</div>');
       });
     });
 
     var mt = document.querySelector('.matrix');
     if (mt) { h.push('<h2>' + E(txt(mt.querySelector('h3'))) + '</h2>' + tableHTML()); }
 
+    var tb = document.querySelector('.typebreak');
+    if (tb) {
+      h.push('<h2>' + E(txt(tb.querySelector('h3'))) + '</h2>');
+      var intro = tb.querySelector('.tintro');
+      if (intro) h.push('<p>' + E(txt(intro)) + '</p>');
+      h.push('<table class="g"><thead><tr><th>Type</th><th>Count</th><th>Papers</th></tr></thead><tbody>');
+      list(tb, '.tcard').forEach(function (c) {
+        h.push('<tr><td>' + E(txt(c.querySelector('.tlabel'))) + '</td><td>' + E(txt(c.querySelector('.tcount'))) + '</td><td>' + E(txt(c.querySelector('.tnote'))) + '</td></tr>');
+      });
+      h.push('</tbody></table>');
+    }
+
     var ft = document.querySelector('footer');
     if (ft) { h.push('<footer>' + list(ft, 'p').map(function (p) { return '<p>' + E(txt(p)) + '</p>'; }).join('') + '</footer>'); }
 
-    h.push('</div><script>
-(function(){
-  var RAW={"Literature Review • Google Scholar": "مرور ادبیات • Google Scholar", "Group 1 | Dynamic Human Representation": "گروه ۱ | بازنمایی پویای انسان", "How do intelligent systems model the human / user? — five search terms, ten papers": "سیستم‌های هوشمند چگونه انسان یا کاربر را مدل می‌کنند؟ — پنج عبارت جست‌وجو، ده مقاله", "Each entry below carries the full bibliographic record, an English summary, a Persian summary, and two scores: match and topic fit.": "هر مورد شامل مشخصات کامل کتاب‌شناختی، خلاصهٔ انگلیسی، خلاصهٔ فارسی و دو امتیاز است: میزان تطابق و تناسب با موضوع.", "At a glance": "در یک نگاه", "Papers": "مقاله", "Group added": "افزودهٔ گروه", "Topic fit": "تناسب موضوعی", "Search source Google Scholar (only)": "<b>منبع جست‌وجو</b> <span class=\"cv\">فقط Google Scholar</span>", "Time window 2021 – 2026": "<b>بازهٔ زمانی</b> <span class=\"cv\">2021 – 2026</span>", "Total 10 papers": "<b>مجموع</b> <span class=\"cv\">10 مقاله</span>", "Search terms 5": "<b>عبارت‌های جست‌وجو</b> <span class=\"cv\">5</span>", "Added by group 5": "<b>افزودهٔ گروه</b> <span class=\"cv\">5</span>", "Avg. term match 88%": "<b>میانگین تطابق با عبارت</b> <span class=\"cv\">88%</span>", "Avg. topic fit 81%": "<b>میانگین تناسب موضوعی</b> <span class=\"cv\">81%</span>", "Mean topic fit": "میانگین تناسب موضوعی", "Contents": "فهرست", "01 Preference drift": "01 رانش ترجیحات", "02 Intent": "02 نیت", "03 Goal": "03 هدف", "04 Constraint": "04 محدودیت", "05 Context": "05 زمینه", "06 Group topic": "06 موضوع گروه", "All 10 → table": "همهٔ ۱۰ مقاله ← جدول", "Back to top": "بازگشت به بالا", "The Five Search Terms Covered": "پنج عبارت جست‌وجوی پوشش‌داده‌شده", "One paper per term, the strongest match kept for each. The match score weighs how much of the search phrase appears in the title (40%) against how directly the paper addresses that problem (60%). The topic-fit column measures the separate question of how close each paper sits to the group topic as a whole.": "برای هر عبارت یک مقاله، یعنی قوی‌ترین تطابق، نگه داشته شده است. امتیاز تطابق، میزان حضور عبارت جست‌وجو در عنوان (۴۰٪) را در برابر میزان پرداختن مستقیم مقاله به آن مسئله (۶۰٪) می‌سنجد. ستون تناسب موضوعی پرسشی جداست: هر مقاله در مجموع چقدر به موضوع گروه نزدیک است.", "Two terms have no exact review to point at. \"goal-aware recommender systems\" returns no results in Scholar after 2020, and \"constraint-aware recommendation\" only surfaces original research. Papers 3 and 4 therefore come from the adjacent literature that does publish reviews — goal modelling in workplace learning, and fairness handled as a ranking constraint.": "برای دو عبارت، مرور دقیقی وجود ندارد. جست‌وجوی <code>\"goal-aware recommender systems\"</code> پس از ۲۰۲۰ در Scholar نتیجه‌ای نمی‌دهد و <code>\"constraint-aware recommendation\"</code> فقط پژوهش‌های اصیل را نشان می‌دهد. بنابراین مقالات ۳ و ۴ از ادبیات مجاور آمده‌اند که مرور منتشر می‌کند: مدل‌سازی هدف در یادگیری محیط کار، و انصاف به‌عنوان قید رتبه‌بندی.", "★ marks the five papers that were added to this list — papers 6 to 10, collected in section 06. They are built exactly like the others, numbered in the same sequence and scored on the same two measures; only the star sets them apart. As they were not retrieved by one of the five phrases, their match figure is scored against the group topic itself instead of a search term.": "<b>★ پنج مقاله‌ای را نشان می‌دهد که به این فهرست افزوده شده‌اند</b> — مقالات ۶ تا ۱۰ در بخش ۰۶. ساختار، شماره‌گذاری و امتیازدهی آن‌ها مانند بقیه است و فقط ستاره آن‌ها را متمایز می‌کند. چون با یکی از پنج عبارت یافت نشده‌اند، امتیاز تطابقشان نسبت به خودِ موضوع گروه سنجیده شده است.", "How systems model a user whose tastes change over time": "سیستم‌ها چگونه کاربری را مدل می‌کنند که سلیقه‌اش در گذر زمان تغییر می‌کند", "Modelling why the user is here right now, not just what they liked": "مدل‌سازی <em>چرایی</em> حضور کاربر در همین لحظه، نه فقط آنچه پسندیده است", "Working out what the user is actually trying to reach, not just scoring past behaviour": "فهمیدن اینکه کاربر واقعاً می‌خواهد به چه چیزی برسد، نه فقط امتیازدهی به رفتار گذشته", "Recommendations that must respect rules, objectives and hard requirements": "پیشنهادهایی که باید قواعد، هدف‌ها و الزامات سخت را رعایت کنند", "When, where, with whom, and under what conditions the user acts": "کاربر چه زمانی، کجا، با چه کسی و در چه شرایطی عمل می‌کند", "Papers chosen for Dynamic Human Representation itself rather than for a search term — marked ★": "مقالاتی که برای خودِ بازنمایی پویای انسان انتخاب شده‌اند، نه برای یک عبارت جست‌وجو — با نشان ★", "Title": "عنوان", "Authors": "نویسندگان", "Year": "سال", "Type": "نوع", "Domain": "حوزه", "Journal / Conference": "مجله / کنفرانس", "Match to search term": "تطابق با عبارت جست‌وجو", "Fit to group topic": "تناسب با موضوع گروه", "DOI / Link": "DOI / پیوند", "Summary": "خلاصه", "ترجمه و خلاصهٔ فارسی": "خلاصه", "All Ten Papers at a Glance": "همهٔ ده مقاله در یک نگاه", "Search term": "عبارت جست‌وجو", "Journal": "مجله", "Match": "تطابق", "Survey": "مرور (Survey)", "Narrative Review": "مرور روایی", "Research Article": "مقالهٔ پژوهشی", "Systematic Literature Review": "مرور نظام‌مند ادبیات", "Systematic Review": "مرور نظام‌مند", "★ added": "★ افزوده‌شده", "fit": "تناسب", "Type breakdown: 5 Surveys (IEEE Access, ACM TORS, UMUAI, ACM Computing Surveys, TMLR), 1 Systematic Review (TechTrends), 1 Systematic Literature Review (Artificial Intelligence Review), 1 Narrative Review (European Journal on Artificial Intelligence) and 2 Research Articles (ACM TOIS, ACM SIGIR) — 10 papers in all.": "<strong>تفکیک نوع:</strong> ۵ مقالهٔ مروری (IEEE Access، ACM TORS، UMUAI، ACM Computing Surveys، TMLR)، ۱ مرور نظام‌مند (TechTrends)، ۱ مرور نظام‌مند ادبیات (Artificial Intelligence Review)، ۱ مرور روایی (European Journal on Artificial Intelligence) و ۲ مقالهٔ پژوهشی (ACM TOIS، ACM SIGIR) — در مجموع ۱۰ مقاله.", "Domains covered: temporal and time-aware user modelling": "<strong>حوزه‌های پوشش‌داده‌شده:</strong> مدل‌سازی زمانی کاربر، مدل‌سازی نیت، مدل‌سازی هدف در یادگیری محیط کار، انصاف به‌عنوان قید رتبه‌بندی، مدل‌سازی زمینه، بازنمایی جهانی و پیوستهٔ کاربر، یادگیری بازنمایی مبتنی بر گراف، پویایی پروفایل‌سازی کاربر و شخصی‌سازی با LLM — نه زاویه برای بازنمایی کاربری که تغییر می‌کند.", "Scores: the five searched papers match": "<strong>امتیازها:</strong> پنج مقالهٔ جست‌وجوشده با عبارت خود به‌ترتیب ۷۲٪، ۹۷٪، ۸۷٪، ۸۵٪ و ۹۹٪ تطابق دارند (میانگین ۸۸٪). تناسب با موضوع گروه در ده مقاله ۹۰، ۸۸، ۷۸، ۶۲، ۹۲، ۶۵، ۵۵، ۹۵، ۹۵ و ۸۵ درصد است (میانگین ۸۱٪). ضعیف‌ترین تناسب‌ها مقالهٔ ۴ است که دربارهٔ نحوهٔ توزیع نتایج است نه مدل‌کردن فرد، و مقالهٔ ۷ که مرور روش‌هاست نه مرور مدل‌سازی کاربر. قوی‌ترین‌ها مقالات ۸ و ۹ هستند که بازنمایی پویای کاربر را موضوع اصلی خود قرار داده‌اند.", "Titles, authors, years, venues and DOIs were checked against Crossref and Google Scholar. Prepared for Group 1, Dynamic Human Representation.": "عنوان‌ها، نویسندگان، سال‌ها، مجله‌ها و DOIها با Crossref و Google Scholar بررسی شده‌اند. برای گروه ۱، بازنمایی پویای انسان تهیه شده است.", "Word document": "سند Word", "Editable .doc with all papers, summaries and table": "فایل .doc قابل ویرایش با همهٔ مقالات، خلاصه‌ها و جدول", "PDF file": "فایل PDF", "Opens print dialog — choose “Save as PDF”": "پنجرهٔ چاپ باز می‌شود — «Save as PDF» را انتخاب کنید"}, M={};
-  Object.keys(RAW).forEach(function(k){ M[k.replace(/\s+/g,' ').slice(0,24)]=RAW[k]; });
-  var SEL='.kicker,.hero h1,.hero h2,.hero-note,.stats-h span,.s3l,.chip,.mlab,.nav-label,.nav-links a span,.legend h3,.legend p,.topic-sub,.flabel,.stitle,.fatitle,.matrix h3,.matrix th,footer p,.b-type,.b-new,.bt,.dl-menu b,.dl-menu small';
-  var els=[].slice.call(document.querySelectorAll(SEL)), root=document.documentElement;
-  function key(e){ return e.textContent.replace(/\s+/g,' ').trim().slice(0,24); }
-  els.forEach(function(e){ e._en=e.innerHTML; e._fa=M[key(e)]; });
-  var T0=document.title, TFA='گروه ۱ | بازنمایی پویای انسان — فهرست مطالعه';
-  function setLang(l){
-    root.lang=l; root.dir=l==='fa'?'rtl':'ltr';
-    els.forEach(function(e){ if(e._fa) e.innerHTML=(l==='fa'?e._fa:e._en); });
-    [].forEach.call(document.querySelectorAll('#lang button'),function(b){ b.setAttribute('aria-pressed',b.getAttribute('data-l')===l?'true':'false'); });
-    document.title=l==='fa'?TFA:T0;
-    var d=document.getElementById('dlBtn'); if(d) d.setAttribute('aria-label',l==='fa'?'دانلود':'Download');
-    try{ localStorage.setItem('lang',l); }catch(_){}
-  }
-  document.getElementById('lang').addEventListener('click',function(e){
-    var b=e.target.closest('button'); if(b) setLang(b.getAttribute('data-l'));
-  });
-  var s=null; try{ s=localStorage.getItem('lang'); }catch(_){}
-  if(!s) s=(navigator.language||'').toLowerCase().indexOf('fa')===0?'fa':'en';
-  setLang(s);
-})();
-</script>
-</body></html>');
+    h.push('</div></body></html>');
     return h.join('');
   }
 
@@ -937,44 +1179,79 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
     var url = URL.createObjectURL(blob);
     var a = document.createElement('a');
     a.href = url; a.download = name;
-    document.body.appendChild(a); a.click();
+    a.rel = 'noopener';
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    // iOS Safari sometimes needs a slight delay
+    setTimeout(function () { a.click(); }, 20);
     setTimeout(function () {
       if (a.parentNode) a.parentNode.removeChild(a);
       URL.revokeObjectURL(url);
-    }, 600);
+    }, 4000);
   }
 
-  var btn=document.getElementById('dlBtn'),menu=document.getElementById('dlMenu'),scrim=document.getElementById('dlScrim');
-  function setOpen(o){
-    btn.setAttribute('aria-expanded',o?'true':'false');
-    [menu,scrim].forEach(function(e){ if(o) e.setAttribute('data-open',''); else e.removeAttribute('data-open'); });
-    if(o) menu.querySelector('button').focus();
+  var dlBtn = document.getElementById('dlBtn');
+  var topDlBtn = document.getElementById('topDlBtn');
+  var menu = document.getElementById('dlMenu');
+  var scrim = document.getElementById('dlScrim');
+
+  function setOpen(o) {
+    if (dlBtn) dlBtn.setAttribute('aria-expanded', o ? 'true' : 'false');
+    if (topDlBtn) topDlBtn.setAttribute('aria-expanded', o ? 'true' : 'false');
+    if (o) {
+      menu.setAttribute('data-open', '');
+      if (scrim) scrim.setAttribute('data-open', '');
+    } else {
+      menu.removeAttribute('data-open');
+      if (scrim) scrim.removeAttribute('data-open');
+    }
   }
-  var dl=document.getElementById('dl'),lastY=window.pageYOffset;
-  window.addEventListener('scroll',function(){
-    var y=window.pageYOffset,d=y-lastY;
-    if(menu.hasAttribute('data-open')||y<200||d<-4) dl.removeAttribute('data-hide');
-    else if(d>6) dl.setAttribute('data-hide','');
-    lastY=y;
-  },{passive:true});
-  btn.addEventListener('click',function(e){ e.stopPropagation(); setOpen(!menu.hasAttribute('data-open')); });
-  scrim.addEventListener('click',function(){ setOpen(false); });
-  document.addEventListener('click',function(e){ if(!document.getElementById('dl').contains(e.target)) setOpen(false); });
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ setOpen(false); btn.focus(); } });
-  document.getElementById('btnPdf').addEventListener('click',function(){ setOpen(false); setTimeout(function(){ window.print(); },200); });
-  document.getElementById('btnDoc').addEventListener('click',function(){
+  function openMenu(anchor) { menu.setAttribute('data-anchor', anchor); setOpen(true); }
+
+  if (dlBtn) {
+    dlBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = menu.hasAttribute('data-open') && menu.getAttribute('data-anchor') === 'bottom';
+      if (isOpen) setOpen(false);
+      else openMenu('bottom');
+    });
+  }
+  if (topDlBtn) {
+    topDlBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = menu.hasAttribute('data-open') && menu.getAttribute('data-anchor') === 'top';
+      if (isOpen) setOpen(false);
+      else openMenu('top');
+    });
+  }
+  if (scrim) scrim.addEventListener('click', function () { setOpen(false); });
+
+  document.addEventListener('click', function (e) {
+    if (!menu.contains(e.target) && e.target !== dlBtn && e.target !== topDlBtn && !dlBtn.contains(e.target) && !topDlBtn.contains(e.target)) {
+      setOpen(false);
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { setOpen(false); if (dlBtn) dlBtn.focus(); }
+  });
+
+  document.getElementById('btnPdf').addEventListener('click', function () {
+    setOpen(false);
+    setTimeout(function () { window.print(); }, 200);
+  });
+  document.getElementById('btnDoc').addEventListener('click', function () {
     setOpen(false);
     saveAs('Group1_Dynamic_Human_Representation_Surveys.doc', buildWord(), 'application/msword');
   });
 })();
 </script>
+
 <script>
+/* ---------- Staggered entrance + scroll spy ---------- */
 (function () {
   var d = document, reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* staggered entrance */
-  var items = Array.prototype.slice.call(
-    d.querySelectorAll('.legend,.topic,.matrix,footer'));
+  var items = Array.prototype.slice.call(d.querySelectorAll('.legend,.topic,.matrix,.typebreak,footer'));
   function show(el) { el.setAttribute('data-in', '1'); }
   if (reduce || !('IntersectionObserver' in window)) {
     items.forEach(show);
@@ -988,11 +1265,10 @@ html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)
     setTimeout(function () { items.forEach(show); }, 2200);
   }
 
-  /* scroll spy + back to top */
   var links = Array.prototype.slice.call(d.querySelectorAll('.nav-links a[href^="#"]'));
   var map = {};
   links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
-  var secs = Array.prototype.slice.call(d.querySelectorAll('.topic,.matrix'));
+  var secs = Array.prototype.slice.call(d.querySelectorAll('.topic,.matrix,.typebreak'));
   var top = d.getElementById('totop');
   function spy() {
     var y = (window.pageYOffset || d.documentElement.scrollTop || 0) + 130, best = null;
