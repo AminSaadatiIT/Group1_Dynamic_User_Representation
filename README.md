@@ -1,1 +1,0 @@
-# Group1_Dynamic_User_Representation
