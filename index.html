@@ -131,12 +131,24 @@ html[lang="fa"] .nojs{font-family:var(--fa);direction:rtl}
 .tlabel{font:700 14px/1.35 var(--sans);color:var(--ink)}
 .tnote{font-size:12.5px;color:var(--ink3);line-height:1.6}
 .tnote b{color:var(--ink2);font-weight:500}
+/* contributors */
+.contributors{margin-top:56px}
+.contributors h3{font:700 clamp(22px,4vw,30px) var(--serif);color:var(--ink);margin:0 0 14px}
+.contributors .cintro{font-size:14px;color:var(--ink3);margin:0 0 18px;max-width:70ch}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.ccard{background:var(--paper);border:1px solid var(--line);border-top:4px solid var(--cc,#C2410C);border-radius:var(--r);padding:18px 20px;box-shadow:var(--sh)}
+.cname{font:700 15px/1.35 var(--sans);color:var(--ink);margin:0 0 4px}
+.crole{font:700 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin:0 0 12px}
+.cterms{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.cterms li{display:flex;flex-direction:column;gap:4px;font-size:13px}
+.cterms code{font:12px var(--mono);background:var(--soft);padding:3px 7px;border-radius:6px;color:var(--ink);overflow-wrap:anywhere;direction:ltr;unicode-bidi:isolate;align-self:flex-start;max-width:100%}
+.cpaper{font:600 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--acc)}
 footer{margin-top:48px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:var(--ink3)}footer strong{color:var(--ink)}
 .totop{position:fixed;right:16px;bottom:16px;bottom:calc(16px + var(--safe-b));z-index:200;width:46px;height:46px;border-radius:50%;border:0;background:var(--brand);color:var(--on);display:grid;place-items:center;box-shadow:var(--sh);opacity:0;pointer-events:none;transition:.2s;cursor:pointer}
 .totop[data-show]{opacity:1;pointer-events:auto}
-html[data-js] .legend,html[data-js] .topic,html[data-js] .matrix,html[data-js] .typebreak,html[data-js] footer{opacity:0;translate:0 16px;transition:opacity .5s,translate .5s}
+html[data-js] .legend,html[data-js] .topic,html[data-js] .matrix,html[data-js] .typebreak,html[data-js] .contributors,html[data-js] footer{opacity:0;translate:0 16px;transition:opacity .5s,translate .5s}
 html[data-js] [data-in]{opacity:1;translate:none}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}html[data-js] .legend,html[data-js] .topic,html[data-js] .matrix,html[data-js] .typebreak,html[data-js] footer{opacity:1;translate:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}html[data-js] .legend,html[data-js] .topic,html[data-js] .matrix,html[data-js] .typebreak,html[data-js] .contributors,html[data-js] footer{opacity:1;translate:none}}
 @media(max-width:820px){.hero-inner{grid-template-columns:1fr}}
 @media(max-width:640px){
  body{font-size:15.5px}
@@ -158,7 +170,7 @@ html[data-js] [data-in]{opacity:1;translate:none}
  :root,:root[data-theme="light"],:root[data-theme="dark"]{color-scheme:light;--bg:#fff;--paper:#fff;--soft:#F4F4F4;--ink:#111;--ink2:#333;--ink3:#555;--line:#CCC}
  .topnav,.progress,.totop,.dl-scrim,.top-dl,.dl,.nojs,.theme-btn{display:none!important}
  html[data-js] *{opacity:1!important;translate:none!important}
- .hero{background:#fff}.card,.legend,.hero-stats,.tcard{box-shadow:none;break-inside:avoid}
+ .hero{background:#fff}.card,.legend,.hero-stats,.tcard,.ccard{box-shadow:none;break-inside:avoid}
  .tscroll{overflow:visible}.matrix table{min-width:0;font-size:9px}
  .topic-head,.ctitle{break-after:avoid}
 }
@@ -172,7 +184,7 @@ html[lang=en] .ctitle-fa,html[lang=en] .fa{display:none}
 html[lang=fa] .summary{display:none}
 .tscroll{direction:ltr}.matrix table{direction:ltr}.matrix h3{direction:inherit}
 html[lang=fa] body,html[lang=fa] .hero h2,html[lang=fa] .dl-menu,html[lang=fa] .nav-links a,html[lang=fa] .chip,html[lang=fa] .badge,html[lang=fa] .top-dl,html[lang=fa] .nojs{font-family:var(--fa),var(--sans)}
-html[lang=fa] :is(.hero h1,.topic-title,.legend h3,.matrix h3,.typebreak h3,.tcount,.tlabel,.s3v){font-family:var(--fa);letter-spacing:0}
+html[lang=fa] :is(.hero h1,.topic-title,.legend h3,.matrix h3,.typebreak h3,.contributors h3,.cname,.tcount,.tlabel,.s3v){font-family:var(--fa);letter-spacing:0}
 html[lang=fa] .hero h1{line-height:1.35}
 html[lang=fa] :is(.flabel,.stitle,.fatitle,.kicker,.stats-h,.matrix th){font-family:var(--fa);letter-spacing:0;text-transform:none}
 html[lang=fa] .summary p,html[lang=fa] .fa p{line-height:2}
@@ -180,6 +192,10 @@ html[lang=fa] .ctitle-fa{order:-1;direction:rtl;font:700 clamp(18px,3vw,22px)/1.
 html[lang=fa] .ctitle{font:500 14px/1.4 var(--sans);color:var(--ink3);direction:ltr;text-align:left;margin-bottom:10px}
 html[lang=fa] .fval{unicode-bidi:plaintext}
 html[lang=fa] .tcard{text-align:right}
+html[lang=fa] .ccard{text-align:right}
+html[lang=fa] .crole{font-family:var(--fa);letter-spacing:0;text-transform:none;font-size:11px}
+html[lang=fa] .cterms code{align-self:flex-end}
+html[lang=fa] .cpaper{font-family:var(--fa);letter-spacing:0;text-transform:none;font-size:11px}
 html[dir=rtl] .legend ol{padding-left:0;padding-right:22px}
 html[dir=rtl] .nav-links{mask-image:linear-gradient(270deg,#000 92%,transparent)}
 html[dir=rtl] .dl{left:auto;right:14px}
@@ -247,6 +263,7 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
       <a href="#s9"><i class="nd" style="background:#10B981"></i><span>09 Dynamic repr.</span></a>
       <a href="#s10"><i class="nd" style="background:#8B5CF6"></i><span>10 User pref. LLM</span></a>
       <a class="nav-all" href="#glance"><span>All 10 &rarr; table</span></a>
+      <a href="#contributors"><span>Contributors</span></a>
       <a href="#top"><span>Back to top</span></a>
     </div>
     <div class="lang" id="lang" role="group" aria-label="Language">
@@ -844,6 +861,45 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
     </div>
   </div>
 
+  <div class="contributors" id="contributors">
+    <h3>Contributors</h3>
+    <p class="cintro">The ten papers were collected across the group. Each contributor ran specific search terms and selected the papers shown below. Papers 3, 4, and 5 were selected through combined group searches.</p>
+    <div class="cgrid">
+      <div class="ccard" style="--cc:#FB923C">
+        <div class="cname">امین سعادتی</div>
+        <div class="crole">Search terms</div>
+        <ul class="cterms">
+          <li><code>"preference drift" recommendation</code><span class="cpaper">Paper 1</span></li>
+          <li><code>"intent-aware recommendation"</code><span class="cpaper">Paper 2</span></li>
+        </ul>
+      </div>
+      <div class="ccard" style="--cc:#60A5FA">
+        <div class="cname">روشنا (فاطمه سخن لطیف)</div>
+        <div class="crole">Search terms</div>
+        <ul class="cterms">
+          <li><code>"user representation" recommender systems</code><span class="cpaper">Paper 6</span></li>
+          <li><code>"user modeling" recommendation</code><span class="cpaper">Paper 7</span></li>
+        </ul>
+      </div>
+      <div class="ccard" style="--cc:#FBBF24">
+        <div class="cname">حانیه کربلائی</div>
+        <div class="crole">Search terms</div>
+        <ul class="cterms">
+          <li><code>"dynamic user modeling"</code><span class="cpaper">Paper 8</span></li>
+          <li><code>"dynamic user representation"</code><span class="cpaper">Paper 9</span></li>
+        </ul>
+      </div>
+      <div class="ccard" style="--cc:#8B5CF6">
+        <div class="cname">محمدرضا حسینی</div>
+        <div class="crole">Search terms</div>
+        <ul class="cterms">
+          <li><code>"user preference" LLM</code><span class="cpaper">Paper 10</span></li>
+          <li><code>"preference elicitation" AI agents</code></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
   <footer>
     <p><strong>Type breakdown:</strong> 5 surveys (IEEE Access, ACM TORS, UMUAI, ACM Computing Surveys, TMLR), 1 systematic review (TechTrends), 1 systematic literature review (Artificial Intelligence Review), 1 narrative review (European Journal on Artificial Intelligence), and 2 research articles (ACM TOIS, ACM SIGIR) — 10 papers in total.</p>
     <p><strong>Domains covered:</strong> temporal and time-aware user modelling, intent modelling, goal modelling in workplace learning, fairness handled as a ranking constraint, context modelling, universal sequence representation learning, session-based user modelling, dynamic user profiling, continual user representation under distribution shift, and LLM personalisation — ten angles on how a system represents a changing user.</p>
@@ -889,16 +945,13 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
   var root = document.documentElement;
   var btn = document.getElementById('themeBtn');
   if (!btn) return;
-
   var ORDER = ['auto', 'light', 'dark'];
   var LABEL = { auto: 'Auto', light: 'Light', dark: 'Dark' };
-
   function applyTheme(mode) {
     var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
     var effective = (mode === 'auto') ? (d ? 'dark' : 'light') : mode;
     root.setAttribute('data-theme', effective);
     root.setAttribute('data-theme-mode', mode);
-
     var meta = document.querySelector('meta[name="theme-color"]');
     if (meta) {
       var col = effective === 'dark' ? '#0C1220' : '#F6F3EC';
@@ -908,14 +961,12 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
       meta.removeAttribute('media');
       meta.setAttribute('content', col);
     }
-
     var lang = root.lang === 'fa' ? 'fa' : 'en';
     var fa = { auto: 'خودکار', light: 'روشن', dark: 'تیره' };
     var text = lang === 'fa' ? fa[mode] : LABEL[mode];
     btn.setAttribute('aria-label', (lang === 'fa' ? 'تم: ' : 'Theme: ') + text);
     btn.setAttribute('title', (lang === 'fa' ? 'تم: ' : 'Theme: ') + text);
   }
-
   try {
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
       if (root.getAttribute('data-theme-mode') === 'auto') applyTheme('auto');
@@ -927,14 +978,12 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
       });
     } catch (_) {}
   }
-
   btn.addEventListener('click', function () {
     var cur = root.getAttribute('data-theme-mode') || 'auto';
     var next = ORDER[(ORDER.indexOf(cur) + 1) % ORDER.length];
     applyTheme(next);
     try { localStorage.setItem('theme', next); } catch (_) {}
   });
-
   var langContainer = document.getElementById('lang');
   if (langContainer) {
     langContainer.addEventListener('click', function () {
@@ -951,8 +1000,6 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
 (function () {
   'use strict';
   try {
-    console.log('[Lang] Init');
-
     var FA = {
       'Literature Review • Google Scholar': 'مرور ادبیات • Google Scholar',
       'Group 1 | Dynamic Human Representation': 'گروه ۱ | بازنمایی پویای انسان',
@@ -976,12 +1023,16 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
       '09 Dynamic repr.': '۰۹ بازنمایی پویا',
       '10 User pref. LLM': '۱۰ ترجیح کاربر در LLM',
       'All 10 → table': 'همهٔ ۱۰ مقاله ← جدول',
+      'Contributors': 'گردآورندگان',
       'Back to top': 'بازگشت به بالا',
       'Download': 'دانلود',
       'Selection Overview': 'نمای کلی انتخاب',
       'Paper 1': 'مقاله ۱', 'Paper 2': 'مقاله ۲', 'Paper 3': 'مقاله ۳', 'Paper 4': 'مقاله ۴',
       'Paper 5': 'مقاله ۵', 'Paper 6': 'مقاله ۶', 'Paper 7': 'مقاله ۷', 'Paper 8': 'مقاله ۸',
       'Paper 9': 'مقاله ۹', 'Paper 10': 'مقاله ۱۰',
+      'Search terms': 'عبارت‌های جست‌وجو',
+      'Search term': 'عبارت جست‌وجو',
+      'The ten papers were collected across the group. Each contributor ran specific search terms and selected the papers shown below. Papers 3, 4, and 5 were selected through combined group searches.': 'ده مقاله در سطح گروه گردآوری شده‌اند. هر گردآورنده عبارت‌های جست‌وجوی مشخصی را اجرا کرده و مقالات نشان‌داده‌شده در زیر را انتخاب کرده است. مقالات ۳، ۴ و ۵ از طریق جست‌وجوهای ترکیبی گروهی انتخاب شده‌اند.',
       'Eleven search terms were used; each of the ten papers below corresponds to one of them.': 'یازده عبارت جست‌وجو استفاده شد؛ هر یک از ده مقالهٔ زیر متناظر با یکی از آن‌هاست.',
       'Two of the term-specific searches — "goal-aware recommender systems" after 2020 and "constraint-aware recommendation" — did not return review articles directly. For those two terms, adjacent review literature was used: goal modelling in workplace learning (paper 3), and fairness treated as a ranking constraint (paper 4).': 'دو مورد از جست‌وجوهای مختص عبارت — <code>"goal-aware recommender systems"</code> پس از ۲۰۲۰ و <code>"constraint-aware recommendation"</code> — مستقیماً مقالهٔ مروری بازنگرداندند. برای این دو عبارت، از ادبیات مروری مجاور استفاده شد: مدل‌سازی هدف در یادگیری محیط کار (مقاله ۳) و انصاف به‌عنوان قید رتبه‌بندی (مقاله ۴).',
       'How systems model a user whose tastes change over time': 'سیستم‌ها چگونه کاربری را مدل می‌کنند که سلیقه‌اش در گذر زمان تغییر می‌کند',
@@ -1003,7 +1054,6 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
       'DOI / Link': 'DOI / پیوند',
       'Summary': 'خلاصه',
       'All Ten Papers at a Glance': 'همهٔ ده مقاله در یک نگاه',
-      'Search term': 'عبارت جست‌وجو',
       'Journal': 'مجله',
       'Survey': 'مرور (Survey)',
       'Narrative Review': 'مرور روایی',
@@ -1021,16 +1071,11 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
       'Opens print dialog — choose "Save as PDF"': 'پنجرهٔ چاپ باز می‌شود — «Save as PDF» را انتخاب کنید',
       'Prepared for Group 1, Dynamic Human Representation.': 'برای گروه ۱، بازنمایی پویای انسان تهیه شده است.'
     };
-
     function norm(s) { return String(s == null ? '' : s).replace(/\s+/g, ' ').trim(); }
     var FA_NORM = {};
     Object.keys(FA).forEach(function (k) { FA_NORM[norm(k)] = FA[k]; });
-
-    var SEL = '.kicker,.hero h1,.hero h2,.hero-note,.stats-h span,.s3l,.chip,.mlab,.nav-label,.nav-links a span,.legend h3,.legend p,.legend .tag,.topic-sub,.flabel,.stitle,.fatitle,.matrix h3,.matrix th,.typebreak h3,.typebreak .tintro,.tlabel,.tnote,footer p,.b-type,.top-dl span,.dl-menu b,.dl-menu small';
-
+    var SEL = '.kicker,.hero h1,.hero h2,.hero-note,.stats-h span,.s3l,.chip,.mlab,.nav-label,.nav-links a span,.legend h3,.legend p,.legend .tag,.topic-sub,.flabel,.stitle,.fatitle,.matrix h3,.matrix th,.typebreak h3,.typebreak .tintro,.tlabel,.tnote,.contributors h3,.contributors .cintro,.crole,footer p,.b-type,.top-dl span,.dl-menu b,.dl-menu small';
     var els = [].slice.call(document.querySelectorAll(SEL));
-    console.log('[Lang] Found', els.length, 'candidate elements');
-
     var matched = 0;
     els.forEach(function (el) {
       if (!el.hasAttribute('data-en-html')) {
@@ -1042,18 +1087,13 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
         matched++;
       }
     });
-    console.log('[Lang] Matched', matched, 'of', els.length);
-
     var root = document.documentElement;
     var T0 = document.title;
     var TFA = 'گروه ۱ | بازنمایی پویای انسان — فهرست مطالعه';
-
     function setLang(lang) {
-      console.log('[Lang] setLang →', lang);
       root.setAttribute('lang', lang);
       root.setAttribute('dir', (lang === 'fa') ? 'rtl' : 'ltr');
       root.setAttribute('data-lang', lang);
-
       els.forEach(function (el) {
         var enH = el.getAttribute('data-en-html');
         var faH = el.getAttribute('data-fa-html');
@@ -1063,39 +1103,23 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
           el.innerHTML = enH;
         }
       });
-
       var btns = document.querySelectorAll('#lang button');
       Array.prototype.forEach.call(btns, function (b) {
         b.setAttribute('aria-pressed', b.getAttribute('data-l') === lang ? 'true' : 'false');
       });
-
       document.title = (lang === 'fa') ? TFA : T0;
-
       var dlBtn = document.getElementById('dlBtn');
       if (dlBtn) dlBtn.setAttribute('aria-label', lang === 'fa' ? 'دانلود' : 'Download');
-
       try { localStorage.setItem('lang', lang); } catch (_) {}
     }
-
     var btnEn = document.querySelector('#lang button[data-l="en"]');
     var btnFa = document.querySelector('#lang button[data-l="fa"]');
-    console.log('[Lang] EN button:', !!btnEn, 'FA button:', !!btnFa);
-
     if (btnEn) {
-      btnEn.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        setLang('en');
-      });
+      btnEn.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); setLang('en'); });
     }
     if (btnFa) {
-      btnFa.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        setLang('fa');
-      });
+      btnFa.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); setLang('fa'); });
     }
-
     var container = document.getElementById('lang');
     if (container) {
       container.addEventListener('click', function (e) {
@@ -1106,16 +1130,13 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
         }
       });
     }
-
     var saved = null;
     try { saved = localStorage.getItem('lang'); } catch (_) {}
     if (!saved) {
       var navLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
       saved = (navLang.indexOf('fa') === 0) ? 'fa' : 'en';
     }
-    console.log('[Lang] Initial:', saved);
     setLang(saved);
-
   } catch (err) {
     console.error('[Lang] Fatal error:', err);
   }
@@ -1128,13 +1149,11 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
   function E(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
   function txt(el) { return el ? el.textContent.replace(/\s+/g, ' ').trim() : ''; }
   function list(el, sel) { return Array.prototype.slice.call(el.querySelectorAll(sel)); }
-
   function linksHTML(v) {
     var as = v.querySelectorAll('.links a');
     if (!as.length) return E(txt(v));
     return Array.prototype.slice.call(as).map(function (a) { return E(a.getAttribute('href')); }).join('<br>');
   }
-
   function tableHTML() {
     var t = document.querySelector('.matrix table');
     if (!t) return '';
@@ -1143,43 +1162,21 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
     list(c, '.dot').forEach(function (d) { d.parentNode.removeChild(d); });
     return '<table class="g">' + c.innerHTML + '</table>';
   }
-
   function buildWord() {
     var h = [];
     h.push('<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8">');
     h.push('<title>Group 1 | Dynamic Human Representation</title>');
-    h.push('<style>' +
-      '@page WordSection1{size:21cm 29.7cm;margin:1.8cm;} div.WordSection1{page:WordSection1;}' +
-      'body{font-family:Calibri,"Segoe UI",Arial,sans-serif;color:#111;font-size:11pt;line-height:1.45;}' +
-      '.ttl{font-size:19pt;font-weight:bold;color:#0b1220;margin:0 0 4px;}' +
-      'h2{font-size:13pt;color:#0b1220;margin:20px 0 6px;border-bottom:2px solid #0b1220;padding-bottom:3px;}' +
-      '.meta{font-size:9.5pt;color:#555;margin:0 0 10px;}' +
-      '.ct{font-size:13pt;font-weight:bold;color:#0b1220;margin:14px 0 2px;}' +
-      '.ctfa{font-size:11pt;color:#444;direction:rtl;text-align:right;margin:0 0 8px;}' +
-      '.kv{border-collapse:collapse;width:100%;font-size:10pt;margin:6px 0 10px;}' +
-      '.kv td{border:1px solid #bbb;padding:4px 6px;vertical-align:top;}' +
-      '.kv td.k{background:#f2f4f8;width:150px;color:#333;font-weight:bold;}' +
-      '.sum{font-size:10.5pt;margin:6px 0;}' +
-      '.fa{direction:rtl;text-align:right;font-size:10.5pt;color:#222;border-right:3px solid #0b1220;padding:5px 8px 5px 0;margin:8px 0 20px;}' +
-      'ol{margin:6px 0 14px 22px;} li{margin-bottom:3px;}' +
-      'table.g{border-collapse:collapse;width:100%;font-size:8.5pt;}' +
-      'table.g th{background:#0b1220;color:#fff;border:1px solid #666;padding:4px;text-align:left;}' +
-      'table.g td{border:1px solid #999;padding:4px;vertical-align:top;}' +
-      'footer p{font-size:9.5pt;color:#333;}' +
-      '</style></head><body><div class="WordSection1">');
-
+    h.push('<style>@page WordSection1{size:21cm 29.7cm;margin:1.8cm;} div.WordSection1{page:WordSection1;} body{font-family:Calibri,"Segoe UI",Arial,sans-serif;color:#111;font-size:11pt;line-height:1.45;} .ttl{font-size:19pt;font-weight:bold;color:#0b1220;margin:0 0 4px;} h2{font-size:13pt;color:#0b1220;margin:20px 0 6px;border-bottom:2px solid #0b1220;padding-bottom:3px;} .meta{font-size:9.5pt;color:#555;margin:0 0 10px;} .ct{font-size:13pt;font-weight:bold;color:#0b1220;margin:14px 0 2px;} .ctfa{font-size:11pt;color:#444;direction:rtl;text-align:right;margin:0 0 8px;} .kv{border-collapse:collapse;width:100%;font-size:10pt;margin:6px 0 10px;} .kv td{border:1px solid #bbb;padding:4px 6px;vertical-align:top;} .kv td.k{background:#f2f4f8;width:150px;color:#333;font-weight:bold;} .sum{font-size:10.5pt;margin:6px 0;} .fa{direction:rtl;text-align:right;font-size:10.5pt;color:#222;border-right:3px solid #0b1220;padding:5px 8px 5px 0;margin:8px 0 20px;} ol{margin:6px 0 14px 22px;} li{margin-bottom:3px;} table.g{border-collapse:collapse;width:100%;font-size:8.5pt;} table.g th{background:#0b1220;color:#fff;border:1px solid #666;padding:4px;text-align:left;} table.g td{border:1px solid #999;padding:4px;vertical-align:top;} footer p{font-size:9.5pt;color:#333;}</style></head><body><div class="WordSection1">');
     var hero = document.querySelector('.hero');
     h.push('<div class="ttl">' + E(txt(hero.querySelector('h1'))) + '</div>');
     h.push('<div class="meta">' + E(txt(hero.querySelector('h2'))) + '</div>');
     h.push('<div class="meta">' + list(hero, '.chip').map(function (c) { return E(txt(c)); }).join(' &bull; ') + '</div>');
-
     var lg = document.querySelector('.legend');
     if (lg) {
       h.push('<h2>' + E(txt(lg.querySelector('h3'))) + '</h2>');
       h.push('<ol>' + list(lg, 'li').map(function (li) { return '<li>' + E(txt(li)) + '</li>'; }).join('') + '</ol>');
       list(lg, 'p').forEach(function (p) { h.push('<p>' + E(txt(p)) + '</p>'); });
     }
-
     var n = 0;
     list(document, '.topic').forEach(function (sec) {
       h.push('<h2>' + E(txt(sec.querySelector('.topic-title'))) + '</h2>');
@@ -1199,10 +1196,8 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
         if (fa) h.push('<div class="fa">' + E(txt(fa.querySelector('p'))) + '</div>');
       });
     });
-
     var mt = document.querySelector('.matrix');
     if (mt) { h.push('<h2>' + E(txt(mt.querySelector('h3'))) + '</h2>' + tableHTML()); }
-
     var tb = document.querySelector('.typebreak');
     if (tb) {
       h.push('<h2>' + E(txt(tb.querySelector('h3'))) + '</h2>');
@@ -1214,14 +1209,28 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
       });
       h.push('</tbody></table>');
     }
-
+    var cb = document.querySelector('.contributors');
+    if (cb) {
+      h.push('<h2>' + E(txt(cb.querySelector('h3'))) + '</h2>');
+      var cintro = cb.querySelector('.cintro');
+      if (cintro) h.push('<p>' + E(txt(cintro)) + '</p>');
+      h.push('<table class="g"><thead><tr><th>Contributor</th><th>Search term</th><th>Paper</th></tr></thead><tbody>');
+      list(cb, '.ccard').forEach(function (card) {
+        var nm = txt(card.querySelector('.cname'));
+        list(card, '.cterms li').forEach(function (li, i) {
+          var term = txt(li.querySelector('code'));
+          var pEl = li.querySelector('.cpaper');
+          var pp = pEl ? txt(pEl) : '—';
+          h.push('<tr><td>' + (i === 0 ? E(nm) : '') + '</td><td>' + E(term) + '</td><td>' + E(pp) + '</td></tr>');
+        });
+      });
+      h.push('</tbody></table>');
+    }
     var ft = document.querySelector('footer');
     if (ft) { h.push('<footer>' + list(ft, 'p').map(function (p) { return '<p>' + E(txt(p)) + '</p>'; }).join('') + '</footer>'); }
-
     h.push('</div></body></html>');
     return h.join('');
   }
-
   function saveAs(name, content, mime) {
     var blob = new Blob(['\ufeff' + content], { type: mime });
     var url = URL.createObjectURL(blob);
@@ -1236,12 +1245,10 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
       URL.revokeObjectURL(url);
     }, 4000);
   }
-
   var dlBtn = document.getElementById('dlBtn');
   var topDlBtn = document.getElementById('topDlBtn');
   var menu = document.getElementById('dlMenu');
   var scrim = document.getElementById('dlScrim');
-
   function setOpen(o) {
     if (dlBtn) dlBtn.setAttribute('aria-expanded', o ? 'true' : 'false');
     if (topDlBtn) topDlBtn.setAttribute('aria-expanded', o ? 'true' : 'false');
@@ -1254,7 +1261,6 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
     }
   }
   function openMenu(anchor) { menu.setAttribute('data-anchor', anchor); setOpen(true); }
-
   if (dlBtn) {
     dlBtn.addEventListener('click', function (e) {
       e.stopPropagation();
@@ -1272,7 +1278,6 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
     });
   }
   if (scrim) scrim.addEventListener('click', function () { setOpen(false); });
-
   document.addEventListener('click', function (e) {
     if (!menu.contains(e.target) && e.target !== dlBtn && e.target !== topDlBtn && !dlBtn.contains(e.target) && !topDlBtn.contains(e.target)) {
       setOpen(false);
@@ -1281,7 +1286,6 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') { setOpen(false); if (dlBtn) dlBtn.focus(); }
   });
-
   document.getElementById('btnPdf').addEventListener('click', function () {
     setOpen(false);
     setTimeout(function () { window.print(); }, 200);
@@ -1297,8 +1301,7 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
 /* ---------- Staggered entrance + scroll spy ---------- */
 (function () {
   var d = document, reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  var items = Array.prototype.slice.call(d.querySelectorAll('.legend,.topic,.matrix,.typebreak,footer'));
+  var items = Array.prototype.slice.call(d.querySelectorAll('.legend,.topic,.matrix,.typebreak,.contributors,footer'));
   function show(el) { el.setAttribute('data-in', '1'); }
   if (reduce || !('IntersectionObserver' in window)) {
     items.forEach(show);
@@ -1311,11 +1314,10 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
     items.forEach(function (el) { io.observe(el); });
     setTimeout(function () { items.forEach(show); }, 2200);
   }
-
   var links = Array.prototype.slice.call(d.querySelectorAll('.nav-links a[href^="#"]'));
   var map = {};
   links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
-  var secs = Array.prototype.slice.call(d.querySelectorAll('.topic,.matrix,.typebreak'));
+  var secs = Array.prototype.slice.call(d.querySelectorAll('.topic,.matrix,.typebreak,.contributors'));
   var top = d.getElementById('totop');
   function spy() {
     var y = (window.pageYOffset || d.documentElement.scrollTop || 0) + 130, best = null;
