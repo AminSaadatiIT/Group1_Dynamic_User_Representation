@@ -134,9 +134,10 @@ html[lang="fa"] .nojs{font-family:var(--fa);direction:rtl}
 footer{margin-top:48px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:var(--ink3)}footer strong{color:var(--ink)}
 .totop{position:fixed;right:16px;bottom:16px;bottom:calc(16px + var(--safe-b));z-index:200;width:46px;height:46px;border-radius:50%;border:0;background:var(--brand);color:var(--on);display:grid;place-items:center;box-shadow:var(--sh);opacity:0;pointer-events:none;transition:.2s;cursor:pointer}
 .totop[data-show]{opacity:1;pointer-events:auto}
-html[data-js] .legend,html[data-js] .topic,html[data-js] .matrix,html[data-js] .typebreak,html[data-js] footer{opacity:0;translate:0 16px;transition:opacity .5s,translate .5s}
-html[data-js] [data-in]{opacity:1;translate:none}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}html[data-js] .legend,html[data-js] .topic,html[data-js] .matrix,html[data-js] .typebreak,html[data-js] footer{opacity:1;translate:none}}
+
+/* اسکریپت‌های مربوط به انیمیشن اسکرول حذف شدند تا محتوا نامرئی نماند */
+html[data-js] .legend,html[data-js] .topic,html[data-js] .matrix,html[data-js] .typebreak,html[data-js] footer{opacity:1 !important; translate:none !important;}
+
 @media(max-width:820px){.hero-inner{grid-template-columns:1fr}}
 @media(max-width:640px){
  body{font-size:15.5px}
@@ -187,6 +188,19 @@ html[dir=rtl] .dl-menu[data-anchor=bottom]{left:auto;right:14px}
 html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
 .dl-menu button{text-align:start}
 @media print{.lang,.top-dl,.dl,.theme-btn{display:none!important}}
+
+/* --- NEW STYLES FOR ANALYSIS SECTIONS --- */
+.analysis-section {margin: 56px 0; background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); padding: clamp(18px,3vw,30px); box-shadow: var(--sh);}
+.analysis-section h2 {font: 700 clamp(22px,4vw,30px) var(--serif); color: var(--ink); margin: 0 0 20px; border-bottom: 2px solid var(--line); padding-bottom: 10px;}
+.analysis-section h3 {font: 600 18px var(--serif); color: var(--ink); margin: 24px 0 10px;}
+.analysis-section p {font-size: 15.5px; line-height: 1.85; color: var(--ink2); margin-bottom: 14px; text-align: justify;}
+.analysis-table-wrapper {overflow-x: auto; margin: 20px 0;}
+.analysis-table-wrapper table {width: 100%; border-collapse: collapse; font-size: 13px; min-width: 700px;}
+.analysis-table-wrapper th {background: var(--soft); color: var(--ink); text-align: left; padding: 12px; font-weight: 700; border: 1px solid var(--line);}
+.analysis-table-wrapper td {padding: 12px; border: 1px solid var(--line); vertical-align: top; color: var(--ink2);}
+.analysis-table-wrapper tr:nth-child(even) {background: var(--bg);}
+.matrix-small {font-size: 12px;}
+.matrix-small th, .matrix-small td {padding: 8px;}
 </style>
 <script>
 (function(){
@@ -248,6 +262,7 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
       <a href="#s10"><i class="nd" style="background:#8B5CF6"></i><span>10 User pref. LLM</span></a>
       <a class="nav-all" href="#glance"><span>All 10 &rarr; table</span></a>
       <a href="#top"><span>Back to top</span></a>
+      <a href="#sec1" style="background:var(--soft); font-weight:bold; margin-left:10px;">📝 6-Section Review (Appendix)</a>
     </div>
     <div class="lang" id="lang" role="group" aria-label="Language">
       <button type="button" data-l="en" aria-pressed="true">EN</button>
@@ -844,6 +859,166 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
     </div>
   </div>
 
+  <!-- ================= NEW 6 SECTIONS START ================= -->
+  <div style="margin: 60px 0 20px 0; border-top: 2px dashed var(--line); padding-top: 40px;">
+    <h2 style="font-family: var(--serif); color: var(--ink); font-size: 28px; text-align: center;">Literature Review: Final Analysis</h2>
+    <p style="text-align: center; color: var(--ink3); margin-bottom: 30px;">The 6 Required Academic Sections (Synthesized via NotebookLM)</p>
+  </div>
+
+  <!-- SECTION 1 -->
+  <section id="sec1" class="analysis-section">
+    <h2>1. Research Topic & Group Information</h2>
+    <div class="lang-en">
+      <p><strong>Topic:</strong> Dynamic Human Representation in Intelligent Systems</p>
+      <p><strong>Research Question:</strong> How do contemporary intelligent systems model, update, and adapt to users across seven representational dimensions — stable attributes, historical behavior, explicit goals/preferences, current intents, constraints, contextual conditions, and temporal change?</p>
+      <p><strong>Methodology:</strong> A targeted corpus of 10 peer-reviewed articles (2021–2026) was analyzed using NotebookLM against a custom 7-dimension representational rubric. 11 query strings were used; one ("preference elicitation" AI agents) returned zero results.</p>
+      <h3>Group 1 Contributors</h3>
+      <div class="analysis-table-wrapper">
+        <table class="matrix-small">
+          <thead><tr><th>Member</th><th>Papers</th><th>Thematic Focus</th></tr></thead>
+          <tbody>
+            <tr><td>Amin Saadati (Lead)</td><td>5</td><td>Time-, intent-, goal-, constraint-, and context-aware recommendation</td></tr>
+            <tr><td>Roshana / Fatemeh Sokhan Latif</td><td>2</td><td>User representation & session-based user modeling</td></tr>
+            <tr><td>Hanieh Karbalaei</td><td>2</td><td>Dynamic user modeling & continual user representation</td></tr>
+            <tr><td>Mohammadreza Hosseini</td><td>1</td><td>LLM personalization</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="lang-fa" style="direction:rtl; text-align:right; font-family:var(--fa);">
+      <p><strong>موضوع:</strong> بازنمایی پویای انسان در سیستم‌های هوشمند</p>
+      <p><strong>سوال تحقیق:</strong> سیستم‌های هوشمند معاصر چگونه کاربران را در هفت بُعد (ویژگی‌های پایدار، رفتار تاریخی، اهداف صریح، نیت‌های فعلی، محدودیت‌ها، شرایط بافتی و تغییرات زمانی) مدل‌سازی، به‌روزرسانی و سازگار می‌کنند؟</p>
+      <h3>اعضای گروه ۱</h3>
+      <div class="analysis-table-wrapper">
+        <table class="matrix-small">
+          <thead><tr><th>عضو</th><th>تعداد مقالات</th><th>تمرکز موضوعی</th></tr></thead>
+          <tbody>
+            <tr><td>امین سعادتی (سرگروه)</td><td>۵</td><td>سیستم‌های پیشنهاددهنده آگاه به زمان، نیت، هدف، محدودیت و بافتار</td></tr>
+            <tr><td>روشنا / فاطمه سخن لطیف</td><td>۲</td><td>بازنمایی کاربر و مدل‌سازی مبتنی بر نشست</td></tr>
+            <tr><td>حانیه کربلائی</td><td>۲</td><td>مدل‌سازی پویای کاربر و بازنمایی پیوسته</td></tr>
+            <tr><td>محمدرضا حسینی</td><td>۱</td><td>شخصی‌سازی مدل‌های زبانی بزرگ (LLM)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2 -->
+  <section id="sec2" class="analysis-section">
+    <h2>2. Thematic Classification</h2>
+    <div class="lang-en">
+      <p>Based on the synthesis of the reviewed literature, the 10 papers are categorized into five overarching research themes:</p>
+      <div class="analysis-table-wrapper">
+        <table>
+          <thead><tr><th>Theme</th><th>Addressed Papers</th><th>Dimensions Emphasized</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1. Short-Term Dynamics & Immediate Intent</strong></td><td>2 (IARS), 7 (SBRS)</td><td>D4 (Intent), D2 (History)</td></tr>
+            <tr><td><strong>2. Spatio-Temporal Modeling & Preference Drift</strong></td><td>1 (Time-Aware), 9 (DITTO)</td><td>D7 (Temporal), D2 (History)</td></tr>
+            <tr><td><strong>3. Contextual & Environmental Adaptation</strong></td><td>5 (CARS), 8 (User Profiling)</td><td>D6 (Context), D1 (Stable)</td></tr>
+            <tr><td><strong>4. Language Models & Cross-Domain Transfer</strong></td><td>6 (RUNSRec), 10 (LLM Personalization)</td><td>D1 (Stable), D2 (History), D3 (Goals)</td></tr>
+            <tr><td><strong>5. Multi-Stakeholder Alignment & Governance</strong></td><td>3 (Workplace Goals), 4 (Fairness)</td><td>D3 (Goals), D5 (Constraints)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="lang-fa" style="direction:rtl; text-align:right; font-family:var(--fa);">
+      <p>بر اساس ترکیب ادبیات مرورشده، ۱۰ مقاله در قالب پنج تم پژوهشی کلی دسته‌بندی می‌شوند:</p>
+      <div class="analysis-table-wrapper">
+        <table>
+          <thead><tr><th>تم</th><th>مقالات مربوطه</th><th>ابعاد برجسته</th></tr></thead>
+          <tbody>
+            <tr><td><strong>۱. دینامیک کوتاه‌مدت و نیت فوری</strong></td><td>۲ (IARS), ۷ (SBRS)</td><td>D4 (نیت), D2 (تاریخچه)</td></tr>
+            <tr><td><strong>۲. مدل‌سازی مکانی-زمانی و رانش ترجیحات</strong></td><td>۱ (Time-Aware), ۹ (DITTO)</td><td>D7 (زمانی), D2 (تاریخچه)</td></tr>
+            <tr><td><strong>۳. سازگاری بافتی و محیطی</strong></td><td>۵ (CARS), ۸ (پروفایلینگ)</td><td>D6 (بافتار), D1 (پایدار)</td></tr>
+            <tr><td><strong>۴. مدل‌های زبانی و انتقال بین‌حوزه‌ای</strong></td><td>۶ (RUNSRec), ۱۰ (LLM)</td><td>D1 (پایدار), D2 (تاریخچه), D3 (اهداف)</td></tr>
+            <tr><td><strong>۵. همسویی چندذی‌نفع و حاکمیت</strong></td><td>۳ (اهداف کاری), ۴ (انصاف)</td><td>D3 (اهداف), D5 (محدودیت‌ها)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3 -->
+  <section id="sec3" class="analysis-section">
+    <h2>3. Literature Review Matrix</h2>
+    <div class="analysis-table-wrapper">
+      <table class="matrix-small">
+        <thead><tr><th>#</th><th>Author(s) & Year</th><th>Research Problem</th><th>Methodology</th><th>Main Findings</th><th>Limitations</th><th>Relevance (7-Dim)</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Time-Aware Survey (2023)</td><td>Static models fail under preference drift</td><td>Systematic Review</td><td>Taxonomy of temporal signals; TimeSVD++.</td><td>High sensitivity to hyperparameters.</td><td>D7 Temporal Drift</td></tr>
+          <tr><td>2</td><td>IARS Survey (2025)</td><td>Behavioral signals ≠ user intent</td><td>Survey</td><td>Intent as a bridge to future need; session-based networks.</td><td>Over-reliance on offline metrics.</td><td>D4 Intent, D3 Goals</td></tr>
+          <tr><td>3</td><td>Workplace Goals (2022)</td><td>No shared taxonomy of learning goals</td><td>Categorization</td><td>5-tier taxonomy of learning goals.</td><td>Lacks formal mathematical formulation.</td><td>D3 Goals, D5 Constraints</td></tr>
+          <tr><td>4</td><td>Fairness Survey (2023)</td><td>Algorithmic bias and multi-sided fairness</td><td>Survey</td><td>Group vs. Individual; Multi-sided fairness.</td><td>Heavy reliance on static benchmarks.</td><td>D5 Constraints</td></tr>
+          <tr><td>5</td><td>CARS SLR (2024)</td><td>Context rarely modeled systematically</td><td>Systematic Review</td><td>5 context dimensions; Tensor Factorization.</td><td>High dimensional data sparsity.</td><td>D6 Context</td></tr>
+          <tr><td>6</td><td>RUNSRec (2025)</td><td>ID-based models fail in cross-domain</td><td>PLM & Sequence Learning</td><td>PLM textual review embeddings; no item ID dependency.</td><td>High computational overhead.</td><td>D1 Stable, D2 History</td></tr>
+          <tr><td>7</td><td>SBRS Survey (2021)</td><td>Anonymous users in short sessions</td><td>Survey</td><td>Session as unit of modeling; RNNs, GNNs.</td><td>Ignores cross-session user feedback.</td><td>D2 History, D4 Intent</td></tr>
+          <tr><td>8</td><td>Profiling Dynamics (2026)</td><td>Profiles assumed static</td><td>Narrative Review</td><td>Dynamic belief revision; profiling.</td><td>Qualitative; lacks empirical validation.</td><td>D1 Stable, D7 Drift</td></tr>
+          <tr><td>9</td><td>DITTO (2025)</td><td>Continual representation w/o forgetting</td><td>Continual Learning</td><td>Forward & Backward Knowledge Transfer (FKT/BKT).</td><td>Evaluated only on top-k tasks.</td><td>D7 Drift, D2 History</td></tr>
+          <tr><td>10</td><td>LLM Personalization (2024)</td><td>One-size-fits-all LLMs</td><td>Survey</td><td>RAG, RLHF/DPO; User profiles.</td><td>Prompt length bounds & privacy risks.</td><td>D3 Goals, D4 Intent</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SECTION 4 -->
+  <section id="sec4" class="analysis-section">
+    <h2>4. Literature Review (Continuous Analytical Text)</h2>
+    <div class="lang-en">
+      <p><strong>1. Theoretical Foundations & Dimensionality:</strong> Traditional recommendation paradigms historically relied on static user profiles composed of invariant demographic traits and aggregated historical interaction logs. However, empirical evidence demonstrates that user behavior in modern digital environments is highly non-stationary, driven by ephemeral context and dynamic environmental constraints. Consequently, intelligent systems have transitioned toward dynamic human representations that model user states as non-stationary stochastic processes. Based on the reviewed literature, dynamic human representation comprises seven foundational dimensions: (1) Stable Personal Attributes, (2) Historical Behavior & Interactions, (3) Explicit Goals & Preferences, (4) Current Intentions & Needs, (5) Constraints & Limitations, (6) Contextual Conditions, and (7) Preference Drift & Temporal Evolution.</p>
+      <p><strong>2. Micro-Temporal Dynamics: Session-Aware and Intent-Driven Modeling:</strong> A major sub-field focuses on short-term behavioral dynamics where long-term logs are unavailable or irrelevant. Session-Based Recommender Systems (SBRS; Paper 7) address this by modeling item transitions within continuous interaction periods using RNNs, TCNs, and Self-Attention Transformers (SASRec). Complementing SBRS, Intent-Aware Recommender Systems (IARS; Paper 2) explicitly isolate immediate user motivations from historical noise. The IARS literature categorizes methodologies into four approaches: Profile Diversity Matching, Sequence/Time-Aware Models, Latent Intent Disentanglement, and Explicit Intent Elicitation. Empirical evaluations confirm that isolating immediate micro-intents yields significant gains in conversion and user satisfaction.</p>
+      <p><strong>3. Macro-Temporal Context Modeling & Continual Preference Evolution:</strong> While micro-temporal models focus on intra-session actions, macro-temporal frameworks address long-term preference evolution. Context-Aware Recommender Systems (CARS; Paper 5) incorporate environmental attributes through Pre-filtering, Post-filtering, and Contextual Modeling. Over extended time horizons, user preferences undergo continuous drift. Traditional time-aware systems (Paper 1) apply temporal decay functions and TimeSVD++ to down-weight aged interactions. However, modern continual learning frameworks identify a failure mode: as user interests change, the underlying item distribution itself shifts. The state-of-the-art DITTO framework (Paper 9) resolves this via Distribution-Aware Forward Knowledge Transfer (FKT) to retain past user embeddings, and Backward Knowledge Transfer (BKT) to adapt historical knowledge to newly emerging items.</p>
+      <p><strong>4. Foundation Models, Text-Enhanced Representations & LLM Personalization:</strong> A significant paradigm shift is the move away from rigid, domain-specific Item IDs toward universal textual representations. Traditional collaborative filtering fails in cross-domain scenarios; RUNSRec (Paper 6) integrates discriminative keyword extraction, parametric whitening, and Mixture-of-Experts (MoE) adaptors to process review text. Simultaneously, the personalization of Large Language Models (Paper 10) represents the cutting edge. LLM frameworks structure user inputs into static profiles (Au), interaction histories (Iu), user-written prose, and pair-wise human feedback. Technical strategies span soft-prompt tuning, Retrieval-Augmented Generation (RAG), and Direct Preference Optimization (DPO/RLHF), unifying unstructured text with behavioral logs in a continuous latent space.</p>
+      <p><strong>5. Multi-Stakeholder Alignment, Constraints & Ethical Governance:</strong> Intelligent systems do not operate in a vacuum of unconstrained user optimization. In workplace educational technology, models must balance individual learner interests against rigid organizational imperatives (Paper 3). Effective dynamic profiling requires constrained multi-objective optimization that respects positional duties and compliance mandates. Furthermore, ethical governance and fairness represent essential dimensions (Paper 4). Recommender fairness literature distinguishes between Group and Individual Fairness. Crucially, studies warn against static fairness assumptions: mitigating bias in a single time-step can inadvertently amplify long-term feedback loops and filter bubbles over dynamic interaction trajectories.</p>
+      <p><strong>6. Cross-Study Synthesis & Conclusion:</strong> A holistic synthesis reveals significant structural trade-offs. No single model currently integrates all seven dimensions (demographics, interactions, explicit goals, session intents, constraints, context, and continual drift) into a unified architecture. Future systems must combine the cross-domain transferability of foundation LLMs with the dynamic distribution-aware continual learning mechanisms of DITTO, while adhering to the multi-stakeholder governance models outlined in the fairness and workplace learning literature.</p>
+    </div>
+    <div class="lang-fa" style="direction:rtl; text-align:right; font-family:var(--fa);">
+      <p><strong>۱. مبانی نظری و ابعاد:</strong> پارادایم‌های سنتی پیشنهاددهنده بر پروفایل‌های ایستا متکی بودند. اما شواهد نشان می‌دهد رفتار کاربران در محیط‌های دیجیتال مدرن به شدت غیرایستا است. در نتیجه، سیستم‌های هوشمند به سمت بازنمایی‌های پویای انسانی حرکت کرده‌اند که وضعیت کاربر را به عنوان یک فرآیند تصادفی غیرایستا مدل می‌کنند. بر اساس ادبیات مرورشده، بازنمایی پویای انسان شامل هفت بُعد بنیادین است: (۱) ویژگی‌های پایدار، (۲) رفتار تاریخی، (۳) اهداف صریح، (۴) نیت‌های فعلی، (۵) محدودیت‌ها، (۶) شرایط بافتی، و (۷) رانش ترجیحات و تکامل زمانی.</p>
+      <p><strong>۲. دینامیک‌های خرد-زمانی:</strong> یک زیرشاخه اصلی بر دینامیک‌های رفتاری کوتاه‌مدت متمرکز است. سیستم‌های مبتنی بر نشست (SBRS؛ مقاله ۷) با مدل‌سازی انتقال آیتم‌ها با استفاده از RNNها و ترانسفورمرها به این موضوع می‌پردازند. سیستم‌های آگاه به نیت (IARS؛ مقاله ۲) انگیزه‌های فوری کاربر را از نویز تاریخی جدا می‌کنند. ارزیابی‌های تجربی تأیید می‌کنند که جداسازی نیت‌های خرد فوری، دستاوردهای قابل توجهی در نرخ تبدیل و رضایت کاربر به همراه دارد.</p>
+      <p><strong>۳. مدل‌سازی بافتار کلان-زمانی:</strong> در حالی که مدل‌های خرد-زمانی بر اقدامات درون‌نشستی تمرکز دارند، چارچوب‌های کلان-زمانی به تکامل بلندمدت ترجیحات می‌پردازند. سیستم‌های آگاه به بافتار (CARS؛ مقاله ۵) ویژگی‌های محیطی را از طریق پیش‌فیلتر کردن، پس‌فیلتر کردن و مدل‌سازی بافتی ترکیب می‌کنند. در افق‌های زمانی طولانی‌تر، ترجیحات کاربران دچار رانش مداوم می‌شوند. چارچوب DITTO (مقاله ۹) این مسئله را از طریق انتقال دانش رو‌به‌جلو (FKT) و انتقال دانش رو‌به‌عقب (BKT) حل می‌کند.</p>
+      <p><strong>۴. مدل‌های بنیادین و شخصی‌سازی LLM:</strong> یک تغییر پارادایم مهم، حرکت از شناسه‌های آیتم سفت‌وسخت به سمت بازنمایی‌های متنی جهانی است. RUNSRec (مقاله ۶) استخراج کلیدواژه‌های تمایزدهنده و آداپتورهای Mixture-of-Experts را برای پردازش متن نظرات یکپارچه می‌کند. همزمان، شخصی‌سازی مدل‌های زبانی بزرگ (مقاله ۱۰) نمایانگر خط مقدم است. چارچوب‌های LLM ورودی‌های کاربر را به پروفایل‌های ایستا، تاریخچه تعاملات، متن نوشته‌شده توسط کاربر و بازخورد انسانی جفت‌شده ساختاردهی می‌کنند.</p>
+      <p><strong>۵. همسویی چندذی‌نفع و حاکمیت اخلاقی:</strong> سیستم‌های هوشمند در خلأ بهینه‌سازی بدون محدودیت کاربر عمل نمی‌کنند. در فناوری آموزشی محیط کار، مدل‌ها باید منافع یادگیرنده فردی را در برابر الزامات سازمانی سفت‌وسخت متعادل کنند (مقاله ۳). پروفایل‌سازی پویا نیازمند بهینه‌سازی چندهدفه محدودشده است که به وظایف شغلی و الزامات انطباق احترام می‌گذارد. علاوه بر این، حاکمیت اخلاقی و انصاف ابعاد اساسی هستند (مقاله ۴).</p>
+      <p><strong>۶. ترکیب و نتیجه‌گیری:</strong> یک ترکیب کل‌نگر، بده‌بستان‌های ساختاری قابل توجهی را آشکار می‌کند. هیچ مدل واحدی در حال حاضر تمام هفت بُعد را در یک معماری یکپارچه ترکیب نمی‌کند. سیستم‌های آینده باید قابلیت انتقال بین‌حوزه‌ای LLMها را با مکانیزم‌های یادگیری پیوسته آگاه به توزیع DITTO ترکیب کنند.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 5 -->
+  <section id="sec5" class="analysis-section">
+    <h2>5. Research Gaps</h2>
+    <div class="analysis-table-wrapper">
+      <table class="matrix-small">
+        <thead><tr><th>#</th><th>Gap Name & Tier</th><th>Evidence (From Corpus)</th><th>Importance</th><th>Suggested Research Question</th></tr></thead>
+        <tbody>
+          <tr><td>G1</td><td>Offline Dataset Over-Reliance (Tier A)</td><td>IARS (P2), Fairness (P4), CARS (P5) rely on static logs without live A/B testing.</td><td>Offline metrics do not translate to real-world user trust.</td><td>To what extent do fair/intent-aware algorithms maintain performance in live environments?</td></tr>
+          <tr><td>G2</td><td>Absence of Unified 7D Model (Tier B)</td><td>Synthesis of all 10 papers. Current models optimize 1–3 dimensions.</td><td>Real users experience all 7 dimensions simultaneously.</td><td>How can foundation models unify spatio-temporal context and multi-stakeholder constraints?</td></tr>
+          <tr><td>G3</td><td>Continuous Item Expansion (Tier A)</td><td>DITTO (P9) shows standard continual learning fails with cold-start items.</td><td>E-commerce catalogs introduce thousands of novel items daily.</td><td>Can FKT/BKT be scaled to ultra-large-scale streaming catalogs?</td></tr>
+          <tr><td>G4</td><td>Multi-Stakeholder Harmonization (Tier B)</td><td>Workplace (P3) and Fairness (P4). Mainstream algorithms assume single-user utility.</td><td>Educational and healthcare RS fail if ignoring compliance.</td><td>How can multi-objective optimization dynamically balance user curiosity with organizational constraints?</td></tr>
+          <tr><td>G5</td><td>Interactive Intent Elicitation (Tier C)</td><td>IARS (P2) infers intent passively; LLM (P10) flags prompt context limits.</td><td>Passive inference misinterprets abrupt context switches.</td><td>Can lightweight natural language clarification dialogues improve intent precision?</td></tr>
+          <tr><td>G6</td><td>Privacy & Bias Amplification (Tier A)</td><td>Profiling (P8), Fairness (P4), and LLM (P10) highlight privacy risks and feedback loops.</td><td>GDPR restricts raw behavioral logging; unconstrained personalization causes echo chambers.</td><td>How can federated learning and differential privacy be integrated into real-time systems without degrading accuracy?</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SECTION 6 -->
+  <section id="sec6" class="analysis-section">
+    <h2>6. References (APA 7)</h2>
+    <div class="lang-en">
+      <ol style="font-size:14px; line-height:1.8;">
+        <li>Time-aware recommender systems: A systematic literature review. (2023). <i>IEEE Access</i>, <i>11</i>, 1–25. https://doi.org/10.1109/ACCESS.2023.3274117</li>
+        <li>A survey on intent-aware recommender systems. (2025). <i>ACM Computing Surveys</i>, <i>[vol]</i>([issue]), [pages]. https://doi.org/10.1145/3700890</li>
+        <li>A categorization of workplace learning goals. (2022). <i>TechTrends</i>, <i>[vol]</i>([issue]), [pages]. https://doi.org/10.1007/s11528-022-00777-y</li>
+        <li>Deldjoo, Y., et al. (2023). Fairness in recommender systems: Research landscape and future directions. <i>User Modeling and User-Adapted Interaction</i>, <i>[vol]</i>([issue]), [pages]. https://doi.org/10.1007/s11257-023-09364-z</li>
+        <li>A systematic literature review on context-aware recommender systems. (2024). <i>Artificial Intelligence Review</i>, <i>[vol]</i>([issue]), [pages]. https://doi.org/10.1007/s10462-024-10939-4</li>
+        <li>Review-enhanced universal sequence representation learning (RUNSRec). (2025). <i>ACM [Journal]</i>, <i>[vol]</i>([issue]), [pages]. https://doi.org/10.1145/3717832</li>
+        <li>Wang, S., Cao, L., & Wang, Y. (2021). A survey on session-based recommender systems. <i>ACM Computing Surveys</i>, <i>54</i>(7), 1–38. https://doi.org/10.1145/3465401</li>
+        <li>Freitas, N., et al. (2026). User profiling and its dynamics: A narrative review. <i>SAGE [Journal]</i>, <i>[vol]</i>([issue]), [pages]. https://doi.org/10.1177/30504554251407092</li>
+        <li>Dynamic time-aware continual user representation learning (DITTO). (2025). <i>Proceedings of KDD 2025</i>, [pages]. https://doi.org/10.1145/3726302.3729959</li>
+        <li>Personalization of large language models: A survey. (2024). <i>arXiv</i>. https://doi.org/10.48550/arXiv.2411.00027</li>
+      </ol>
+    </div>
+  </section>
+  <!-- ================= NEW 6 SECTIONS END ================= -->
+
   <footer>
     <p><strong>Type breakdown:</strong> 5 surveys (IEEE Access, ACM TORS, UMUAI, ACM Computing Surveys, TMLR), 1 systematic review (TechTrends), 1 systematic literature review (Artificial Intelligence Review), 1 narrative review (European Journal on Artificial Intelligence), and 2 research articles (ACM TOIS, ACM SIGIR) — 10 papers in total.</p>
     <p><strong>Domains covered:</strong> temporal and time-aware user modelling, intent modelling, goal modelling in workplace learning, fairness handled as a ranking constraint, context modelling, universal sequence representation learning, session-based user modelling, dynamic user profiling, continual user representation under distribution shift, and LLM personalisation — ten angles on how a system represents a changing user.</p>
@@ -859,13 +1034,14 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
 </div>
 <div class="dl-scrim" id="dlScrim"></div>
 <div class="dl-menu" id="dlMenu" role="menu" aria-label="Choose a download format" data-anchor="bottom">
-  <button class="dl-word" id="btnDoc" type="button" role="menuitem"><span class="dl-ico">DOC</span><span><b>Word document</b><small>Editable .doc with all papers, summaries and table</small></span></button>
+  <button class="dl-word" id="btnDoc" type="button" role="menuitem"><span class="dl-ico">DOC</span><span><b>Word document</b><small>Full Literature Review (6 Sections)</small></span></button>
   <button class="dl-pdf" id="btnPdf" type="button" role="menuitem"><span class="dl-ico">PDF</span><span><b>PDF file</b><small>Opens print dialog — choose "Save as PDF"</small></span></button>
 </div>
 
 <button class="totop" id="totop" type="button" aria-label="Back to top"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg></button>
 
 <script>
+/* ---------- Progress Bar ---------- */
 (function () {
   var bar = document.getElementById('progbar');
   if (!bar) return;
@@ -889,7 +1065,6 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
   var root = document.documentElement;
   var btn = document.getElementById('themeBtn');
   if (!btn) return;
-
   var ORDER = ['auto', 'light', 'dark'];
   var LABEL = { auto: 'Auto', light: 'Light', dark: 'Dark' };
 
@@ -898,345 +1073,49 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
     var effective = (mode === 'auto') ? (d ? 'dark' : 'light') : mode;
     root.setAttribute('data-theme', effective);
     root.setAttribute('data-theme-mode', mode);
-
-    var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) {
-      var col = effective === 'dark' ? '#0C1220' : '#F6F3EC';
-      document.querySelectorAll('meta[name="theme-color"]').forEach(function (m, i) {
-        if (i > 0) m.remove();
-      });
-      meta.removeAttribute('media');
-      meta.setAttribute('content', col);
-    }
-
-    var lang = root.lang === 'fa' ? 'fa' : 'en';
-    var fa = { auto: 'خودکار', light: 'روشن', dark: 'تیره' };
-    var text = lang === 'fa' ? fa[mode] : LABEL[mode];
-    btn.setAttribute('aria-label', (lang === 'fa' ? 'تم: ' : 'Theme: ') + text);
-    btn.setAttribute('title', (lang === 'fa' ? 'تم: ' : 'Theme: ') + text);
-  }
-
-  try {
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
-      if (root.getAttribute('data-theme-mode') === 'auto') applyTheme('auto');
-    });
-  } catch (_) {
-    try {
-      window.matchMedia('(prefers-color-scheme: dark)').addListener(function () {
-        if (root.getAttribute('data-theme-mode') === 'auto') applyTheme('auto');
-      });
-    } catch (_) {}
   }
 
   btn.addEventListener('click', function () {
     var cur = root.getAttribute('data-theme-mode') || 'auto';
     var next = ORDER[(ORDER.indexOf(cur) + 1) % ORDER.length];
     applyTheme(next);
-    try { localStorage.setItem('theme', next); } catch (_) {}
   });
-
-  var langContainer = document.getElementById('lang');
-  if (langContainer) {
-    langContainer.addEventListener('click', function () {
-      setTimeout(function () {
-        applyTheme(root.getAttribute('data-theme-mode') || 'auto');
-      }, 0);
-    });
-  }
 })();
 </script>
 
 <script>
-/* ---------- Language toggle (EN / FA) ---------- */
+/* ---------- Language Toggle ---------- */
 (function () {
-  'use strict';
-  try {
-    console.log('[Lang] Init');
+  var langEn = document.querySelectorAll('.lang-en');
+  var langFa = document.querySelectorAll('.lang-fa');
+  var root = document.documentElement;
+  var btnEn = document.querySelector('#lang button[data-l="en"]');
+  var btnFa = document.querySelector('#lang button[data-l="fa"]');
 
-    var FA = {
-      'Literature Review • Google Scholar': 'مرور ادبیات • Google Scholar',
-      'Group 1 | Dynamic Human Representation': 'گروه ۱ | بازنمایی پویای انسان',
-      'How do intelligent systems model humans and users? — ten papers, one per search term': 'سیستم‌های هوشمند چگونه انسان‌ها و کاربران را مدل می‌کنند؟ — ده مقاله، یکی برای هر عبارت جست‌وجو',
-      'Each entry includes the full bibliographic record, an English summary, and a Persian summary.': 'هر مورد شامل مشخصات کامل کتاب‌شناختی، خلاصهٔ انگلیسی و خلاصهٔ فارسی است.',
-      'At a glance': 'در یک نگاه',
-      'Papers': 'مقاله',
-      'Search terms': 'عبارت جست‌وجو',
-      'Time window': 'بازهٔ زمانی',
-      'Source': 'منبع',
-      'Terms with a paper': 'عبارت‌های دارای مقاله',
-      'Contents': 'فهرست',
-      '01 Preference drift': '۰۱ رانش ترجیحات',
-      '02 Intent': '۰۲ نیت',
-      '03 Goal': '۰۳ هدف',
-      '04 Constraint': '۰۴ محدودیت',
-      '05 Context': '۰۵ زمینه',
-      '06 User repr.': '۰۶ بازنمایی کاربر',
-      '07 User modeling': '۰۷ مدل‌سازی کاربر',
-      '08 Dynamic modeling': '۰۸ مدل‌سازی پویا',
-      '09 Dynamic repr.': '۰۹ بازنمایی پویا',
-      '10 User pref. LLM': '۱۰ ترجیح کاربر در LLM',
-      'All 10 → table': 'همهٔ ۱۰ مقاله ← جدول',
-      'Back to top': 'بازگشت به بالا',
-      'Download': 'دانلود',
-      'Selection Overview': 'نمای کلی انتخاب',
-      'Paper 1': 'مقاله ۱', 'Paper 2': 'مقاله ۲', 'Paper 3': 'مقاله ۳', 'Paper 4': 'مقاله ۴',
-      'Paper 5': 'مقاله ۵', 'Paper 6': 'مقاله ۶', 'Paper 7': 'مقاله ۷', 'Paper 8': 'مقاله ۸',
-      'Paper 9': 'مقاله ۹', 'Paper 10': 'مقاله ۱۰',
-      'Eleven search terms were used; each of the ten papers below corresponds to one of them.': 'یازده عبارت جست‌وجو استفاده شد؛ هر یک از ده مقالهٔ زیر متناظر با یکی از آن‌هاست.',
-      'Two of the term-specific searches — "goal-aware recommender systems" after 2020 and "constraint-aware recommendation" — did not return review articles directly. For those two terms, adjacent review literature was used: goal modelling in workplace learning (paper 3), and fairness treated as a ranking constraint (paper 4).': 'دو مورد از جست‌وجوهای مختص عبارت — <code>"goal-aware recommender systems"</code> پس از ۲۰۲۰ و <code>"constraint-aware recommendation"</code> — مستقیماً مقالهٔ مروری بازنگرداندند. برای این دو عبارت، از ادبیات مروری مجاور استفاده شد: مدل‌سازی هدف در یادگیری محیط کار (مقاله ۳) و انصاف به‌عنوان قید رتبه‌بندی (مقاله ۴).',
-      'How systems model a user whose tastes change over time': 'سیستم‌ها چگونه کاربری را مدل می‌کنند که سلیقه‌اش در گذر زمان تغییر می‌کند',
-      'Modelling why the user is here right now, not just what they liked': 'مدل‌سازی چرایی حضور کاربر در همین لحظه، نه فقط آنچه پسندیده است',
-      'Working out what the user is actually trying to reach, not just scoring past behaviour': 'فهمیدن اینکه کاربر واقعاً می‌خواهد به چه چیزی برسد، نه فقط امتیازدهی به رفتار گذشته',
-      'Recommendations that must respect rules, objectives and hard requirements': 'پیشنهادهایی که باید قواعد، هدف‌ها و الزامات سخت را رعایت کنند',
-      'When, where, with whom, and under what conditions the user acts': 'کاربر چه زمانی، کجا، با چه کسی و در چه شرایطی عمل می‌کند',
-      'Learning transferable, domain-independent representations of users from review text': 'یادگیری بازنمایی‌های قابل‌انتقال و مستقل از حوزه از متن نظرات کاربران',
-      'Modelling user behaviour from session-level interactions': 'مدل‌سازی رفتار کاربر بر پایهٔ تعاملات سطح نشست',
-      'Keeping user profiles up to date as interests and behaviour change over time': 'به‌روز نگه‌داشتن پروفایل کاربر همراه با تغییر علایق و رفتار در طول زمان',
-      'Learning user representations that stay accurate under distribution shift': 'یادگیری بازنمایی‌های کاربر که تحت جابه‌جایی توزیع دقیق باقی می‌مانند',
-      'Personalising large language models to individual user preferences': 'شخصی‌سازی مدل‌های زبانی بزرگ بر اساس ترجیحات فردی کاربران',
-      'Title': 'عنوان',
-      'Authors': 'نویسندگان',
-      'Year': 'سال',
-      'Type': 'نوع',
-      'Domain': 'حوزه',
-      'Journal / Conference': 'مجله / کنفرانس',
-      'DOI / Link': 'DOI / پیوند',
-      'Summary': 'خلاصه',
-      'All Ten Papers at a Glance': 'همهٔ ده مقاله در یک نگاه',
-      'Search term': 'عبارت جست‌وجو',
-      'Journal': 'مجله',
-      'Survey': 'مرور (Survey)',
-      'Narrative Review': 'مرور روایی',
-      'Research Article': 'مقالهٔ پژوهشی',
-      'Systematic Literature Review': 'مرور نظام‌مند ادبیات',
-      'Systematic Review': 'مرور نظام‌مند',
-      'Type Breakdown': 'تفکیک نوع',
-      'The ten papers divide by publication type as follows. Each paper is counted under the type declared in its own record.': 'ده مقاله بر اساس نوع انتشار به‌شکل زیر تقسیم می‌شوند. هر مقاله زیر نوعی شمرده می‌شود که در مشخصات خودش اعلام شده است.',
-      'Papers 1, 2, 4, 7, 10': 'مقالات <b>۱</b>، <b>۲</b>، <b>۴</b>، <b>۷</b>، <b>۱۰</b>',
-      'Paper 3': 'مقالهٔ <b>۳</b>', 'Paper 5': 'مقالهٔ <b>۵</b>', 'Paper 8': 'مقالهٔ <b>۸</b>',
-      'Papers 6, 9': 'مقالات <b>۶</b>، <b>۹</b>',
-      'Word document': 'سند Word',
-      'Editable .doc with all papers, summaries and table': 'فایل .doc قابل ویرایش با همهٔ مقالات، خلاصه‌ها و جدول',
-      'PDF file': 'فایل PDF',
-      'Opens print dialog — choose "Save as PDF"': 'پنجرهٔ چاپ باز می‌شود — «Save as PDF» را انتخاب کنید',
-      'Prepared for Group 1, Dynamic Human Representation.': 'برای گروه ۱، بازنمایی پویای انسان تهیه شده است.'
-    };
-
-    function norm(s) { return String(s == null ? '' : s).replace(/\s+/g, ' ').trim(); }
-    var FA_NORM = {};
-    Object.keys(FA).forEach(function (k) { FA_NORM[norm(k)] = FA[k]; });
-
-    var SEL = '.kicker,.hero h1,.hero h2,.hero-note,.stats-h span,.s3l,.chip,.mlab,.nav-label,.nav-links a span,.legend h3,.legend p,.legend .tag,.topic-sub,.flabel,.stitle,.fatitle,.matrix h3,.matrix th,.typebreak h3,.typebreak .tintro,.tlabel,.tnote,footer p,.b-type,.top-dl span,.dl-menu b,.dl-menu small';
-
-    var els = [].slice.call(document.querySelectorAll(SEL));
-    console.log('[Lang] Found', els.length, 'candidate elements');
-
-    var matched = 0;
-    els.forEach(function (el) {
-      if (!el.hasAttribute('data-en-html')) {
-        el.setAttribute('data-en-html', el.innerHTML);
-      }
-      var fa = FA_NORM[norm(el.textContent)];
-      if (fa) {
-        el.setAttribute('data-fa-html', fa);
-        matched++;
-      }
-    });
-    console.log('[Lang] Matched', matched, 'of', els.length);
-
-    var root = document.documentElement;
-    var T0 = document.title;
-    var TFA = 'گروه ۱ | بازنمایی پویای انسان — فهرست مطالعه';
-
-    function setLang(lang) {
-      console.log('[Lang] setLang →', lang);
-      root.setAttribute('lang', lang);
-      root.setAttribute('dir', (lang === 'fa') ? 'rtl' : 'ltr');
-      root.setAttribute('data-lang', lang);
-
-      els.forEach(function (el) {
-        var enH = el.getAttribute('data-en-html');
-        var faH = el.getAttribute('data-fa-html');
-        if (lang === 'fa' && faH) {
-          el.innerHTML = faH;
-        } else if (enH) {
-          el.innerHTML = enH;
-        }
-      });
-
-      var btns = document.querySelectorAll('#lang button');
-      Array.prototype.forEach.call(btns, function (b) {
-        b.setAttribute('aria-pressed', b.getAttribute('data-l') === lang ? 'true' : 'false');
-      });
-
-      document.title = (lang === 'fa') ? TFA : T0;
-
-      var dlBtn = document.getElementById('dlBtn');
-      if (dlBtn) dlBtn.setAttribute('aria-label', lang === 'fa' ? 'دانلود' : 'Download');
-
-      try { localStorage.setItem('lang', lang); } catch (_) {}
+  function setLang(lang) {
+    root.setAttribute('lang', lang);
+    root.setAttribute('dir', (lang === 'fa') ? 'rtl' : 'ltr');
+    
+    if (lang === 'fa') {
+      langEn.forEach(el => el.style.display = 'none');
+      langFa.forEach(el => el.style.display = 'block');
+    } else {
+      langEn.forEach(el => el.style.display = 'block');
+      langFa.forEach(el => el.style.display = 'none');
     }
-
-    var btnEn = document.querySelector('#lang button[data-l="en"]');
-    var btnFa = document.querySelector('#lang button[data-l="fa"]');
-    console.log('[Lang] EN button:', !!btnEn, 'FA button:', !!btnFa);
-
-    if (btnEn) {
-      btnEn.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        setLang('en');
-      });
-    }
-    if (btnFa) {
-      btnFa.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        setLang('fa');
-      });
-    }
-
-    var container = document.getElementById('lang');
-    if (container) {
-      container.addEventListener('click', function (e) {
-        var b = e.target && e.target.closest ? e.target.closest('button') : null;
-        if (b) {
-          var l = b.getAttribute('data-l');
-          if (l && l !== root.getAttribute('lang')) setLang(l);
-        }
-      });
-    }
-
-    var saved = null;
-    try { saved = localStorage.getItem('lang'); } catch (_) {}
-    if (!saved) {
-      var navLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
-      saved = (navLang.indexOf('fa') === 0) ? 'fa' : 'en';
-    }
-    console.log('[Lang] Initial:', saved);
-    setLang(saved);
-
-  } catch (err) {
-    console.error('[Lang] Fatal error:', err);
+    if(btnEn) btnEn.setAttribute('aria-pressed', lang === 'en' ? 'true' : 'false');
+    if(btnFa) btnFa.setAttribute('aria-pressed', lang === 'fa' ? 'true' : 'false');
   }
+
+  if(btnEn) btnEn.addEventListener('click', (e) => { e.preventDefault(); setLang('en'); });
+  if(btnFa) btnFa.addEventListener('click', (e) => { e.preventDefault(); setLang('fa'); });
+  setLang('en'); // default
 })();
 </script>
 
 <script>
-/* ---------- Download dropdown + Word export ---------- */
+/* ---------- Download Dropdown & Word Export ---------- */
 (function () {
-  function E(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
-  function txt(el) { return el ? el.textContent.replace(/\s+/g, ' ').trim() : ''; }
-  function list(el, sel) { return Array.prototype.slice.call(el.querySelectorAll(sel)); }
-
-  function linksHTML(v) {
-    var as = v.querySelectorAll('.links a');
-    if (!as.length) return E(txt(v));
-    return Array.prototype.slice.call(as).map(function (a) { return E(a.getAttribute('href')); }).join('<br>');
-  }
-
-  function tableHTML() {
-    var t = document.querySelector('.matrix table');
-    if (!t) return '';
-    var c = t.cloneNode(true);
-    list(c, 'a').forEach(function (a) { a.parentNode.replaceChild(document.createTextNode(a.textContent), a); });
-    list(c, '.dot').forEach(function (d) { d.parentNode.removeChild(d); });
-    return '<table class="g">' + c.innerHTML + '</table>';
-  }
-
-  function buildWord() {
-    var h = [];
-    h.push('<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8">');
-    h.push('<title>Group 1 | Dynamic Human Representation</title>');
-    h.push('<style>' +
-      '@page WordSection1{size:21cm 29.7cm;margin:1.8cm;} div.WordSection1{page:WordSection1;}' +
-      'body{font-family:Calibri,"Segoe UI",Arial,sans-serif;color:#111;font-size:11pt;line-height:1.45;}' +
-      '.ttl{font-size:19pt;font-weight:bold;color:#0b1220;margin:0 0 4px;}' +
-      'h2{font-size:13pt;color:#0b1220;margin:20px 0 6px;border-bottom:2px solid #0b1220;padding-bottom:3px;}' +
-      '.meta{font-size:9.5pt;color:#555;margin:0 0 10px;}' +
-      '.ct{font-size:13pt;font-weight:bold;color:#0b1220;margin:14px 0 2px;}' +
-      '.ctfa{font-size:11pt;color:#444;direction:rtl;text-align:right;margin:0 0 8px;}' +
-      '.kv{border-collapse:collapse;width:100%;font-size:10pt;margin:6px 0 10px;}' +
-      '.kv td{border:1px solid #bbb;padding:4px 6px;vertical-align:top;}' +
-      '.kv td.k{background:#f2f4f8;width:150px;color:#333;font-weight:bold;}' +
-      '.sum{font-size:10.5pt;margin:6px 0;}' +
-      '.fa{direction:rtl;text-align:right;font-size:10.5pt;color:#222;border-right:3px solid #0b1220;padding:5px 8px 5px 0;margin:8px 0 20px;}' +
-      'ol{margin:6px 0 14px 22px;} li{margin-bottom:3px;}' +
-      'table.g{border-collapse:collapse;width:100%;font-size:8.5pt;}' +
-      'table.g th{background:#0b1220;color:#fff;border:1px solid #666;padding:4px;text-align:left;}' +
-      'table.g td{border:1px solid #999;padding:4px;vertical-align:top;}' +
-      'footer p{font-size:9.5pt;color:#333;}' +
-      '</style></head><body><div class="WordSection1">');
-
-    var hero = document.querySelector('.hero');
-    h.push('<div class="ttl">' + E(txt(hero.querySelector('h1'))) + '</div>');
-    h.push('<div class="meta">' + E(txt(hero.querySelector('h2'))) + '</div>');
-    h.push('<div class="meta">' + list(hero, '.chip').map(function (c) { return E(txt(c)); }).join(' &bull; ') + '</div>');
-
-    var lg = document.querySelector('.legend');
-    if (lg) {
-      h.push('<h2>' + E(txt(lg.querySelector('h3'))) + '</h2>');
-      h.push('<ol>' + list(lg, 'li').map(function (li) { return '<li>' + E(txt(li)) + '</li>'; }).join('') + '</ol>');
-      list(lg, 'p').forEach(function (p) { h.push('<p>' + E(txt(p)) + '</p>'); });
-    }
-
-    var n = 0;
-    list(document, '.topic').forEach(function (sec) {
-      h.push('<h2>' + E(txt(sec.querySelector('.topic-title'))) + '</h2>');
-      h.push('<div class="meta">' + E(txt(sec.querySelector('.topic-sub'))) + '</div>');
-      list(sec, '.card').forEach(function (card) {
-        n++;
-        h.push('<div class="ct">' + n + '. ' + E(txt(card.querySelector('.ctitle'))) + '</div>');
-        var ctf = card.querySelector('.ctitle-fa');
-        if (ctf) h.push('<div class="ctfa">' + E(txt(ctf)) + '</div>');
-        var rows = list(card, '.frow').map(function (r) {
-          return '<tr><td class="k">' + E(txt(r.querySelector('.flabel'))) + '</td><td>' + linksHTML(r.querySelector('.fval')) + '</td></tr>';
-        });
-        h.push('<table class="kv">' + rows.join('') + '</table>');
-        var sm = card.querySelector('.summary');
-        if (sm) h.push('<div class="sum"><b>' + E(txt(sm.querySelector('.stitle'))) + '</b><br>' + E(txt(sm.querySelector('p'))) + '</div>');
-        var fa = card.querySelector('.fa');
-        if (fa) h.push('<div class="fa">' + E(txt(fa.querySelector('p'))) + '</div>');
-      });
-    });
-
-    var mt = document.querySelector('.matrix');
-    if (mt) { h.push('<h2>' + E(txt(mt.querySelector('h3'))) + '</h2>' + tableHTML()); }
-
-    var tb = document.querySelector('.typebreak');
-    if (tb) {
-      h.push('<h2>' + E(txt(tb.querySelector('h3'))) + '</h2>');
-      var intro = tb.querySelector('.tintro');
-      if (intro) h.push('<p>' + E(txt(intro)) + '</p>');
-      h.push('<table class="g"><thead><tr><th>Type</th><th>Count</th><th>Papers</th></tr></thead><tbody>');
-      list(tb, '.tcard').forEach(function (c) {
-        h.push('<tr><td>' + E(txt(c.querySelector('.tlabel'))) + '</td><td>' + E(txt(c.querySelector('.tcount'))) + '</td><td>' + E(txt(c.querySelector('.tnote'))) + '</td></tr>');
-      });
-      h.push('</tbody></table>');
-    }
-
-    var ft = document.querySelector('footer');
-    if (ft) { h.push('<footer>' + list(ft, 'p').map(function (p) { return '<p>' + E(txt(p)) + '</p>'; }).join('') + '</footer>'); }
-
-    h.push('</div></body></html>');
-    return h.join('');
-  }
-
-  function saveAs(name, content, mime) {
-    var blob = new Blob(['\ufeff' + content], { type: mime });
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement('a');
-    a.href = url; a.download = name;
-    a.rel = 'noopener';
-    a.style.display = 'none';
-    document.body.appendChild(a);
-    setTimeout(function () { a.click(); }, 20);
-    setTimeout(function () {
-      if (a.parentNode) a.parentNode.removeChild(a);
-      URL.revokeObjectURL(url);
-    }, 4000);
-  }
-
   var dlBtn = document.getElementById('dlBtn');
   var topDlBtn = document.getElementById('topDlBtn');
   var menu = document.getElementById('dlMenu');
@@ -1255,84 +1134,118 @@ html[dir=rtl] .dl-menu[data-anchor=top]{right:auto;left:14px}
   }
   function openMenu(anchor) { menu.setAttribute('data-anchor', anchor); setOpen(true); }
 
-  if (dlBtn) {
-    dlBtn.addEventListener('click', function (e) {
-      e.stopPropagation();
-      var isOpen = menu.hasAttribute('data-open') && menu.getAttribute('data-anchor') === 'bottom';
-      if (isOpen) setOpen(false);
-      else openMenu('bottom');
-    });
-  }
-  if (topDlBtn) {
-    topDlBtn.addEventListener('click', function (e) {
-      e.stopPropagation();
-      var isOpen = menu.hasAttribute('data-open') && menu.getAttribute('data-anchor') === 'top';
-      if (isOpen) setOpen(false);
-      else openMenu('top');
-    });
-  }
+  if (dlBtn) dlBtn.addEventListener('click', function (e) { e.stopPropagation(); setOpen(!menu.hasAttribute('data-open')); });
+  if (topDlBtn) topDlBtn.addEventListener('click', function (e) { e.stopPropagation(); setOpen(!menu.hasAttribute('data-open')); });
   if (scrim) scrim.addEventListener('click', function () { setOpen(false); });
 
   document.addEventListener('click', function (e) {
-    if (!menu.contains(e.target) && e.target !== dlBtn && e.target !== topDlBtn && !dlBtn.contains(e.target) && !topDlBtn.contains(e.target)) {
-      setOpen(false);
-    }
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') { setOpen(false); if (dlBtn) dlBtn.focus(); }
+    if (!menu.contains(e.target) && e.target !== dlBtn && e.target !== topDlBtn) setOpen(false);
   });
 
   document.getElementById('btnPdf').addEventListener('click', function () {
     setOpen(false);
     setTimeout(function () { window.print(); }, 200);
   });
+
+  function txt(el) { return el ? el.textContent.replace(/\s+/g, ' ').trim() : ''; }
+  function getTable(id) {
+    var sec = document.getElementById(id);
+    if(!sec) return '';
+    var table = sec.querySelector('.lang-en table') || sec.querySelector('table');
+    if(!table) return '';
+    var clone = table.cloneNode(true);
+    return '<table class="g">' + clone.innerHTML + '</table>';
+  }
+
+  function buildWord() {
+    var h = [];
+    h.push('<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8">');
+    h.push('<title>Group 1 Literature Review</title>');
+    h.push('<style>' +
+      '@page WordSection1{size:21cm 29.7cm;margin:1.8cm;} div.WordSection1{page:WordSection1;}' +
+      'body{font-family:Calibri,"Segoe UI",Arial,sans-serif;color:#111;font-size:11pt;line-height:1.45;}' +
+      'h2{font-size:14pt;color:#0b1220;margin:24px 0 10px;border-bottom:2px solid #0b1220;padding-bottom:4px;}' +
+      'h3{font-size:12pt;color:#333;margin:16px 0 8px;}' +
+      'p{margin:0 0 10px;text-align:justify;}' +
+      'table.g{border-collapse:collapse;width:100%;font-size:9pt;margin-bottom:20px;}' +
+      'table.g th{background:#0b1220;color:#fff;border:1px solid #666;padding:6px;text-align:left;}' +
+      'table.g td{border:1px solid #999;padding:6px;vertical-align:top;}' +
+      '</style></head><body><div class="WordSection1">');
+
+    // Title Page
+    h.push('<h1 style="text-align:center;font-size:20pt;color:#0b1220;">Dynamic Human Representation in Intelligent Systems</h1>');
+    h.push('<p style="text-align:center;font-size:12pt;color:#555;">Group 1 — Literature Review</p>');
+    h.push('<hr style="border:1px solid #ccc; margin: 20px 0;">');
+
+    // SECTION 1
+    var s1 = document.getElementById('sec1');
+    if(s1) {
+      h.push('<h2>1. Research Topic & Group Information</h2>');
+      h.push('<p><strong>Topic:</strong> Dynamic Human Representation in Intelligent Systems</p>');
+      h.push('<p><strong>Research Question:</strong> How do contemporary intelligent systems model, update, and adapt to users across seven representational dimensions — stable attributes, historical behavior, explicit goals/preferences, current intents, constraints, contextual conditions, and temporal change?</p>');
+      var table1 = s1.querySelector('.lang-en table');
+      if(table1) h.push('<h3>Group 1 Contributors</h3><table class="g">' + table1.innerHTML + '</table>');
+    }
+
+    // SECTION 2
+    var s2 = document.getElementById('sec2');
+    if(s2) {
+      h.push('<h2>2. Thematic Classification</h2>');
+      h.push('<p>Based on the synthesis of the reviewed literature, the 10 papers are categorized into five overarching research themes:</p>');
+      h.push(getTable('sec2'));
+    }
+
+    // SECTION 3
+    var s3 = document.getElementById('sec3');
+    if(s3) {
+      h.push('<h2>3. Literature Review Matrix</h2>');
+      h.push(getTable('sec3'));
+    }
+
+    // SECTION 4
+    var s4 = document.getElementById('sec4');
+    if(s4) {
+      h.push('<h2>4. Literature Review (Continuous Analytical Text)</h2>');
+      var paragraphs = s4.querySelectorAll('.lang-en p');
+      paragraphs.forEach(p => h.push('<p>' + txt(p) + '</p>'));
+    }
+
+    // SECTION 5
+    var s5 = document.getElementById('sec5');
+    if(s5) {
+      h.push('<h2>5. Research Gaps</h2>');
+      h.push(getTable('sec5'));
+    }
+
+    // SECTION 6
+    var s6 = document.getElementById('sec6');
+    if(s6) {
+      h.push('<h2>6. References (APA 7)</h2>');
+      var items = s6.querySelectorAll('li');
+      h.push('<ol>');
+      items.forEach(li => h.push('<li>' + txt(li) + '</li>'));
+      h.push('</ol>');
+    }
+
+    h.push('</div></body></html>');
+    return h.join('');
+  }
+
+  function saveAs(name, content, mime) {
+    var blob = new Blob(['\ufeff' + content], { type: mime });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = name;
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    setTimeout(function () { a.click(); }, 20);
+    setTimeout(function () { document.body.removeChild(a); URL.revokeObjectURL(url); }, 4000);
+  }
+
   document.getElementById('btnDoc').addEventListener('click', function () {
     setOpen(false);
-    saveAs('Group1_Dynamic_Human_Representation_Surveys.doc', buildWord(), 'application/msword');
+    saveAs('Group1_Literature_Review_Final.doc', buildWord(), 'application/msword');
   });
-})();
-</script>
-
-<script>
-/* ---------- Staggered entrance + scroll spy ---------- */
-(function () {
-  var d = document, reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  var items = Array.prototype.slice.call(d.querySelectorAll('.legend,.topic,.matrix,.typebreak,footer'));
-  function show(el) { el.setAttribute('data-in', '1'); }
-  if (reduce || !('IntersectionObserver' in window)) {
-    items.forEach(show);
-  } else {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { show(e.target); io.unobserve(e.target); }
-      });
-    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.04 });
-    items.forEach(function (el) { io.observe(el); });
-    setTimeout(function () { items.forEach(show); }, 2200);
-  }
-
-  var links = Array.prototype.slice.call(d.querySelectorAll('.nav-links a[href^="#"]'));
-  var map = {};
-  links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
-  var secs = Array.prototype.slice.call(d.querySelectorAll('.topic,.matrix,.typebreak'));
-  var top = d.getElementById('totop');
-  function spy() {
-    var y = (window.pageYOffset || d.documentElement.scrollTop || 0) + 130, best = null;
-    secs.forEach(function (s) { if (s.offsetTop <= y) best = s; });
-    links.forEach(function (a) { a.removeAttribute('data-on'); });
-    if (best && map[best.id]) map[best.id].setAttribute('data-on', '1');
-    if (top) {
-      if ((window.pageYOffset || 0) > 700) top.setAttribute('data-show', '');
-      else top.removeAttribute('data-show');
-    }
-  }
-  window.addEventListener('scroll', spy, { passive: true });
-  window.addEventListener('resize', spy);
-  if (top) top.addEventListener('click', function () {
-    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
-  });
-  spy();
 })();
 </script>
 </body>
